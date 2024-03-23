@@ -41,6 +41,7 @@ private:
 private:
 	MainWindow& wnd;
 	Graphics gfx;
+	Surface phone;
 	Surface sur;
 
 };

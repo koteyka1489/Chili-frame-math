@@ -316,16 +316,37 @@ void Graphics::PutPixel( int x,int y,Color c )
 	pSysBuffer[Graphics::ScreenWidth * y + x] = c;
 }
 
-void Graphics::DrawSprite(int x, int y, Surface& s)
+void Graphics::DrawSpriteNonChroma(int x, int y, Surface& s)
 {
 	const int width = s.GetWidth();
 	const int height = s.GetHeight();
+	
+	for (int sy = 0; sy < height; sy++)
+	{
+		for (int sx = 0; sx < width; sx++)
+		{
+			const Color srcpixel = s.GetPixel(sx, sy);
+			PutPixel(sx + x, sy + y, srcpixel);
+		}
+	}
+}
+
+void Graphics::DrawSpriteChroma(int x, int y, Surface& s )
+{
+	const int width = s.GetWidth();
+	const int height = s.GetHeight();
+	Color chromaKey = s.GetChromaKey();
 
 	for (int sy = 0; sy < height; sy++)
 	{
 		for (int sx = 0; sx < width; sx++)
 		{
-			PutPixel(sx + x, sy + y, s.GetPixel(sx, sy));
+			const Color srcpixel = s.GetPixel(sx, sy);
+			if (srcpixel != chromaKey)
+			{
+				PutPixel(sx + x, sy + y, srcpixel);
+			}
+
 		}
 	}
 }

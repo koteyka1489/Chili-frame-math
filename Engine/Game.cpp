@@ -26,9 +26,16 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	sur(200, 200)
+	phone(800, 600),
+	sur("numbers.bmp", Colors::White)
 {
-
+	for (int y = 0; y < phone.GetHeight(); y++)
+	{
+		for (int x = 0; x < phone.GetWidth(); x++)
+		{
+			phone.PutPixel(x, y, Colors::White);
+		}
+	}
 }
 
 void Game::Go()
@@ -45,5 +52,6 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	
+	gfx.DrawSpriteNonChroma(0, 0, phone);
+	gfx.DrawSpriteChroma(100, 100, sur);
 }
