@@ -57,9 +57,6 @@
     <ClInclude Include="COMInitializer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Clmg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">

@@ -138,7 +138,6 @@
   <ItemGroup>
     <ClInclude Include="ChiliException.h" />
     <ClInclude Include="ChiliWin.h" />
-    <ClInclude Include="Clmg.h" />
     <ClInclude Include="Colors.h" />
     <ClInclude Include="COMInitializer.h" />
     <ClInclude Include="DXErr.h" />
