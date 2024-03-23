@@ -25,8 +25,16 @@
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd )
+	gfx( wnd ),
+	sur(200, 200)
 {
+	for (int y = 0; y < sur.GetHeight(); y++)
+	{
+		for (int x = 0; x < sur.GetWidth(); x++)
+		{
+			sur.PutPixel(x, y, Color{ (unsigned char)x, (unsigned char)y, (unsigned char)100 });
+		}
+	}
 }
 
 void Game::Go()
@@ -43,4 +51,5 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
+	gfx.DrawSprite(100, 100, sur);
 }
