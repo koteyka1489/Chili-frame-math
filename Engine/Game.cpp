@@ -26,16 +26,12 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	phone(800, 600),
-	sur("numbers.bmp", Colors::White)
+	dg("numbers.bmp", Colors::White),
+	leftTop(curRectLeft, 0.0f),
+	rightBott(curRecRight, 40.0f),
+	dgRec(leftTop, rightBott)
 {
-	for (int y = 0; y < phone.GetHeight(); y++)
-	{
-		for (int x = 0; x < phone.GetWidth(); x++)
-		{
-			phone.PutPixel(x, y, Colors::White);
-		}
-	}
+
 }
 
 void Game::Go()
@@ -48,10 +44,39 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	
+	if (curTicks == ticksMax)
+	{
+		curTicks = 0;
+		if (dCounter < dCounterMax)
+		{
+			dCounter++;
+
+		}
+		else
+		{
+			dCounter = 0;
+		}
+		
+		curRectLeft = widthStep * dCounter;
+		curRecRight = widthStep * dCounter + 50.0f;
+		dgRec = { curRectLeft, curRecRight, 0.0f, 40.0f };
+	}
+	else
+	{
+		curTicks++;
+	}
+
+
+	
+
 }
 
 void Game::ComposeFrame()
 {
-	gfx.DrawSpriteNonChroma(0, 0, phone);
-	gfx.DrawSpriteChroma(100, 100, sur);
+	
+
+	gfx.DrawSpriteChromaRect(100, 100, dg, dgRec);
+
+
 }

@@ -351,6 +351,30 @@ void Graphics::DrawSpriteChroma(int x, int y, Surface& s )
 	}
 }
 
+void Graphics::DrawSpriteChromaRect(int x, int y, Surface& s, Rect rec)
+{
+	int s_y = (int)rec.top;
+	int s_x = (int)rec.left;
+	const int width = (int)rec.right;
+	const int height = (int)rec.bott;
+	Color chromaKey = s.GetChromaKey();
+
+	
+
+	for (int sy = s_y; sy < height; sy++)
+	{
+		for (int sx = s_x; sx < width; sx++)
+		{
+			const Color srcpixel = s.GetPixel(sx, sy);
+			if (srcpixel != chromaKey)
+			{
+				PutPixel(sx + x - s_x, sy + y - s_y, srcpixel);
+			}
+
+		}
+	}
+}
+
 
 //////////////////////////////////////////////////
 //           Graphics Exception

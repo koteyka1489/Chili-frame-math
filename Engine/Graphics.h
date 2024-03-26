@@ -25,6 +25,7 @@
 #include "ChiliException.h"
 #include "Colors.h"
 #include "Surface.h"
+#include "Rect.h"
 
 class Graphics
 {
@@ -60,6 +61,7 @@ public:
 	void PutPixel( int x,int y,Color c );
 	void DrawSpriteNonChroma(int x, int y, Surface& s);
 	void DrawSpriteChroma(int x, int y, Surface& s);
+	void DrawSpriteChromaRect(int x, int y, Surface& s, Rect rec);
 
 	~Graphics();
 private:

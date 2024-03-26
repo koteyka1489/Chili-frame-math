@@ -24,6 +24,8 @@
 #include "Mouse.h"
 #include "Graphics.h"
 #include "Surface.h"
+#include "Vec2.h"
+#include "Rect.h"
 
 class Game
 {
@@ -41,7 +43,18 @@ private:
 private:
 	MainWindow& wnd;
 	Graphics gfx;
-	Surface phone;
-	Surface sur;
+	Surface dg;
+	int dCounter = 0;
+	int dCounterMax = 11;
+	float widthStep = 50.0f;
+	int curTicks = 0;
+	int ticksMax = 5;
+	float curRectLeft = widthStep * dCounter;
+	float curRecRight = widthStep * dCounter + 50.0f; 
+	Point leftTop;
+	Point rightBott;
+	Rect dgRec;
+
+	
 
 };
