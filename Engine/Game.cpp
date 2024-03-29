@@ -25,11 +25,7 @@
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd ),
-	dg("numbers.bmp", Colors::White),
-	leftTop(curRectLeft, 0.0f),
-	rightBott(curRecRight, 40.0f),
-	dgRec(leftTop, rightBott)
+	gfx( wnd )	
 {
 
 }
@@ -45,38 +41,15 @@ void Game::Go()
 void Game::UpdateModel()
 {
 	
-	if (curTicks == ticksMax)
-	{
-		curTicks = 0;
-		if (dCounter < dCounterMax)
-		{
-			dCounter++;
-
-		}
-		else
-		{
-			dCounter = 0;
-		}
-		
-		curRectLeft = widthStep * dCounter;
-		curRecRight = widthStep * dCounter + 50.0f;
-		dgRec = { curRectLeft, curRecRight, 0.0f, 40.0f };
-	}
-	else
-	{
-		curTicks++;
-	}
-
-
-	
-
 }
 
 void Game::ComposeFrame()
 {
 	
-
-	gfx.DrawSpriteChromaRect(100, 100, dg, dgRec);
-
-
+	dg.draw_0_white(100, 100, gfx);
+	dg.draw_1_white(115, 100, gfx);
+	dg.draw_2_white(130, 100, gfx);
+	dg.draw_dot_white(145, 100, gfx);
+	dg.draw_3_white(160, 100, gfx);
+	dg.draw_4_white(175, 100, gfx);
 }

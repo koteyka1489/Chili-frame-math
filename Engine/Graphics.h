@@ -61,6 +61,7 @@ public:
 	void PutPixel( int x,int y,Color c );
 	void DrawSpriteNonChroma(int x, int y, Surface& s);
 	void DrawSpriteChroma(int x, int y, Surface& s);
+	void DrawSpriteChromaRGBWhite(int x, int y, Surface& s);
 	void DrawSpriteChromaRect(int x, int y, Surface& s, Rect rec);
 
 	~Graphics();
@@ -79,6 +80,6 @@ private:
 	D3D11_MAPPED_SUBRESOURCE							mappedSysBufferTexture;
 	Color*                                              pSysBuffer = nullptr;
 public:
-	static constexpr int ScreenWidth = 800;
-	static constexpr int ScreenHeight = 600;
+	static constexpr int ScreenWidth = 1500;
+	static constexpr int ScreenHeight = 1000;
 };
