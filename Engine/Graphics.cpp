@@ -395,6 +395,37 @@ void Graphics::DrawSpriteChromaRect(int x, int y, Surface& s, Rect rec)
 	}
 }
 
+void Graphics::DrawLine(Vec2 v)
+{
+	v.SetOrientationCalcMB();
+	if (v.xRunOrientation)
+	{
+		if (v.a.x > v.b.x)
+		{
+			std::swap(v.a, v.b);
+		}
+		for (int x = (int)v.a.x; x < v.b.x; x++)
+		{
+			float y = x * v.m + v.bd;
+			PutPixel((int)x, (int)y, Colors::White);
+		}
+	}
+	if (v.yRiseOrientation)
+	{
+		if (v.a.y > v.b.y)
+		{
+			std::swap(v.a, v.b);
+		}
+		for (int y = (int)v.a.y; y < v.b.y; y++)
+		{
+			float x = y * v.m + v.bd;
+			PutPixel((int)x, (int)y, Colors::White);
+		}
+	}
+
+
+}
+
 
 //////////////////////////////////////////////////
 //           Graphics Exception

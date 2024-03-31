@@ -41,11 +41,25 @@ void Game::Go()
 void Game::UpdateModel()
 {
 	
+	
+
+	
 
 }
 
 void Game::ComposeFrame()
 {
-	dg.DrawNumber(100, 100, 1123.0f, gfx);
+	if (wnd.mouse.LeftIsPressed())
+	{
+		Point a(750, 500);
+		Point b(wnd.mouse.GetPosX(), wnd.mouse.GetPosY());
+		Vec2 ab(b, a);
+		gfx.DrawLine(ab);
+		dg.DrawNumber(50, 50, ab.GetLenght(), gfx);
+
+
+
+	}
+	
 
 }

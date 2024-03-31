@@ -3,8 +3,8 @@
 Point Point::AddVec(const Vec2& v) const
 {
 	Point nP;
-	nP.x = x + v.x;
-	nP.y = y + v.y;
+	nP.x = x + v.xAbsLenght;
+	nP.y = y + v.yAbsLenght;
 	return nP;
 }
 
@@ -12,59 +12,57 @@ Point Point::AddVec(const Vec2& v) const
 
 Vec2::Vec2()
 	:
-	x(0),
-	y(0)
-{
-}
+	xAbsLenght(0),
+	yAbsLenght(0),
+	a(0,0),
+	b(0,0)
+{}
 
 Vec2::Vec2(Point a, Point b)
-{
-	x = a.x - b.x;
-	y = a.y - b.y;
-}
-
-Vec2::Vec2(float x, float y)
 	:
-	x(x),
-	y(y)
-{
-}
+	a(a),
+	b(b),
+	xAbsLenght(a.x - b.x),
+	yAbsLenght(a.y - b.y)
+{}
+
+
 
 Vec2 Vec2::operator+(Vec2 rhs) const
 {
 	Vec2 nVec;
-	nVec.x = x + rhs.x;
-	nVec.y = y + rhs.y;
+	nVec.xAbsLenght = xAbsLenght + rhs.xAbsLenght;
+	nVec.yAbsLenght = yAbsLenght + rhs.yAbsLenght;
 	return nVec;
 }
 
 Vec2 Vec2::operator-(Vec2 rhs) const
 {
 	Vec2 nVec;
-	nVec.x = x - rhs.x;
-	nVec.y = y - rhs.y;
+	nVec.xAbsLenght = xAbsLenght - rhs.xAbsLenght;
+	nVec.yAbsLenght = yAbsLenght - rhs.yAbsLenght;
 	return nVec;
 }
 
 Vec2 Vec2::operator*(float scl) const
 {
 	Vec2 nVec;
-	nVec.x = x * scl;
-	nVec.y = y * scl;
+	nVec.xAbsLenght = xAbsLenght * scl;
+	nVec.yAbsLenght = yAbsLenght * scl;
 	return nVec;
 }
 
 Vec2 Vec2::operator/(float scl) const
 {
 	Vec2 nVec;
-	nVec.x = x / scl;
-	nVec.y = y / scl;
+	nVec.xAbsLenght = xAbsLenght / scl;
+	nVec.yAbsLenght = yAbsLenght / scl;
 	return nVec;
 }
 
 float Vec2::GetLenghtSqr()
 {
-	return x*x + y * y;
+	return xAbsLenght * xAbsLenght + yAbsLenght * yAbsLenght;
 }
 
 float Vec2::GetLenght()
@@ -77,6 +75,25 @@ Vec2 Vec2::Normalize()
 	Vec2 normalize;
 	normalize = (*this) / this->GetLenght();
 	return normalize;
+}
+
+void Vec2::SetOrientationCalcMB()
+{
+	float mv; 
+	mv = (a.y - b.y) / (a.x - b.x);
+	if (abs((int)mv) <= 1)
+	{
+		xRunOrientation = true;
+		m = mv;
+		bd = a.y - (a.x * mv);
+	}
+	else
+	{
+		yRiseOrientation = true;
+		m = (a.x - b.x) / (a.y - b.y);
+		bd = a.x - (a.y * m);
+	}
+
 }
 
 
