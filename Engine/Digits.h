@@ -30,7 +30,7 @@ public:
 	void draw_9_white(int x, int y, Graphics& gfx);
 	void draw_dot_white(int x, int y, Graphics& gfx);
 
-	void DrawNumber(int x, int y, float n);
+	void DrawNumber(int x, int y, float n, Graphics& gfx);
 
 private:
 	Surface s0;

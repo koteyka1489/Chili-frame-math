@@ -126,7 +126,107 @@ void Digits::draw_dot_white(int x, int y, Graphics& gfx)
 	gfx.DrawSpriteChromaRGBWhite(x, y, sdot);
 }
 
-void Digits::DrawNumber(int x, int y, float n)
+void Digits::DrawNumber(int x, int y, float n, Graphics& gfx)
 {
+	int intPart = int(n);
+	int fractPartInInt = int((n - intPart) * 1000);
+
+	int xStep = 15;
+	int nStep = 1;
+
+	int div = 1000;
+	
+	for (int i = 0; i < 4; i++)
+	{
+		int num = intPart / div;
+		intPart %= div;
+		div /= 10;
+
+
+		switch (num)
+		{
+		case 0:
+			gfx.DrawSpriteChromaRGBWhite(x + xStep * nStep, y, s0);
+			break;
+		case 1:
+			gfx.DrawSpriteChromaRGBWhite(x + xStep * nStep, y, s1);
+			break;
+		case 2:
+			gfx.DrawSpriteChromaRGBWhite(x + xStep * nStep, y, s2);
+			break;
+		case 3:
+			gfx.DrawSpriteChromaRGBWhite(x + xStep * nStep, y, s3);
+			break;
+		case 4:
+			gfx.DrawSpriteChromaRGBWhite(x + xStep * nStep, y, s4);
+			break;
+		case 5:
+			gfx.DrawSpriteChromaRGBWhite(x + xStep * nStep, y, s5);
+			break;
+		case 6:
+			gfx.DrawSpriteChromaRGBWhite(x + xStep * nStep, y, s6);
+			break;
+		case 7:
+			gfx.DrawSpriteChromaRGBWhite(x + xStep * nStep, y, s7);
+			break;
+		case 8:
+			gfx.DrawSpriteChromaRGBWhite(x + xStep * nStep, y, s8);
+			break;
+		case 9:
+			gfx.DrawSpriteChromaRGBWhite(x + xStep * nStep, y, s9);
+			break;
+		}
+
+		nStep++;
+	}
+
+	gfx.DrawSpriteChromaRGBWhite(x + xStep * nStep, y, sdot);
+	nStep++;
+
+	div = 100;
+
+	for (int i = 0; i < 3; i++)
+	{
+		int num = fractPartInInt / div;
+		fractPartInInt %= div;
+		div /= 10;
+
+		switch (num)
+		{
+		case 0:
+			gfx.DrawSpriteChromaRGBWhite(x + xStep * nStep, y, s0);
+			break;
+		case 1:
+			gfx.DrawSpriteChromaRGBWhite(x + xStep * nStep, y, s1);
+			break;
+		case 2:
+			gfx.DrawSpriteChromaRGBWhite(x + xStep * nStep, y, s2);
+			break;
+		case 3:
+			gfx.DrawSpriteChromaRGBWhite(x + xStep * nStep, y, s3);
+			break;
+		case 4:
+			gfx.DrawSpriteChromaRGBWhite(x + xStep * nStep, y, s4);
+			break;
+		case 5:
+			gfx.DrawSpriteChromaRGBWhite(x + xStep * nStep, y, s5);
+			break;
+		case 6:
+			gfx.DrawSpriteChromaRGBWhite(x + xStep * nStep, y, s6);
+			break;
+		case 7:
+			gfx.DrawSpriteChromaRGBWhite(x + xStep * nStep, y, s7);
+			break;
+		case 8:
+			gfx.DrawSpriteChromaRGBWhite(x + xStep * nStep, y, s8);
+			break;
+		case 9:
+			gfx.DrawSpriteChromaRGBWhite(x + xStep * nStep, y, s9);
+			break;
+		}
+
+		nStep++;
+
+	}
 
 }

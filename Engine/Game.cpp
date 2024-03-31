@@ -41,15 +41,11 @@ void Game::Go()
 void Game::UpdateModel()
 {
 	
+
 }
 
 void Game::ComposeFrame()
 {
-	
-	dg.draw_0_white(100, 100, gfx);
-	dg.draw_1_white(115, 100, gfx);
-	dg.draw_2_white(130, 100, gfx);
-	dg.draw_dot_white(145, 100, gfx);
-	dg.draw_3_white(160, 100, gfx);
-	dg.draw_4_white(175, 100, gfx);
+	dg.DrawNumber(100, 100, 1123.0f, gfx);
+
 }
