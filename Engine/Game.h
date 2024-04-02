@@ -27,6 +27,7 @@
 #include "Vec2.h"
 #include "Rect.h"
 #include "Digits.h"
+#include "Button.h"
 
 class Game
 {
@@ -43,6 +44,7 @@ private:
 	MainWindow& wnd;
 	Graphics gfx;
 	Digits dg;
+	Button bt;
 
 
 

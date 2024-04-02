@@ -25,7 +25,8 @@
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd )	
+	gfx( wnd ),
+	bt (200, 800)
 {
 
 }
@@ -40,7 +41,7 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	
+	bt.MoveButton(wnd);
 	
 
 	
@@ -49,17 +50,7 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	if (wnd.mouse.LeftIsPressed())
-	{
-		Point a(750, 500);
-		Point b(wnd.mouse.GetPosX(), wnd.mouse.GetPosY());
-		Vec2 ab(b, a);
-		gfx.DrawLine(ab);
-		dg.DrawNumber(50, 50, ab.GetLenght(), gfx);
-
-
-
-	}
-	
+	bt.Draw(gfx);
+	dg.DrawNumber(100, 100, bt.GetDamageValue(), gfx);
 
 }

@@ -17,3 +17,8 @@ Rect::Rect(Point leftTop, Point rightBott)
 	:
 	Rect(leftTop.x, rightBott.x, leftTop.y, rightBott.y)
 {}
+
+bool Rect::InRectCheck(Point p)
+{
+	return p.x >= left && p.x <= right && p.y >= top && p.y <= bott;
+}
