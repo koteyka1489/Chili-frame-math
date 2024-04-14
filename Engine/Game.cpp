@@ -25,8 +25,8 @@
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd ),
-	bt (200, 800)
+	gfx( wnd )
+	
 {
 
 }
@@ -41,8 +41,7 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	bt.MoveButton(wnd);
-	
+
 
 	
 
@@ -50,7 +49,10 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	bt.Draw(gfx);
-	dg.DrawNumber(100, 100, bt.GetDamageValue(), gfx);
+
+
+
+
 
 }
+

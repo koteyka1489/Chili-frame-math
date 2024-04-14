@@ -28,6 +28,7 @@
 #include "Rect.h"
 #include "Digits.h"
 #include "Button.h"
+#include "FrameTimer.h"
 
 class Game
 {
@@ -44,7 +45,13 @@ private:
 	MainWindow& wnd;
 	Graphics gfx;
 	Digits dg;
-	Button bt;
+	FrameTimer frameTimer;
+	float dt = 0.0f;
+	float dtFix = 0.0f;
+	Point a = {500.0f, 500.0f};
+	Point b;
+	Vec2 ab;
+	int x;
 
 
 
