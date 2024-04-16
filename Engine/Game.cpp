@@ -22,6 +22,7 @@
 #include "Game.h"
 
 
+
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
@@ -41,7 +42,7 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-
+	shp.AddPoints(wnd);
 
 	
 
@@ -49,7 +50,7 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-
+	shp.Draw(gfx);
 
 
 
