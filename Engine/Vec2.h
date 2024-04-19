@@ -28,6 +28,7 @@ class Vec2
 public:
 	Vec2();
 	Vec2(Point a, Point b);
+	Vec2(float x, float y);
 
 	Vec2 operator+(Vec2 rhs) const;
 	Vec2 operator-(Vec2 rhs) const;

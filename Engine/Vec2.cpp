@@ -26,6 +26,14 @@ Vec2::Vec2(Point a, Point b)
 	yAbsLenght(a.y - b.y)
 {}
 
+Vec2::Vec2(float x, float y)
+	:
+	a(0.0f, 0.0f),
+	b(0.0f, 0.0f),
+	xAbsLenght(x),
+	yAbsLenght(y)
+{}
+
 
 
 Vec2 Vec2::operator+(Vec2 rhs) const
@@ -51,6 +59,8 @@ Vec2 Vec2::operator*(float scl) const
 	nVec.yAbsLenght = yAbsLenght * scl;
 	return nVec;
 }
+
+
 
 Vec2 Vec2::operator/(float scl) const
 {

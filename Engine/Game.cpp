@@ -42,7 +42,7 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	shp.AddPoints(wnd);
+	shp.Update(wnd);
 
 	
 

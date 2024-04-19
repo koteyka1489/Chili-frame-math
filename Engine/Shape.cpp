@@ -4,12 +4,14 @@ Shape::Shape()
 {
 }
 
-void Shape::AddPoints(MainWindow& wnd)
+void Shape::Update(MainWindow& wnd)
 {
 	if (!endAddPoints)
 	{
+		const auto e = wnd.mouse.Read();
 
-		if (wnd.mouse.LeftIsPressed())
+
+		if (e.GetType() == Mouse::Event::Type::LPress)
 		{
 
 			if (!points.empty())
@@ -23,22 +25,27 @@ void Shape::AddPoints(MainWindow& wnd)
 			{
 				points.emplace_back(wnd.mouse.GetPosX(), wnd.mouse.GetPosY());
 			}
-		
-			
-
 		}
 
-		if (points.size() >= 10)
+		if (points.size() >= nVert)
 		{
 			endAddPoints = true;
 		}
 
+	}
+	else
+	{
+		SetCenter();
+		Move(wnd);
 	}
 	if (wnd.kbd.KeyIsPressed(VK_SPACE))
 	{
 		endAddPoints = false;
 		points.clear();
 	}
+
+
+
 }
 
 void Shape::Draw(Graphics& gfx)
@@ -61,6 +68,64 @@ void Shape::Draw(Graphics& gfx)
 
 		Vec2 vecEnd(points[points.size() - 1], points[0]);
 		gfx.DrawLine(vecEnd);
+		
+		gfx.PutPixel(center.x, center.y, Colors::White);
+	}
+}
+
+void Shape::SetCenter()
+{
+	
+	float sumX = 0;
+	float sumY = 0;
+	for (int i = 0; i < points.size(); i++)
+	{
+		sumX += points[i].x;
+		sumY += points[i].y;
+	}
+	center.x = sumX / points.size();
+	center.y = sumY / points.size();
+	
+}
+
+void Shape::Move(MainWindow& wnd)
+{
+	if (wnd.kbd.KeyIsPressed(VK_UP))
+	{
+		Vec2 dir{ 0.0f, -1.0f };
+		dir = dir * speedSqale;
+	
+		for (int i = 0; i < points.size(); i++)
+		{
+			points[i] = points[i].AddVec(dir);
+		}
+	}
+	if (wnd.kbd.KeyIsPressed(VK_DOWN))
+	{
+		Vec2 dir{ 0.0f, 1.0f };
+		dir = dir * speedSqale;
+		for (int i = 0; i < points.size(); i++)
+		{
+			points[i] = points[i].AddVec(dir);
+		}
+	}
+	if (wnd.kbd.KeyIsPressed(VK_LEFT))
+	{
+		Vec2 dir{ -1.0f, 0.0f };
+		dir = dir * speedSqale;
+		for (int i = 0; i < points.size(); i++)
+		{
+			points[i] = points[i].AddVec(dir);
+		}
+	}
+	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
+	{
+		Vec2 dir{ 1.0f, 0.0f };
+		dir = dir * speedSqale;
+		for (int i = 0; i < points.size(); i++)
+		{
+			points[i] = points[i].AddVec(dir);
+		}
 	}
 }
 
