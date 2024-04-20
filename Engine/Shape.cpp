@@ -37,14 +37,13 @@ void Shape::Update(MainWindow& wnd)
 	{
 		SetCenter();
 		Move(wnd);
+		Scale(wnd);
 	}
 	if (wnd.kbd.KeyIsPressed(VK_SPACE))
 	{
 		endAddPoints = false;
 		points.clear();
 	}
-
-
 
 }
 
@@ -125,6 +124,36 @@ void Shape::Move(MainWindow& wnd)
 		for (int i = 0; i < points.size(); i++)
 		{
 			points[i] = points[i].AddVec(dir);
+		}
+	}
+}
+
+void Shape::Scale(MainWindow& wnd)
+{
+
+	const auto e = wnd.mouse.Read();
+
+	if (e.GetType() == Mouse::Event::Type::WheelUp)
+	{
+		sizeScale += 1.1f;
+		for (int i = 0; i < points.size(); i++)
+		{
+			Vec2 nv(points[i], center);
+			nv = nv.Normalize();
+			nv = nv * sizeScale;
+			points[i] = points[i].AddVec(nv);
+		}
+	}
+
+	if (e.GetType() == Mouse::Event::Type::WheelDown)
+	{
+		sizeScale += 1.1f;
+		for (int i = 0; i < points.size(); i++)
+		{
+			Vec2 nv(center, points[i]);
+			nv = nv.Normalize();
+			nv = nv * sizeScale;
+			points[i] = points[i].AddVec(nv);
 		}
 	}
 }
