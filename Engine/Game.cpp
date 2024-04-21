@@ -27,11 +27,15 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	shp(750.0f, 500.0f, 4, 200.0f, Colors::White)
-	
-{
+	shapes{
+	{150.0f, 500.0f, 5, 150.0f, Colors::White},
+	{350.0f, 100.0f, 4, 200.0f, Colors::Cyan},
+	{450.0f, 800.0f, 3, 250.0f, Colors::Yellow},
+	{-150.0f, 100.0f, 6, 100.0f, Colors::Gray},
+	{800.0f, 500.0f, 8, 120.0f, Colors::LightGray} },
+	upd(shapes)
 
-}
+{}
 
 void Game::Go()
 {
@@ -43,17 +47,12 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	shp.Update(wnd);
-
-	
-
+	upd.Update(wnd);
 }
 
 void Game::ComposeFrame()
 {
-	shp.Draw(gfx);
-
-
+	upd.Draw(gfx);
 
 
 }

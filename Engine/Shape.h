@@ -14,10 +14,9 @@ public:
 	void Update(MainWindow& wnd);
 	void Draw(Graphics& gfx);
 
-private:
 	void SetCenter();
-	void Move(MainWindow& wnd);
-	void Scale(MainWindow& wnd);
+	void Move(MainWindow& wnd, Vec2 dir);
+	void ScaleFromCenterShape(MainWindow& wnd, bool dir);
 
 
 private:

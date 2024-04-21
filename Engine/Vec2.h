@@ -31,6 +31,7 @@ public:
 	Vec2(float x, float y);
 
 	Vec2 operator+(Vec2 rhs) const;
+
 	Vec2 operator-(Vec2 rhs) const;
 	Vec2 operator*(float scl) const;
 	Vec2 operator/(float scl) const;

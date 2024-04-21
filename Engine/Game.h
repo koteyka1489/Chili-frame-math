@@ -30,6 +30,7 @@
 #include "Button.h"
 #include "FrameTimer.h"
 #include "Shape.h"
+#include "UpdateScrenCoordinate.h"
 
 class Game
 {
@@ -45,11 +46,7 @@ private:
 private:
 	MainWindow& wnd;
 	Graphics gfx;
-	Shape shp;
-
-
-
-
-	
+	std::vector<Shape> shapes;
+	UpdateScrenCoordinate upd;
 
 };

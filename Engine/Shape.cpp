@@ -51,8 +51,6 @@ void Shape::Update(MainWindow& wnd)
 	else
 	{
 		SetCenter();
-		Move(wnd);
-		Scale(wnd);
 	}
 	if (wnd.kbd.KeyIsPressed(VK_SPACE))
 	{
@@ -100,75 +98,45 @@ void Shape::SetCenter()
 	
 }
 
-void Shape::Move(MainWindow& wnd)
+void Shape::Move(MainWindow& wnd, Vec2 dir)
 {
-	if (wnd.kbd.KeyIsPressed(VK_UP))
+
+	for (int i = 0; i < points.size(); i++)
 	{
-		Vec2 dir{ 0.0f, -1.0f };
-		dir = dir * speedSqale;
-	
-		for (int i = 0; i < points.size(); i++)
-		{
-			points[i] = points[i].AddVec(dir);
-		}
-	}
-	if (wnd.kbd.KeyIsPressed(VK_DOWN))
-	{
-		Vec2 dir{ 0.0f, 1.0f };
-		dir = dir * speedSqale;
-		for (int i = 0; i < points.size(); i++)
-		{
-			points[i] = points[i].AddVec(dir);
-		}
-	}
-	if (wnd.kbd.KeyIsPressed(VK_LEFT))
-	{
-		Vec2 dir{ -1.0f, 0.0f };
-		dir = dir * speedSqale;
-		for (int i = 0; i < points.size(); i++)
-		{
-			points[i] = points[i].AddVec(dir);
-		}
-	}
-	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
-	{
-		Vec2 dir{ 1.0f, 0.0f };
-		dir = dir * speedSqale;
-		for (int i = 0; i < points.size(); i++)
-		{
-			points[i] = points[i].AddVec(dir);
-		}
+		points[i] = points[i].AddVec(dir);
 	}
 }
 
-void Shape::Scale(MainWindow& wnd)
+void Shape::ScaleFromCenterShape(MainWindow& wnd, bool dir)
 {
 
-	const auto e = wnd.mouse.Read();
-
-	if (e.GetType() == Mouse::Event::Type::WheelUp)
+	if (dir)
 	{
-		
+
 		for (int i = 0; i < points.size(); i++)
 		{
 			Vec2 nv(points[i], center);
-			
+
+			nv = nv * sizeScale;
+			points[i] = points[i].AddVec(nv);
+		}
+	}
+	else
+	{
+		for (int i = 0; i < points.size(); i++)
+		{
+			Vec2 nv(center, points[i]);
+
 			nv = nv * sizeScale;
 			points[i] = points[i].AddVec(nv);
 		}
 	}
 
-	if (e.GetType() == Mouse::Event::Type::WheelDown)
-	{
-		
-		for (int i = 0; i < points.size(); i++)
-		{
-			Vec2 nv(center, points[i]);
-			
-			nv = nv * sizeScale;
-			points[i] = points[i].AddVec(nv);
-		}
-	}
+	
+
+
+
+
 }
 
 
