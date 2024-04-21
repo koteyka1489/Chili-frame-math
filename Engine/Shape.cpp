@@ -67,8 +67,6 @@ void Shape::Draw(Graphics& gfx)
 
 		Vec2 vecEnd(points[points.size() - 1], points[0]);
 		gfx.DrawLine(vecEnd);
-		
-		gfx.PutPixel(center.x, center.y, Colors::White);
 	}
 }
 
@@ -135,24 +133,24 @@ void Shape::Scale(MainWindow& wnd)
 
 	if (e.GetType() == Mouse::Event::Type::WheelUp)
 	{
-		sizeScale += 1.2f;
+		
 		for (int i = 0; i < points.size(); i++)
 		{
 			Vec2 nv(points[i], center);
-			nv = nv.Normalize();
-			//nv = nv * sizeScale;
+			
+			nv = nv * sizeScale;
 			points[i] = points[i].AddVec(nv);
 		}
 	}
 
 	if (e.GetType() == Mouse::Event::Type::WheelDown)
 	{
-		sizeScale += 1.2f;
+		
 		for (int i = 0; i < points.size(); i++)
 		{
 			Vec2 nv(center, points[i]);
-			nv = nv.Normalize();
-			//nv = nv * sizeScale;
+			
+			nv = nv * sizeScale;
 			points[i] = points[i].AddVec(nv);
 		}
 	}
