@@ -26,7 +26,8 @@
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd )
+	gfx( wnd ),
+	shp(750.0f, 500.0f, 4, 200.0f, Colors::White)
 	
 {
 

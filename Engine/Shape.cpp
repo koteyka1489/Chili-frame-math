@@ -4,6 +4,21 @@ Shape::Shape()
 {
 }
 
+Shape::Shape(float x, float y, int nVert, float radius, Color clr)
+{
+	this->clr = clr;
+	const float dtheta = 2.0f * 3.14159f / float(nVert);
+
+	for (int i = 0; i < nVert; i++)
+	{
+		float nx = x + radius * cos(float(i) * dtheta);
+		float ny = y + radius * sin(float(i) * dtheta);
+		points.emplace_back(nx, ny);
+	}
+
+	endAddPoints = true;
+}
+
 void Shape::Update(MainWindow& wnd)
 {
 	if (!endAddPoints)
