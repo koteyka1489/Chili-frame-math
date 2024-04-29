@@ -1,9 +1,22 @@
 #include "UpdateScrenCoordinate.h"
 
-UpdateScrenCoordinate::UpdateScrenCoordinate(std::vector<Shape>& shapes)
+
+
+UpdateScrenCoordinate::UpdateScrenCoordinate()
 	:
-	shapes(std::move(shapes))
+	shapesUPS(sh)
 {}
+
+UpdateScrenCoordinate::UpdateScrenCoordinate(std::vector<Shape>& shapesIN)
+	:
+	shapesUPS(shapesIN)
+{}
+
+UpdateScrenCoordinate UpdateScrenCoordinate::operator=(UpdateScrenCoordinate& rhs)
+{
+	shapesUPS = rhs.shapesUPS;
+	return *this;
+}
 
 void UpdateScrenCoordinate::Update(MainWindow & wnd)
 {
@@ -34,10 +47,7 @@ void UpdateScrenCoordinate::Move(MainWindow& wnd)
 		dir = dir + Vec2{ -5.0f, 0.0f };
 	}
 	
-	for (int i = 0; i < shapes.size(); i++)
-	{
-		shapes[i].Move(wnd, dir);
-	}
+
 
 }
 
@@ -47,25 +57,24 @@ void UpdateScrenCoordinate::Scale(MainWindow& wnd)
 
 	if (e.GetType() == Mouse::Event::Type::WheelUp)
 	{
-		for (int i = 0; i < shapes.size(); i++)
+		for (int i = 0; i < shapesUPS.size(); i++)
 		{
-			shapes[i].ScaleFromCenterShape(wnd, true);
+			shapesUPS[i].ScaleFromCenterShape(wnd, true);
 		}
 	}
 	if (e.GetType() == Mouse::Event::Type::WheelDown)
 	{
-		for (int i = 0; i < shapes.size(); i++)
+		for (int i = 0; i < shapesUPS.size(); i++)
 		{
-			shapes[i].ScaleFromCenterShape(wnd, false);
+			shapesUPS[i].ScaleFromCenterShape(wnd, false);
 		}
 	}
-
 }
 
 void UpdateScrenCoordinate::Draw(Graphics& gfx)
 {
-	for (int i = 0; i < shapes.size(); i++)
+	for (int i = 0; i < shapesUPS.size(); i++)
 	{
-		shapes[i].Draw(gfx);
+		shapesUPS[i].Draw(gfx);
 	}
 }

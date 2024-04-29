@@ -17,6 +17,7 @@ Shape::Shape(float x, float y, int nVert, float radius, Color clr)
 	}
 
 	endAddPoints = true;
+	SetCenter();
 }
 
 void Shape::Update(MainWindow& wnd)
@@ -46,7 +47,6 @@ void Shape::Update(MainWindow& wnd)
 		{
 			endAddPoints = true;
 		}
-
 	}
 	else
 	{
@@ -85,7 +85,6 @@ void Shape::Draw(Graphics& gfx)
 
 void Shape::SetCenter()
 {
-	
 	float sumX = 0;
 	float sumY = 0;
 	for (int i = 0; i < points.size(); i++)
@@ -98,12 +97,16 @@ void Shape::SetCenter()
 	
 }
 
-void Shape::Move(MainWindow& wnd, Vec2 dir)
+void Shape::UpdateSpeed(Vec2 dir)
 {
+	speedVec = dir;
+}
 
+void Shape::Move()
+{
 	for (int i = 0; i < points.size(); i++)
 	{
-		points[i] = points[i].AddVec(dir);
+		points[i] = points[i].AddVec(speedVec);
 	}
 }
 
@@ -131,12 +134,7 @@ void Shape::ScaleFromCenterShape(MainWindow& wnd, bool dir)
 			points[i] = points[i].AddVec(nv);
 		}
 	}
-
 	
-
-
-
-
 }
 
 

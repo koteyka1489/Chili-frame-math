@@ -26,16 +26,14 @@
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd ),
-	shapes{
-	{150.0f, 500.0f, 5, 150.0f, Colors::White},
-	{350.0f, 100.0f, 4, 200.0f, Colors::Cyan},
-	{450.0f, 800.0f, 3, 250.0f, Colors::Yellow},
-	{-150.0f, 100.0f, 6, 100.0f, Colors::Gray},
-	{800.0f, 500.0f, 8, 120.0f, Colors::LightGray} },
-	upd(shapes)
-
-{}
+	gfx( wnd )
+	{
+		for (int i = 0; i < 100; i++)
+			{
+				shapesGame.emplace_back(750.f, 900.f, 32, 10, Colors::White);
+			}
+		
+	}
 
 void Game::Go()
 {
@@ -47,13 +45,29 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	upd.Update(wnd);
+
+	if (ticks >= ticksMax)
+	{
+		curShape++;
+		ticks = 0;
+	}
+	else
+	{
+		ticks++;
+	}
+	
+	for (int i = 0; i <= curShape; i++)
+	{
+		shapesGame[i].Move();
+	}
+	stick.Move(wnd);
+
+
 }
 
 void Game::ComposeFrame()
 {
+	upd = UpdateScrenCoordinate{ shapesGame };
 	upd.Draw(gfx);
-
-
+	stick.Draw(gfx);
 }
-

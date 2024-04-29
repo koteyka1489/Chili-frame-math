@@ -15,7 +15,8 @@ public:
 	void Draw(Graphics& gfx);
 
 	void SetCenter();
-	void Move(MainWindow& wnd, Vec2 dir);
+	void UpdateSpeed(Vec2 dir);
+	void Move();
 	void ScaleFromCenterShape(MainWindow& wnd, bool dir);
 
 
@@ -27,5 +28,6 @@ private:
 	Point center = { 0.0f, 0.0f };
 	float speedSqale = 5.0f;
 	float sizeScale = 0.1f;
+	Vec2 speedVec = { -2.5f, -5.f };
 };
 

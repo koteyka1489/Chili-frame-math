@@ -31,6 +31,7 @@
 #include "FrameTimer.h"
 #include "Shape.h"
 #include "UpdateScrenCoordinate.h"
+#include "Stick.h"
 
 class Game
 {
@@ -46,7 +47,10 @@ private:
 private:
 	MainWindow& wnd;
 	Graphics gfx;
-	std::vector<Shape> shapes;
+	std::vector<Shape> shapesGame;
 	UpdateScrenCoordinate upd;
-
+	int ticks = 0;
+	int ticksMax = 180;
+	int curShape = 0;
+	Stick stick;
 };

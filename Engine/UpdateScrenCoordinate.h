@@ -8,8 +8,9 @@
 class UpdateScrenCoordinate
 {
 public:
-	UpdateScrenCoordinate() = default;
+	UpdateScrenCoordinate();
 	UpdateScrenCoordinate(std::vector<Shape>& shapes);
+	UpdateScrenCoordinate operator= (UpdateScrenCoordinate& rhs);
 	void Update(MainWindow& wnd);
 	void Draw(Graphics& gfx);
 private:
@@ -17,6 +18,8 @@ private:
 	void Scale(MainWindow& wnd);
 	
 private:
-	std::vector<Shape> shapes;
+	std::vector<Shape> sh;
+	std::vector<Shape>& shapesUPS;
+	
 };
 
