@@ -18,6 +18,10 @@ public:
 	void UpdateSpeed(Vec2 dir);
 	void Move();
 	void ScaleFromCenterShape(MainWindow& wnd, bool dir);
+	Point GetCenter();
+	float GetRadius();
+	Vec2 GetSpeed();
+	void SetSpeed(Vec2 speed_in);
 
 
 private:
@@ -26,6 +30,7 @@ private:
 	bool endAddPoints = false;
 	static  constexpr int nVert = 5;
 	Point center = { 0.0f, 0.0f };
+	float radius = 0.0f;
 	float speedSqale = 5.0f;
 	float sizeScale = 0.1f;
 	Vec2 speedVec = { -2.5f, -5.f };

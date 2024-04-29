@@ -21,7 +21,15 @@
 #include "MainWindow.h"
 #include "Game.h"
 
+float DistancePointLine(Point p0, Point p1, Point q)
+{
+	float a = p0.y - p1.y;
+	float b = p1.x - p0.x;
+	float c = p0.x * p1.y - p1.x * p0.y;
 
+	return std::abs(a * q.x + b * q.y + c) / std::sqrt(a * a + b * b);
+
+}
 
 Game::Game( MainWindow& wnd )
 	:
@@ -59,8 +67,16 @@ void Game::UpdateModel()
 	for (int i = 0; i <= curShape; i++)
 	{
 		shapesGame[i].Move();
+		if (DistancePointLine(stick.GetStartPoint(), stick.GetEndPoint(), shapesGame[i].GetCenter()) < shapesGame[i].GetRadius())
+		{
+			collideSound.Play();
+			Vec2 w = stick.GetStickVec().Normalize();
+			Vec2 v = shapesGame[i].GetSpeed();
+			shapesGame[i].SetSpeed(w * (v * w) * 2.f - v);
+		}
 	}
 	stick.Move(wnd);
+
 
 
 }

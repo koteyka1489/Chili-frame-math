@@ -17,7 +17,8 @@ Shape::Shape(float x, float y, int nVert, float radius, Color clr)
 	}
 
 	endAddPoints = true;
-	SetCenter();
+	center = Point{ x, y };
+	this->radius = radius;
 }
 
 void Shape::Update(MainWindow& wnd)
@@ -108,6 +109,7 @@ void Shape::Move()
 	{
 		points[i] = points[i].AddVec(speedVec);
 	}
+	SetCenter();
 }
 
 void Shape::ScaleFromCenterShape(MainWindow& wnd, bool dir)
@@ -135,6 +137,27 @@ void Shape::ScaleFromCenterShape(MainWindow& wnd, bool dir)
 		}
 	}
 	
+}
+
+Point Shape::GetCenter()
+{
+
+	return center;
+}
+
+float Shape::GetRadius()
+{
+	return radius;
+}
+
+Vec2 Shape::GetSpeed()
+{
+	return speedVec;
+}
+
+void Shape::SetSpeed(Vec2 speed_in)
+{
+	speedVec = speed_in;
 }
 
 

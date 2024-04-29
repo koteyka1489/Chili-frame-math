@@ -1,6 +1,8 @@
 #pragma once
 #include "Graphics.h"
 #include "MainWindow.h"
+#include "Vec2.h"
+
 
 class Stick
 {
@@ -8,11 +10,14 @@ public:
 	Stick();
 	void Move(MainWindow& wnd);
 	void Draw(Graphics& gfx);
+	Vec2 GetStickVec();
+	Point GetStartPoint();
+	Point GetEndPoint();
+
 private:
-	float xStart = 750.f;
-	float yStart = 500.f;
-	float xEnd = 10.f;
-	float yEnd = 300.f;
+
+	Point startPoint{ 750.0f, 500.f };
+	Point endPoint{ 10.f, 300.f };
 	int height = 10;
 };
 

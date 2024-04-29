@@ -32,6 +32,9 @@
 #include "Shape.h"
 #include "UpdateScrenCoordinate.h"
 #include "Stick.h"
+#include <cmath>
+#include "Sound.h"
+
 
 class Game
 {
@@ -53,4 +56,5 @@ private:
 	int ticksMax = 180;
 	int curShape = 0;
 	Stick stick;
+	Sound collideSound = Sound(L"Sounds//fart1.wav");
 };

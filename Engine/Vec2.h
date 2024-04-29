@@ -15,6 +15,8 @@ public:
 		x(x_in),
 		y(y_in)
 	{}
+	Point operator+(const Point& rhs);
+
 	Point AddVec(const Vec2& v) const;
 public:
 	float x = 0;
@@ -34,6 +36,7 @@ public:
 
 	Vec2 operator-(Vec2 rhs) const;
 	Vec2 operator*(float scl) const;
+	float operator* (Vec2 rhs);
 	Vec2 operator/(float scl) const;
 	float GetLenghtSqr();
 	float GetLenght();
