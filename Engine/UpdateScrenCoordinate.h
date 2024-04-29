@@ -3,13 +3,14 @@
 #include "Shape.h"
 #include "MainWindow.h"
 #include "Vec2.h"
+#include "Stick.h"
 
 
 class UpdateScrenCoordinate
 {
 public:
-	UpdateScrenCoordinate();
-	UpdateScrenCoordinate(std::vector<Shape>& shapes);
+	UpdateScrenCoordinate() = default;
+	UpdateScrenCoordinate(std::vector<Shape>& shapes, Stick& stc);
 	UpdateScrenCoordinate operator= (UpdateScrenCoordinate& rhs);
 	void Update(MainWindow& wnd);
 	void Draw(Graphics& gfx);
@@ -18,8 +19,7 @@ private:
 	void Scale(MainWindow& wnd);
 	
 private:
-	std::vector<Shape> sh;
 	std::vector<Shape>& shapesUPS;
-	
+	Stick& stc;
 };
 

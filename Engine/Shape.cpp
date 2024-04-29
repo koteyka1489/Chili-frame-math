@@ -112,6 +112,15 @@ void Shape::Move()
 	SetCenter();
 }
 
+void Shape::MoveCamera(Vec2 dir)
+{
+	for (int i = 0; i < points.size(); i++)
+	{
+		points[i] = points[i].AddVec(dir);
+	}
+	SetCenter();
+}
+
 void Shape::ScaleFromCenterShape(MainWindow& wnd, bool dir)
 {
 

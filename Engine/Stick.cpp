@@ -6,11 +6,11 @@ Stick::Stick()
 
 void Stick::Move(MainWindow& wnd)
 { 
-	if (wnd.kbd.KeyIsPressed(VK_UP))
+	if (wnd.kbd.KeyIsPressed(VK_SHIFT))
 	{
 		endPoint.y += -5.0f;
 	}
-	if (wnd.kbd.KeyIsPressed(VK_DOWN))
+	if (wnd.kbd.KeyIsPressed(VK_CONTROL))
 	{
 		endPoint.y += 5.0f;
 	}

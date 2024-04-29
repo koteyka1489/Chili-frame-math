@@ -17,6 +17,7 @@ public:
 	void SetCenter();
 	void UpdateSpeed(Vec2 dir);
 	void Move();
+	void MoveCamera(Vec2 dir);
 	void ScaleFromCenterShape(MainWindow& wnd, bool dir);
 	Point GetCenter();
 	float GetRadius();

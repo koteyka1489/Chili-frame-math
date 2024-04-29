@@ -34,7 +34,8 @@ float DistancePointLine(Point p0, Point p1, Point q)
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd )
+	gfx( wnd ),
+	upd(shapesGame)
 	{
 		for (int i = 0; i < 100; i++)
 			{
@@ -76,14 +77,13 @@ void Game::UpdateModel()
 		}
 	}
 	stick.Move(wnd);
-
-
-
+	upd = UpdateScrenCoordinate{ shapesGame };
+	upd.Update(wnd);
 }
 
 void Game::ComposeFrame()
 {
-	upd = UpdateScrenCoordinate{ shapesGame };
+	
 	upd.Draw(gfx);
 	stick.Draw(gfx);
 }

@@ -2,15 +2,13 @@
 
 
 
-UpdateScrenCoordinate::UpdateScrenCoordinate()
-	:
-	shapesUPS(sh)
-{}
 
-UpdateScrenCoordinate::UpdateScrenCoordinate(std::vector<Shape>& shapesIN)
+UpdateScrenCoordinate::UpdateScrenCoordinate(std::vector<Shape>& shapesIN, Stick& stc)
 	:
-	shapesUPS(shapesIN)
-{}
+	shapesUPS(shapesIN),
+	stc(stc)
+{
+}
 
 UpdateScrenCoordinate UpdateScrenCoordinate::operator=(UpdateScrenCoordinate& rhs)
 {
@@ -47,7 +45,10 @@ void UpdateScrenCoordinate::Move(MainWindow& wnd)
 		dir = dir + Vec2{ -5.0f, 0.0f };
 	}
 	
-
+	for (auto& s : shapesUPS)
+	{
+		s.MoveCamera(dir);
+	}
 
 }
 
