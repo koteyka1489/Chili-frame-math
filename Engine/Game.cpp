@@ -67,14 +67,17 @@ void Game::UpdateModel()
 	
 	for (int i = 0; i <= curShape; i++)
 	{
-		shapesGame[i].Move();
-		if (DistancePointLine(stick.GetStartPoint(), stick.GetEndPoint(), shapesGame[i].GetCenter()) < shapesGame[i].GetRadius())
+		
+		if (DistancePointLine(stick.GetStartPoint(), stick.GetEndPoint(), shapesGame[i].GetCenter()) < shapesGame[i].GetRadius() 
+			&& !shapesGame[i].GetRebounded())
 		{
 			collideSound.Play();
 			Vec2 w = stick.GetStickVec().Normalize();
 			Vec2 v = shapesGame[i].GetSpeed();
 			shapesGame[i].SetSpeed(w * (v * w) * 2.f - v);
+			shapesGame[i].SetRebounded(true);
 		}
+		shapesGame[i].Move();
 	}
 	stick.Move(wnd);
 	upd = UpdateScrenCoordinate{ shapesGame };
@@ -83,7 +86,6 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	
 	upd.Draw(gfx);
 	stick.Draw(gfx);
 }

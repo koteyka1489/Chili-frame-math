@@ -169,6 +169,16 @@ void Shape::SetSpeed(Vec2 speed_in)
 	speedVec = speed_in;
 }
 
+bool Shape::GetRebounded()
+{
+	return rebounded;
+}
+
+void Shape::SetRebounded(bool reb)
+{
+	rebounded = reb;
+}
+
 
 
 

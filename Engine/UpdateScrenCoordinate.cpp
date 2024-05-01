@@ -3,7 +3,7 @@
 
 
 
-UpdateScrenCoordinate::UpdateScrenCoordinate(std::vector<Shape>& shapesIN, Stick& stc)
+UpdateScrenCoordinate::UpdateScrenCoordinate(std::vector<Shape>& shapesIN)
 	:
 	shapesUPS(shapesIN),
 	stc(stc)

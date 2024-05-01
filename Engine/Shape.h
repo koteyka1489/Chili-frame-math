@@ -23,6 +23,8 @@ public:
 	float GetRadius();
 	Vec2 GetSpeed();
 	void SetSpeed(Vec2 speed_in);
+	bool GetRebounded();
+	void SetRebounded(bool reb);
 
 
 private:
@@ -35,5 +37,6 @@ private:
 	float speedSqale = 5.0f;
 	float sizeScale = 0.1f;
 	Vec2 speedVec = { -2.5f, -5.f };
+	bool rebounded = false;
 };
 
