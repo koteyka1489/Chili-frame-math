@@ -2,6 +2,16 @@
 
 void Camera::Update(MainWindow& wnd)
 {
+	MoveCamera(wnd);
+}
+
+Vec2 Camera::GetOffset()
+{
+	return offsetCenter + offsetMoveCamera;
+}
+
+void Camera::MoveCamera(MainWindow& wnd)
+{
 	if (wnd.kbd.KeyIsPressed(VK_UP))
 	{
 		offsetMoveCamera = offsetMoveCamera + Vec2{ 0.0f, stepMoveCamera };
@@ -18,9 +28,4 @@ void Camera::Update(MainWindow& wnd)
 	{
 		offsetMoveCamera = offsetMoveCamera + Vec2{ -stepMoveCamera, 0.0f };
 	}
-}
-
-Vec2 Camera::GetOffset()
-{
-	return offsetCenter + offsetMoveCamera;
 }

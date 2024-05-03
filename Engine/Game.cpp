@@ -45,7 +45,7 @@ void Game::UpdateModel()
 	t += dt;
 	float theta =  t * 3.14159;
 	std::vector<Shape> triang;
-	triang.emplace_back(0.f, .0f, 3, 150, Colors::Cyan);
+	triang.emplace_back(0.f, .0f, 5, 150, Colors::Cyan);
 	
 	triang[0].Rotate(theta);
 	camera.Update(wnd);

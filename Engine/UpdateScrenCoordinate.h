@@ -13,7 +13,7 @@ public:
 	UpdateScrenCoordinate(std::vector<Shape>& shapes);
 	UpdateScrenCoordinate operator= (UpdateScrenCoordinate& rhs);
 	void Update(MainWindow& wnd);
-	void Draw(Graphics& gfx);
+	//void Draw(Graphics& gfx);
 private:
 	void Move(MainWindow& wnd);
 	void Scale(MainWindow& wnd);
