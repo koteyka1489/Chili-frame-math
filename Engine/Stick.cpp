@@ -28,17 +28,17 @@ void Stick::Draw(Graphics& gfx)
 	}
 }
 
-Vec2 Stick::GetStickVec()
+Vec2 Stick::GetStickVec() const
 {
 	return Vec2(endPoint, startPoint);
 }
 
-Point Stick::GetStartPoint()
+Point Stick::GetStartPoint() const
 {
 	return startPoint;
 }
 
-Point Stick::GetEndPoint()
+Point Stick::GetEndPoint() const
 {
 	return endPoint;
 }

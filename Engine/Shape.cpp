@@ -21,6 +21,26 @@ Shape::Shape(float x, float y, int nVert, float radius, Color clr)
 	this->radius = radius;
 }
 
+Shape& Shape::operator=(const Shape& rhs)
+
+{
+	points = rhs.points;
+	clr = rhs.clr;
+	endAddPoints = rhs.endAddPoints;
+	center = rhs.center;
+	radius = rhs.radius;
+	speedSqale = rhs.speedSqale;
+	sizeScale = rhs.sizeScale;
+	speedVec = rhs.speedVec;
+	rebounded = rhs.rebounded;
+	return *this;
+}
+
+Shape::Shape(const Shape& rhs)
+{
+	*this = rhs;
+}
+
 void Shape::Update(MainWindow& wnd)
 {
 	if (!endAddPoints)
@@ -61,25 +81,18 @@ void Shape::Update(MainWindow& wnd)
 
 }
 
-void Shape::Draw(Graphics& gfx)
+void Shape::Draw(Graphics& gfx, Vec2 cameraOfsset)
 {
-	if (!points.empty() && !endAddPoints)
-	{
-		for (int i = 0; i < points.size(); i++)
-		{
-			gfx.PutPixel(points[i].x, points[i].y, Colors::White);
-		}
-	}
 
 	if (endAddPoints)
 	{
 		for (int i = 0; i < points.size() - 1; i++)
 		{
-			Vec2 vec(points[i], points[i + 1]);
+			Vec2 vec{ points[i].AddVec(cameraOfsset), points[i + 1].AddVec(cameraOfsset)};
 			gfx.DrawLine(vec);
 		}
 
-		Vec2 vecEnd(points[points.size() - 1], points[0]);
+		Vec2 vecEnd(points[points.size() - 1].AddVec(cameraOfsset), points[0].AddVec(cameraOfsset));
 		gfx.DrawLine(vecEnd);
 	}
 }
@@ -148,6 +161,20 @@ void Shape::ScaleFromCenterShape(MainWindow& wnd, bool dir)
 	
 }
 
+void Shape::CheckCollision( Stick stick)
+{
+	if (DistancePointLine(stick.GetStartPoint(), stick.GetEndPoint(), this->GetCenter()) < this->GetRadius()
+		&& !this->GetRebounded())
+	{
+		collideSound.Play();
+		Vec2 w = stick.GetStickVec().Normalize();
+		Vec2 v = this->GetSpeed();
+		this->SetSpeed(w * (v * w) * 2.f - v);
+		this->SetRebounded(true);
+	}
+	this->Move();
+}
+
 Point Shape::GetCenter()
 {
 
@@ -177,6 +204,14 @@ bool Shape::GetRebounded()
 void Shape::SetRebounded(bool reb)
 {
 	rebounded = reb;
+}
+
+void Shape::Rotate(float angle)
+{
+	for (int i = 0; i < points.size(); i++)
+	{
+		points[i].Rotate(angle, center);
+	}
 }
 
 

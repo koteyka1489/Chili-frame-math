@@ -21,26 +21,13 @@
 #include "MainWindow.h"
 #include "Game.h"
 
-float DistancePointLine(Point p0, Point p1, Point q)
-{
-	float a = p0.y - p1.y;
-	float b = p1.x - p0.x;
-	float c = p0.x * p1.y - p1.x * p0.y;
 
-	return std::abs(a * q.x + b * q.y + c) / std::sqrt(a * a + b * b);
-
-}
 
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd ),
-	upd(shapesGame)
+	gfx( wnd )
 	{
-		for (int i = 0; i < 100; i++)
-			{
-				shapesGame.emplace_back(750.f, 900.f, 32, 10, Colors::White);
-			}
 		
 	}
 
@@ -54,38 +41,20 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-
-	if (ticks >= ticksMax)
-	{
-		curShape++;
-		ticks = 0;
-	}
-	else
-	{
-		ticks++;
-	}
+	float dt = ft.MarkRealDt();
+	t += dt;
+	float theta =  t * 3.14159;
+	std::vector<Shape> triang;
+	triang.emplace_back(0.f, .0f, 3, 150, Colors::Cyan);
 	
-	for (int i = 0; i <= curShape; i++)
-	{
-		
-		if (DistancePointLine(stick.GetStartPoint(), stick.GetEndPoint(), shapesGame[i].GetCenter()) < shapesGame[i].GetRadius() 
-			&& !shapesGame[i].GetRebounded())
-		{
-			collideSound.Play();
-			Vec2 w = stick.GetStickVec().Normalize();
-			Vec2 v = shapesGame[i].GetSpeed();
-			shapesGame[i].SetSpeed(w * (v * w) * 2.f - v);
-			shapesGame[i].SetRebounded(true);
-		}
-		shapesGame[i].Move();
-	}
-	stick.Move(wnd);
-	upd = UpdateScrenCoordinate{ shapesGame };
-	upd.Update(wnd);
+	triang[0].Rotate(theta);
+	camera.Update(wnd);
+	triang[0].Draw(gfx, camera.GetOffset());
+
 }
 
 void Game::ComposeFrame()
 {
-	upd.Draw(gfx);
-	stick.Draw(gfx);
+	
+
 }

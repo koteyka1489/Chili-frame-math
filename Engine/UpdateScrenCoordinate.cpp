@@ -71,7 +71,7 @@ void UpdateScrenCoordinate::Scale(MainWindow& wnd)
 		}
 	}
 }
-
+/*
 void UpdateScrenCoordinate::Draw(Graphics& gfx)
 {
 	for (int i = 0; i < shapesUPS.size(); i++)
@@ -79,3 +79,4 @@ void UpdateScrenCoordinate::Draw(Graphics& gfx)
 		shapesUPS[i].Draw(gfx);
 	}
 }
+*/

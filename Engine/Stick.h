@@ -10,9 +10,9 @@ public:
 	Stick();
 	void Move(MainWindow& wnd);
 	void Draw(Graphics& gfx);
-	Vec2 GetStickVec();
-	Point GetStartPoint();
-	Point GetEndPoint();
+	Vec2 GetStickVec() const; 
+	Point GetStartPoint() const;
+	Point GetEndPoint() const;
 
 private:
 

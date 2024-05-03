@@ -14,6 +14,17 @@ Point Point::AddVec(const Vec2& v) const
 	return nP;
 }
 
+Point& Point::Rotate(float angle, Point cr)
+{
+	const float cosTheta = cos(angle);
+	const float sinTheta = sin(angle);
+	float nx = cr.x + (x - cr.x) * cosTheta - (y - cr.y) * sinTheta;
+	y = cr.y + (x - cr.x) * sinTheta + (y - cr.y) * cosTheta;
+	x = nx;
+
+	return *this;
+}
+
 
 
 Vec2::Vec2()
@@ -48,6 +59,11 @@ Vec2 Vec2::operator+(Vec2 rhs) const
 	nVec.xAbsLenght = xAbsLenght + rhs.xAbsLenght;
 	nVec.yAbsLenght = yAbsLenght + rhs.yAbsLenght;
 	return nVec;
+}
+
+Vec2 Vec2::operator+=(Vec2 rhs)
+{
+	return (*this) + rhs;
 }
 
 Vec2 Vec2::operator-(Vec2 rhs) const

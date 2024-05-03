@@ -1,5 +1,5 @@
 #pragma once
-#include <math.h>
+#include <cmath>
 
 class Vec2;
 
@@ -18,6 +18,8 @@ public:
 	Point operator+(const Point& rhs);
 
 	Point AddVec(const Vec2& v) const;
+
+	Point& Rotate(float angle, Point cr);
 public:
 	float x = 0;
 	float y = 0;
@@ -33,6 +35,7 @@ public:
 	Vec2(float x, float y);
 
 	Vec2 operator+(Vec2 rhs) const;
+	Vec2 operator+=(Vec2 rhs);
 
 	Vec2 operator-(Vec2 rhs) const;
 	Vec2 operator*(float scl) const;

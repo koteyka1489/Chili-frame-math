@@ -34,6 +34,8 @@
 #include "Stick.h"
 #include <cmath>
 #include "Sound.h"
+#include "Camera.h"
+
 
 
 class Game
@@ -50,11 +52,13 @@ private:
 private:
 	MainWindow& wnd;
 	Graphics gfx;
+	FrameTimer ft;
 	std::vector<Shape> shapesGame;
-	UpdateScrenCoordinate upd;
+	Camera camera;
 	int ticks = 0;
 	int ticksMax = 180;
 	int curShape = 0;
 	Stick stick;
-	Sound collideSound = Sound(L"Sounds//fart1.wav");
+	float t = 0.f;
+	
 };
