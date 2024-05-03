@@ -6,6 +6,18 @@ Point Point::operator+(const Point& rhs)
 	return Point(this->x + rhs.x, this->y + rhs.y);
 }
 
+Point Point::operator*(float scl)
+{
+	x *= scl;
+	y *= scl;
+	return *this;
+}
+
+Point Point::operator*=(float scl)
+{
+	return (*this) * scl;
+}
+
 Point Point::AddVec(const Vec2& v) const
 {
 	Point nP;
@@ -53,12 +65,13 @@ Vec2::Vec2(float x, float y)
 
 
 
-Vec2 Vec2::operator+(Vec2 rhs) const
+Vec2 Vec2::operator+(Vec2 rhs)
 {
-	Vec2 nVec;
-	nVec.xAbsLenght = xAbsLenght + rhs.xAbsLenght;
-	nVec.yAbsLenght = yAbsLenght + rhs.yAbsLenght;
-	return nVec;
+	a = a.AddVec(rhs);
+	b = b.AddVec(rhs);
+	this->xAbsLenght +=  rhs.xAbsLenght;
+	this->yAbsLenght +=  rhs.yAbsLenght;
+	return *this;
 }
 
 Vec2 Vec2::operator+=(Vec2 rhs)
@@ -74,12 +87,19 @@ Vec2 Vec2::operator-(Vec2 rhs) const
 	return nVec;
 }
 
-Vec2 Vec2::operator*(float scl) const
+Vec2 Vec2::operator*(float scl)
 {
 	Vec2 nVec;
+	a *= scl;
+	b *= scl;
 	nVec.xAbsLenght = xAbsLenght * scl;
 	nVec.yAbsLenght = yAbsLenght * scl;
 	return nVec;
+}
+
+Vec2 Vec2::operator*=(float scl)
+{
+	return (*this) * scl;
 }
 
 float Vec2::operator*(Vec2 rhs)

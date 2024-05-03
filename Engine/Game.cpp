@@ -49,7 +49,7 @@ void Game::UpdateModel()
 	
 	triang[0].Rotate(theta);
 	camera.Update(wnd);
-	triang[0].Draw(gfx, camera.GetOffset());
+	triang[0].Draw(gfx, camera.GetOffset(), camera.GetScaleCameraMod());
 
 }
 

@@ -16,6 +16,8 @@ public:
 		y(y_in)
 	{}
 	Point operator+(const Point& rhs);
+	Point operator*(float scl);
+	Point operator*=(float scl);
 
 	Point AddVec(const Vec2& v) const;
 
@@ -34,11 +36,12 @@ public:
 	Vec2(Point a, Point b);
 	Vec2(float x, float y);
 
-	Vec2 operator+(Vec2 rhs) const;
+	Vec2 operator+(Vec2 rhs);
 	Vec2 operator+=(Vec2 rhs);
 
 	Vec2 operator-(Vec2 rhs) const;
-	Vec2 operator*(float scl) const;
+	Vec2 operator*(float scl);
+	Vec2 operator*=(float scl);
 	float operator* (Vec2 rhs);
 	Vec2 operator/(float scl) const;
 	float GetLenghtSqr();
@@ -48,8 +51,8 @@ public:
 
 
 public:
-	Point a;
-	Point b;
+	Point a{ 0.f, 0.f };
+	Point b{ 0.f, 0.f };
 	float xAbsLenght = 0.0f;
 	float yAbsLenght = 0.0f;
 	bool xRunOrientation = false;

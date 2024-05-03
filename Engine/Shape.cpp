@@ -81,18 +81,23 @@ void Shape::Update(MainWindow& wnd)
 
 }
 
-void Shape::Draw(Graphics& gfx, Vec2 cameraOfsset)
+void Shape::Draw(Graphics& gfx, Vec2 cameraOfsset, float scaleCameraMod)
 {
 
 	if (endAddPoints)
 	{
 		for (int i = 0; i < points.size() - 1; i++)
 		{
-			Vec2 vec{ points[i].AddVec(cameraOfsset), points[i + 1].AddVec(cameraOfsset)};
+
+			Vec2 vec{ points[i], points[i + 1]};
+			vec *= scaleCameraMod;
+			vec += cameraOfsset;
 			gfx.DrawLine(vec);
 		}
 
-		Vec2 vecEnd(points[points.size() - 1].AddVec(cameraOfsset), points[0].AddVec(cameraOfsset));
+		Vec2 vecEnd(points[points.size() - 1], points[0]);
+		vecEnd *= scaleCameraMod;
+		vecEnd += cameraOfsset;
 		gfx.DrawLine(vecEnd);
 	}
 }

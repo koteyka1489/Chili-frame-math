@@ -17,7 +17,7 @@ public:
 	Shape& operator=(const Shape& rhs);
 	Shape(const Shape& rhs);
 	void Update(MainWindow& wnd);
-	void Draw(Graphics& gfx, Vec2 cameraOfsset);
+	void Draw(Graphics& gfx, Vec2 cameraOfsset, float scaleCameraMod);
 
 	void SetCenter();
 	void UpdateSpeed(Vec2 dir);

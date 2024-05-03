@@ -3,29 +3,52 @@
 void Camera::Update(MainWindow& wnd)
 {
 	MoveCamera(wnd);
+	ScaleCamera(wnd);
 }
 
 Vec2 Camera::GetOffset()
 {
-	return offsetCenter + offsetMoveCamera;
+	return offsetCenter  + offsetMoveCamera;
+}
+
+float Camera::GetScaleCameraMod()
+{
+	return scaleCameraMod;
 }
 
 void Camera::MoveCamera(MainWindow& wnd)
 {
+	Vec2 temp = { 0.f, 0.f };
 	if (wnd.kbd.KeyIsPressed(VK_UP))
 	{
-		offsetMoveCamera = offsetMoveCamera + Vec2{ 0.0f, stepMoveCamera };
+		temp +=  Vec2{ 0.0f, stepMoveCamera };
 	}
 	if (wnd.kbd.KeyIsPressed(VK_DOWN))
 	{
-		offsetMoveCamera = offsetMoveCamera + Vec2{ 0.0f, -stepMoveCamera };
+		temp += Vec2{ 0.0f, -stepMoveCamera };
 	}
 	if (wnd.kbd.KeyIsPressed(VK_LEFT))
 	{
-		offsetMoveCamera = offsetMoveCamera + Vec2{ stepMoveCamera, 0.0f };
+		temp +=  Vec2{ stepMoveCamera, 0.0f };
 	}
 	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
 	{
-		offsetMoveCamera = offsetMoveCamera + Vec2{ -stepMoveCamera, 0.0f };
+		temp +=  Vec2{ -stepMoveCamera, 0.0f };
+	}
+
+	offsetMoveCamera += temp;
+}
+
+void Camera::ScaleCamera(MainWindow& wnd)
+{
+	const auto e = wnd.mouse.Read();
+
+	if (e.GetType() == Mouse::Event::Type::WheelUp)
+	{
+		scaleCameraMod *= 1.05f;
+	}
+	if (e.GetType() == Mouse::Event::Type::WheelDown)
+	{
+		scaleCameraMod /= 1.05f;
 	}
 }
