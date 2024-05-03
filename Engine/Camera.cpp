@@ -18,6 +18,7 @@ float Camera::GetScaleCameraMod()
 
 void Camera::MoveCamera(MainWindow& wnd)
 {
+	offsetMoveCamera = Vec2{ 0.f, 0.f };
 	Vec2 temp = { 0.f, 0.f };
 	if (wnd.kbd.KeyIsPressed(VK_UP))
 	{
