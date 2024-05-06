@@ -1,12 +1,18 @@
 #include "Camera.h"
 
-void Camera::Update(MainWindow& wnd)
+Camera::Camera(MouseInput& mInput)
+	:
+	mInput(mInput)
+{}
+void Camera::Update()
 {
 	UpdateMousePos(wnd);
 	MoveCamera(wnd);
 	ScaleCamera(wnd);
 	RotationCamera(wnd);
 }
+
+
 
 Vec2 Camera::GetOffset()
 {
@@ -30,17 +36,17 @@ float Camera::GetThetaRotation()
 	return ThetaRotation;
 }
 
-void Camera::MoveCamera(MainWindow& wnd)
+void Camera::MoveCamera()
 {
 	offsetMoveCamera = Vec2{ 0.f, 0.f };
 	Vec2 temp = { 0.f, 0.f };
 
-	if (wnd.mouse.LeftIsPressed())
+	if (mInput.GetLeftIsPressed())
 	{
-		Vec2 mousePressPoint = Vec2{ (float)wnd.mouse.GetPosX(), (float)wnd.mouse.GetPosY() };
-		Vec2 mouseDir(mousePressPoint, mouseStartPos);
-		mouseDir = mouseDir.Normalize();
-		temp += mouseDir * 1.5f;
+		Vec2 mousePressPoint = mInput.GetMousePos();
+		Vec2Dir mouseVecDir(mousePressPoint, mouseStartPos);
+		mouseVecDir = mouseVecDir.Normalize();
+		temp += mouseVecDir * 1.5f;
 	}
 
 	offsetMoveCamera += temp;

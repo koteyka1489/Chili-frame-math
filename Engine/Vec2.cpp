@@ -64,6 +64,7 @@ Vec2 Vec2::operator*=(float scl)
 	return (*this) * scl;
 }
 
+// dot product
 float Vec2::operator*(Vec2 rhs)
 {
 	return x * rhs.x + y * rhs.y;
@@ -82,6 +83,11 @@ Vec2 Vec2::operator/(float scl) const
 {
 	Vec2 nVec = (*this) * scl;
 	return nVec;
+}
+
+Vec2 Vec2::operator/=(float scl)
+{
+	return (*this) / scl;
 }
 
 float Vec2::GetLenghtSqr() const
@@ -136,3 +142,78 @@ void Vec2::SetOrientationCalcMB()
 
 
 
+// Вектор направления
+Vec2Dir::Vec2Dir(Vec2 endPoint, Vec2 startPoint)
+	:
+	endPoint(endPoint),
+	startPoint(startPoint)
+{
+	xLen = endPoint.x - startPoint.x;
+	yLen = endPoint.x - startPoint.x;
+}
+
+Vec2Dir Vec2Dir::operator*(float scl)
+{
+	endPoint.x *= scl;
+	endPoint.y *= scl;
+	return *this;
+}
+
+Vec2Dir Vec2Dir::operator*(float scl) const
+{
+	Vec2Dir nVecDir = (*this) * scl;
+	return nVecDir;
+}
+
+Vec2Dir Vec2Dir::operator*=(float scl)
+{
+	return (*this) * scl;
+}
+
+Vec2Dir Vec2Dir::operator/(float scl)
+{
+	endPoint.x /= scl;
+	endPoint.y /= scl;
+	return *this;
+}
+
+Vec2Dir Vec2Dir::operator/(float scl) const
+{
+	Vec2Dir nVecDir = (*this) / scl;
+	return nVecDir;
+}
+
+Vec2Dir Vec2Dir::operator/=(float scl)
+{
+	return (*this) / scl;
+}
+
+float Vec2Dir::GetLenghtSqr() const
+{
+	return xLen * xLen + yLen * yLen;
+}
+
+float Vec2Dir::GetLenght() const
+{
+	return sqrt(this->GetLenghtSqr());
+}
+
+Vec2Dir Vec2Dir::Normalize()
+{
+	if (this->GetLenght() != 0.f)
+	{
+		*this = (*this) / this->GetLenght();
+	}
+	return *this;
+}
+
+Vec2Dir Vec2Dir::Normalize() const
+{
+	Vec2Dir nVecNormalize;
+
+	if (this->GetLenght() != 0.f)
+	{
+		nVecNormalize = (*this) / this->GetLenght();
+	}
+	return nVecNormalize;
+}

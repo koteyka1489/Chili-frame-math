@@ -16,9 +16,10 @@ public:
 	Vec2 operator*(float scl);
 	Vec2 operator*(float scl) const;
 	Vec2 operator*=(float scl);
-	float operator* (Vec2 rhs);
+	float operator* (Vec2 rhs); // dot product
 	Vec2 operator/(float scl);
 	Vec2 operator/(float scl) const;
+	Vec2 operator/=(float scl);
 	float GetLenghtSqr() const;
 	float GetLenght() const;
 	Vec2 Normalize();
@@ -35,5 +36,30 @@ public:
 	float m = 0.0f; // rise / run or run / rise 
 	float bd = 0.0f; // displacement y or x
 	
+};
+
+
+// Вектор направления
+class Vec2Dir
+{
+public:
+	Vec2Dir() = default;
+	Vec2Dir(Vec2 endPoint, Vec2 startPoint);
+	Vec2Dir operator*(float scl);
+	Vec2Dir operator*(float scl) const;
+	Vec2Dir operator*=(float scl);
+	Vec2Dir operator/(float scl);
+	Vec2Dir operator/(float scl) const;
+	Vec2Dir operator/=(float scl);
+	float GetLenghtSqr() const;
+	float GetLenght() const;
+	Vec2Dir Normalize();
+	Vec2Dir Normalize() const;
+
+private:
+	Vec2 endPoint = Vec2(0.f, 0.f);
+	Vec2 startPoint = Vec2(0.f, 0.f);
+	float xLen = 0.f;
+	float yLen = 0.f;
 };
 

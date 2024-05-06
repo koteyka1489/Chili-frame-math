@@ -2,23 +2,26 @@
 #include "Vec2.h"
 #include "Graphics.h"
 #include "MainWindow.h"
+#include "Input.h"
 
 class Camera
 {
 public:
-	Camera() = default;
-	void Update(MainWindow& wnd);
+	Camera(MouseInput& mInput);
+	void Update();
 	Vec2 GetOffset();
 	Vec2 GetCenterCamera();
 	float GetScaleCameraMod();
 	float GetThetaRotation();
 
 private:
-	void MoveCamera(MainWindow& wnd);
-	void ScaleCamera(MainWindow& wnd);
-	void UpdateMousePos(MainWindow& wnd);
-	void RotationCamera(MainWindow& wnd);
+	void MoveCamera();
+	void ScaleCamera();
+	void UpdateMousePos();
+	void RotationCamera();
 private:
+	MouseInput& mInput;
+
 	Vec2 offsetCenter{ Graphics::ScreenWidth / 2, Graphics::ScreenHeight / 2 };
 	Vec2 offsetMoveCamera{ 0.f, 0.f };
 	Vec2 mouseStartPos{ 0.f, 0.f };
