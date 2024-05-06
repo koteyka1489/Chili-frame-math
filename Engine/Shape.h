@@ -17,7 +17,7 @@ public:
 	Shape& operator=(const Shape& rhs);
 	Shape(const Shape& rhs);
 	void Update(MainWindow& wnd);
-	void Draw(Graphics& gfx, Vec2 cameraOfsset, float scaleCameraMod, float thetaAngleCameraRotate, Point centerRotation);
+	void Draw(Graphics& gfx, Vec2 cameraOfsset, float scaleCameraMod, float thetaAngleCameraRotate, Vec2 centerRotation);
 
 	void SetCenter();
 	void UpdateSpeed(Vec2 dir);
@@ -25,7 +25,7 @@ public:
 	void MoveCamera(Vec2 dir);
 	void ScaleFromCenterShape(MainWindow& wnd, bool dir);
 	void CheckCollision (Stick stick);
-	Point GetCenter();
+	Vec2 GetCenter();
 	float GetRadius();
 	Vec2 GetSpeed();
 	void SetSpeed(Vec2 speed_in);
@@ -35,11 +35,11 @@ public:
 
 
 private:
-	std::vector<Point> points;
+	std::vector<Vec2> points;
 	Color clr = Colors::White;
-	bool endAddPoints = false;
+	
 	static  constexpr int nVert = 5;
-	Point center = { 0.0f, 0.0f };
+	Vec2 center = { 0.0f, 0.0f };
 	float radius = 0.0f;
 	float speedSqale = 5.0f;
 	float sizeScale = 0.1f;

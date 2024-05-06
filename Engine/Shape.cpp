@@ -16,8 +16,7 @@ Shape::Shape(float x, float y, int nVert, float radius, Color clr)
 		points.emplace_back(nx, ny);
 	}
 
-	endAddPoints = true;
-	center = Point{ x, y };
+	center = Vec2{ x, y };
 	this->radius = radius;
 }
 
@@ -26,7 +25,6 @@ Shape& Shape::operator=(const Shape& rhs)
 {
 	points = rhs.points;
 	clr = rhs.clr;
-	endAddPoints = rhs.endAddPoints;
 	center = rhs.center;
 	radius = rhs.radius;
 	speedSqale = rhs.speedSqale;
@@ -43,66 +41,29 @@ Shape::Shape(const Shape& rhs)
 
 void Shape::Update(MainWindow& wnd)
 {
-	if (!endAddPoints)
-	{
-		const auto e = wnd.mouse.Read();
-
-
-		if (e.GetType() == Mouse::Event::Type::LPress)
-		{
-
-			if (!points.empty())
-			{
-				if (points[points.size() - 1].x != wnd.mouse.GetPosX() || points[points.size() - 1].y != wnd.mouse.GetPosY())
-				{
-					points.emplace_back(wnd.mouse.GetPosX(), wnd.mouse.GetPosY());
-				}
-			}
-			else
-			{
-				points.emplace_back(wnd.mouse.GetPosX(), wnd.mouse.GetPosY());
-			}
-		}
-
-		if (points.size() >= nVert)
-		{
-			endAddPoints = true;
-		}
-	}
-	else
-	{
-		SetCenter();
-	}
-	if (wnd.kbd.KeyIsPressed(VK_SPACE))
-	{
-		endAddPoints = false;
-		points.clear();
-	}
 
 }
 
 
-void Shape::Draw(Graphics& gfx, Vec2 cameraOfsset, float scaleCameraMod, float thetaAngleCameraRotate, Point centerRotation )
+void Shape::Draw(Graphics& gfx, Vec2 cameraOfsset, float scaleCameraMod, float thetaAngleCameraRotate, Vec2 centerRotation )
 {
 
-	if (endAddPoints)
+	for (int i = 0; i < points.size() - 1; i++)
 	{
-		for (int i = 0; i < points.size() - 1; i++)
-		{
 
-			Vec2 vec{ points[i], points[i + 1]};
-			vec *= scaleCameraMod;
-			vec += cameraOfsset;
-			vec.Rotate(thetaAngleCameraRotate, centerRotation);
-			gfx.DrawLine(vec);
-		}
-
-		Vec2 vecEnd(points[points.size() - 1], points[0]);
-		vecEnd *= scaleCameraMod;
-		vecEnd += cameraOfsset;
-		vecEnd.Rotate(thetaAngleCameraRotate, centerRotation);
-		gfx.DrawLine(vecEnd);
+		Vec2 vec{ points[i], points[i + 1]};
+		vec *= scaleCameraMod;
+		vec += cameraOfsset;
+		vec.Rotate(thetaAngleCameraRotate, centerRotation);
+		gfx.DrawLine(vec);
 	}
+
+	Vec2 vecEnd(points[points.size() - 1], points[0]);
+	vecEnd *= scaleCameraMod;
+	vecEnd += cameraOfsset;
+	vecEnd.Rotate(thetaAngleCameraRotate, centerRotation);
+	gfx.DrawLine(vecEnd);
+	
 }
 
 void Shape::SetCenter()
@@ -128,7 +89,7 @@ void Shape::Move()
 {
 	for (int i = 0; i < points.size(); i++)
 	{
-		points[i] = points[i].AddVec(speedVec);
+		points[i] += speedVec;
 	}
 	SetCenter();
 }
@@ -137,7 +98,7 @@ void Shape::MoveCamera(Vec2 dir)
 {
 	for (int i = 0; i < points.size(); i++)
 	{
-		points[i] = points[i].AddVec(dir);
+		points[i] += dir;
 	}
 	SetCenter();
 }
@@ -145,27 +106,6 @@ void Shape::MoveCamera(Vec2 dir)
 void Shape::ScaleFromCenterShape(MainWindow& wnd, bool dir)
 {
 
-	if (dir)
-	{
-
-		for (int i = 0; i < points.size(); i++)
-		{
-			Vec2 nv(points[i], center);
-
-			nv = nv * sizeScale;
-			points[i] = points[i].AddVec(nv);
-		}
-	}
-	else
-	{
-		for (int i = 0; i < points.size(); i++)
-		{
-			Vec2 nv(center, points[i]);
-
-			nv = nv * sizeScale;
-			points[i] = points[i].AddVec(nv);
-		}
-	}
 	
 }
 
@@ -183,7 +123,7 @@ void Shape::CheckCollision( Stick stick)
 	this->Move();
 }
 
-Point Shape::GetCenter()
+Vec2 Shape::GetCenter()
 {
 
 	return center;

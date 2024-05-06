@@ -13,10 +13,10 @@ Vec2 Camera::GetOffset()
 	return offsetCenter  + offsetMoveCamera;
 }
 
-Point Camera::GetCenterCamera()
+Vec2 Camera::GetCenterCamera()
 {
-	Point temp{0.f, 0.f};
-	temp.AddVec(GetOffset());
+	Vec2 temp{0.f, 0.f};
+	temp += GetOffset();
 	return temp;
 }
 
@@ -37,7 +37,7 @@ void Camera::MoveCamera(MainWindow& wnd)
 
 	if (wnd.mouse.LeftIsPressed())
 	{
-		Point mousePressPoint = Point{ (float)wnd.mouse.GetPosX(), (float)wnd.mouse.GetPosY() };
+		Vec2 mousePressPoint = Vec2{ (float)wnd.mouse.GetPosX(), (float)wnd.mouse.GetPosY() };
 		Vec2 mouseDir(mousePressPoint, mouseStartPos);
 		mouseDir = mouseDir.Normalize();
 		temp += mouseDir * 1.5f;
@@ -64,7 +64,7 @@ void Camera::UpdateMousePos(MainWindow& wnd)
 {
 	if (mouseUpdateTicks >= mouseUpdateTicksMax)
 	{
-		mouseStartPos = Point{ (float)wnd.mouse.GetPosX(), (float)wnd.mouse.GetPosY() };
+		mouseStartPos = Vec2{ (float)wnd.mouse.GetPosX(), (float)wnd.mouse.GetPosY() };
 		mouseUpdateTicks = 0;
 	}
 	else
@@ -84,5 +84,4 @@ void Camera::RotationCamera(MainWindow& wnd)
 	{
 		ThetaRotation -= 0.1;
 	}
-
 }
