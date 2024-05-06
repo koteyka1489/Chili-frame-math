@@ -2,8 +2,10 @@
 
 void Camera::Update(MainWindow& wnd)
 {
+	UpdateMousePos(wnd);
 	MoveCamera(wnd);
 	ScaleCamera(wnd);
+	RotationCamera(wnd);
 }
 
 Vec2 Camera::GetOffset()
@@ -11,30 +13,34 @@ Vec2 Camera::GetOffset()
 	return offsetCenter  + offsetMoveCamera;
 }
 
+Point Camera::GetCenterCamera()
+{
+	Point temp{0.f, 0.f};
+	temp.AddVec(GetOffset());
+	return temp;
+}
+
 float Camera::GetScaleCameraMod()
 {
 	return scaleCameraMod;
+}
+
+float Camera::GetThetaRotation()
+{
+	return ThetaRotation;
 }
 
 void Camera::MoveCamera(MainWindow& wnd)
 {
 	offsetMoveCamera = Vec2{ 0.f, 0.f };
 	Vec2 temp = { 0.f, 0.f };
-	if (wnd.kbd.KeyIsPressed(VK_UP))
+
+	if (wnd.mouse.LeftIsPressed())
 	{
-		temp +=  Vec2{ 0.0f, stepMoveCamera };
-	}
-	if (wnd.kbd.KeyIsPressed(VK_DOWN))
-	{
-		temp += Vec2{ 0.0f, -stepMoveCamera };
-	}
-	if (wnd.kbd.KeyIsPressed(VK_LEFT))
-	{
-		temp +=  Vec2{ stepMoveCamera, 0.0f };
-	}
-	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
-	{
-		temp +=  Vec2{ -stepMoveCamera, 0.0f };
+		Point mousePressPoint = Point{ (float)wnd.mouse.GetPosX(), (float)wnd.mouse.GetPosY() };
+		Vec2 mouseDir(mousePressPoint, mouseStartPos);
+		mouseDir = mouseDir.Normalize();
+		temp += mouseDir * 1.5f;
 	}
 
 	offsetMoveCamera += temp;
@@ -52,4 +58,31 @@ void Camera::ScaleCamera(MainWindow& wnd)
 	{
 		scaleCameraMod /= 1.05f;
 	}
+}
+
+void Camera::UpdateMousePos(MainWindow& wnd)
+{
+	if (mouseUpdateTicks >= mouseUpdateTicksMax)
+	{
+		mouseStartPos = Point{ (float)wnd.mouse.GetPosX(), (float)wnd.mouse.GetPosY() };
+		mouseUpdateTicks = 0;
+	}
+	else
+	{
+		mouseUpdateTicks++;
+	}
+
+}
+
+void Camera::RotationCamera(MainWindow& wnd)
+{
+	if (wnd.kbd.KeyIsPressed(VK_LEFT))
+	{
+		ThetaRotation += 0.1f;
+	}
+	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
+	{
+		ThetaRotation -= 0.1;
+	}
+
 }

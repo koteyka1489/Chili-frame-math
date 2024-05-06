@@ -1,77 +1,26 @@
 #include "Vec2.h"
 
-Point Point::operator+(const Point& rhs)
-{
-
-	return Point(this->x + rhs.x, this->y + rhs.y);
-}
-
-Point Point::operator*(float scl)
-{
-	x *= scl;
-	y *= scl;
-	return *this;
-}
-
-Point Point::operator*=(float scl)
-{
-	return (*this) * scl;
-}
-
-Point Point::AddVec(const Vec2& v) const
-{
-	Point nP;
-	nP.x = x + v.xAbsLenght;
-	nP.y = y + v.yAbsLenght;
-	return nP;
-}
-
-Point& Point::Rotate(float angle, Point cr)
-{
-	const float cosTheta = cos(angle);
-	const float sinTheta = sin(angle);
-	float nx = cr.x + (x - cr.x) * cosTheta - (y - cr.y) * sinTheta;
-	y = cr.y + (x - cr.x) * sinTheta + (y - cr.y) * cosTheta;
-	x = nx;
-
-	return *this;
-}
 
 
-
-Vec2::Vec2()
-	:
-	xAbsLenght(0),
-	yAbsLenght(0),
-	a(0,0),
-	b(0,0)
-{}
-
-Vec2::Vec2(Point a, Point b)
-	:
-	a(a),
-	b(b),
-	xAbsLenght(a.x - b.x),
-	yAbsLenght(a.y - b.y)
-{}
 
 Vec2::Vec2(float x, float y)
 	:
-	a(0.0f, 0.0f),
-	b(0.0f, 0.0f),
-	xAbsLenght(x),
-	yAbsLenght(y)
+	x(x),
+	y(y)
 {}
-
-
 
 Vec2 Vec2::operator+(Vec2 rhs)
 {
-	a = a.AddVec(rhs);
-	b = b.AddVec(rhs);
-	this->xAbsLenght +=  rhs.xAbsLenght;
-	this->yAbsLenght +=  rhs.yAbsLenght;
+	x += rhs.x;
+	y += rhs.y;
 	return *this;
+}
+
+Vec2 Vec2::operator+(Vec2 rhs) const
+{
+	Vec2 nVec;
+	nVec = (*this) + rhs;
+	return nVec;
 }
 
 Vec2 Vec2::operator+=(Vec2 rhs)
@@ -79,21 +28,34 @@ Vec2 Vec2::operator+=(Vec2 rhs)
 	return (*this) + rhs;
 }
 
+Vec2 Vec2::operator-(Vec2 rhs)
+{
+	x -= rhs.x;
+	y -= rhs.y;
+	return *this;
+}
+
 Vec2 Vec2::operator-(Vec2 rhs) const
 {
-	Vec2 nVec;
-	nVec.xAbsLenght = xAbsLenght - rhs.xAbsLenght;
-	nVec.yAbsLenght = yAbsLenght - rhs.yAbsLenght;
+	Vec2 nVec = (*this) - rhs;
 	return nVec;
+}
+
+Vec2 Vec2::operator-=(Vec2 rhs)
+{
+	return (*this) - rhs;
 }
 
 Vec2 Vec2::operator*(float scl)
 {
-	Vec2 nVec;
-	a *= scl;
-	b *= scl;
-	nVec.xAbsLenght = xAbsLenght * scl;
-	nVec.yAbsLenght = yAbsLenght * scl;
+	x *= scl;
+	y *= scl;
+	return *this;
+}
+
+Vec2 Vec2::operator*(float scl) const
+{
+	Vec2 nVec = (*this) * scl;
 	return nVec;
 }
 
@@ -104,53 +66,73 @@ Vec2 Vec2::operator*=(float scl)
 
 float Vec2::operator*(Vec2 rhs)
 {
-	return xAbsLenght * rhs.xAbsLenght + yAbsLenght * rhs.yAbsLenght;
+	return x * rhs.x + y * rhs.y;
+}
+
+Vec2 Vec2::operator/(float scl)
+{
+	x /= scl;
+	y /= scl;
+	return *this;
 }
 
 
 
 Vec2 Vec2::operator/(float scl) const
 {
-	Vec2 nVec;
-	nVec.xAbsLenght = xAbsLenght / scl;
-	nVec.yAbsLenght = yAbsLenght / scl;
+	Vec2 nVec = (*this) * scl;
 	return nVec;
 }
 
-float Vec2::GetLenghtSqr()
+float Vec2::GetLenghtSqr() const
 {
-	return xAbsLenght * xAbsLenght + yAbsLenght * yAbsLenght;
+	return x * x + y * y;
 }
 
-float Vec2::GetLenght()
+float Vec2::GetLenght() const
 {
 	return sqrt(this->GetLenghtSqr());
 }
 
 Vec2 Vec2::Normalize()
 {
+	
+	if (this->GetLenght() != 0.f)
+	{
+		*this = (*this) / this->GetLenght();
+	}
+	return *this;
+}
+
+Vec2 Vec2::Normalize() const
+{
 	Vec2 normalize;
-	normalize = (*this) / this->GetLenght();
+	if (this->GetLenght() != 0.f)
+	{
+		normalize = (*this) / this->GetLenght();
+	}
 	return normalize;
 }
 
 void Vec2::SetOrientationCalcMB()
 {
 	float mv; 
-	mv = (a.y - b.y) / (a.x - b.x);
+	mv = y / x;
 	if (abs((int)mv) <= 1)
 	{
 		xRunOrientation = true;
 		m = mv;
-		bd = a.y - (a.x * mv);
+		bd = y - (x * mv);
 	}
 	else
 	{
 		yRiseOrientation = true;
-		m = (a.x - b.x) / (a.y - b.y);
-		bd = a.x - (a.y * m);
+		m = x / y;
+		bd = x - (y * m);
 	}
 
 }
+
+
 
 

@@ -9,16 +9,24 @@ public:
 	Camera() = default;
 	void Update(MainWindow& wnd);
 	Vec2 GetOffset();
+	Point GetCenterCamera();
 	float GetScaleCameraMod();
+	float GetThetaRotation();
 
 private:
 	void MoveCamera(MainWindow& wnd);
 	void ScaleCamera(MainWindow& wnd);
+	void UpdateMousePos(MainWindow& wnd);
+	void RotationCamera(MainWindow& wnd);
 private:
 	Vec2 offsetCenter{ Graphics::ScreenWidth / 2, Graphics::ScreenHeight / 2 };
-	Vec2 offsetMoveCamera{ 0, 0 };
+	Vec2 offsetMoveCamera{ 0.f, 0.f };
+	Point mouseStartPos{ 0.f, 0.f };
 	float stepMoveCamera = 5.0f;
 	float scaleCameraMod = 1.0f;
+	int mouseUpdateTicks = 0;
+	int mouseUpdateTicksMax = 5;
+	float ThetaRotation = 0.0f;
 
 };
 

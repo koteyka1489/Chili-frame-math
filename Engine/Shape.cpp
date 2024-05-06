@@ -81,7 +81,8 @@ void Shape::Update(MainWindow& wnd)
 
 }
 
-void Shape::Draw(Graphics& gfx, Vec2 cameraOfsset, float scaleCameraMod)
+
+void Shape::Draw(Graphics& gfx, Vec2 cameraOfsset, float scaleCameraMod, float thetaAngleCameraRotate, Point centerRotation )
 {
 
 	if (endAddPoints)
@@ -92,12 +93,14 @@ void Shape::Draw(Graphics& gfx, Vec2 cameraOfsset, float scaleCameraMod)
 			Vec2 vec{ points[i], points[i + 1]};
 			vec *= scaleCameraMod;
 			vec += cameraOfsset;
+			vec.Rotate(thetaAngleCameraRotate, centerRotation);
 			gfx.DrawLine(vec);
 		}
 
 		Vec2 vecEnd(points[points.size() - 1], points[0]);
 		vecEnd *= scaleCameraMod;
 		vecEnd += cameraOfsset;
+		vecEnd.Rotate(thetaAngleCameraRotate, centerRotation);
 		gfx.DrawLine(vecEnd);
 	}
 }

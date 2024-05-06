@@ -1,60 +1,35 @@
 #pragma once
 #include <cmath>
 
-class Vec2;
-
-class Point
-{
-public:
-	Point()
-		:
-		x(0), y(0)
-	{}
-	Point(float x_in, float y_in)
-		:
-		x(x_in),
-		y(y_in)
-	{}
-	Point operator+(const Point& rhs);
-	Point operator*(float scl);
-	Point operator*=(float scl);
-
-	Point AddVec(const Vec2& v) const;
-
-	Point& Rotate(float angle, Point cr);
-public:
-	float x = 0;
-	float y = 0;
-};
-
-
-
 class Vec2
 {
 public:
-	Vec2();
-	Vec2(Point a, Point b);
+	Vec2() = default;
 	Vec2(float x, float y);
 
 	Vec2 operator+(Vec2 rhs);
+	Vec2 operator+(Vec2 rhs) const;
 	Vec2 operator+=(Vec2 rhs);
-
+	Vec2 operator-(Vec2 rhs);
 	Vec2 operator-(Vec2 rhs) const;
+	Vec2 operator-=(Vec2 rhs);
 	Vec2 operator*(float scl);
+	Vec2 operator*(float scl) const;
 	Vec2 operator*=(float scl);
 	float operator* (Vec2 rhs);
+	Vec2 operator/(float scl);
 	Vec2 operator/(float scl) const;
-	float GetLenghtSqr();
-	float GetLenght();
+	float GetLenghtSqr() const;
+	float GetLenght() const;
 	Vec2 Normalize();
+	Vec2 Normalize() const;
 	void SetOrientationCalcMB();
-
+	//void Rotate(float angle, Point cr);
 
 public:
-	Point a{ 0.f, 0.f };
-	Point b{ 0.f, 0.f };
-	float xAbsLenght = 0.0f;
-	float yAbsLenght = 0.0f;
+	float x = 0.f;
+	float y = 0.f;
+
 	bool xRunOrientation = false;
 	bool yRiseOrientation = false;
 	float m = 0.0f; // rise / run or run / rise 

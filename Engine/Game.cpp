@@ -46,14 +46,14 @@ void Game::UpdateModel()
 	float theta =  t * 3.14159;
 	std::vector<Shape> triang;
 	triang.emplace_back(0.f, 0.f, 3, 150, Colors::Cyan);
-	triang.emplace_back(300.f, 0.f, 6, 150, Colors::Cyan);
-	triang.emplace_back(600.f, 0.f, 4, 150, Colors::Cyan);
-	triang.emplace_back(0.f, 300.0f, 5, 150, Colors::Cyan);
-	triang.emplace_back(300.f, 300.0f, 3, 150, Colors::Cyan);
-	triang.emplace_back(600.f, 300.0f, 8, 150, Colors::Cyan);
-	triang.emplace_back(0.f, 600.0f, 4, 150, Colors::Cyan);
-	triang.emplace_back(300.f, 600.0f, 10, 150, Colors::Cyan);
-	triang.emplace_back(600.f, 600.0f, 6, 150, Colors::Cyan);
+	triang.emplace_back(800.f, 200.f, 6, 150, Colors::Cyan);
+	triang.emplace_back(1500.f, 0.f, 4, 150, Colors::Cyan);
+	triang.emplace_back(0.f, 1000.0f, 5, 150, Colors::Cyan);
+	triang.emplace_back(1000.f, 1500.0f, 3, 150, Colors::Cyan);
+	triang.emplace_back(1800.f, 300.0f, 8, 150, Colors::Cyan);
+	triang.emplace_back(0.f, 800.0f, 4, 150, Colors::Cyan);
+	triang.emplace_back(500.f, 200.0f, 10, 150, Colors::Cyan);
+	triang.emplace_back(1400.f, 1500.0f, 6, 150, Colors::Cyan);
 
 
 	for (int i = 0; i < triang.size(); i++)
@@ -65,7 +65,7 @@ void Game::UpdateModel()
 
 	for (int i = 0; i < triang.size(); i++)
 	{
-		triang[i].Draw(gfx, camera.GetOffset(), camera.GetScaleCameraMod());
+		triang[i].Draw(gfx, camera.GetOffset(), camera.GetScaleCameraMod(), camera.GetThetaRotation(), Point{0.0f, 0.0f});
 	}
 
 	
