@@ -12,14 +12,12 @@ public:
 	UpdateScrenCoordinate() = default;
 	UpdateScrenCoordinate(std::vector<Shape>& shapes);
 	UpdateScrenCoordinate operator= (UpdateScrenCoordinate& rhs);
-	void Update(MainWindow& wnd);
-	//void Draw(Graphics& gfx);
+
 private:
-	void Move(MainWindow& wnd);
-	void Scale(MainWindow& wnd);
+
 	
 private:
 	std::vector<Shape>& shapesUPS;
-	Stick& stc;
+
 };
 

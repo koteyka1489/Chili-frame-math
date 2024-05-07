@@ -154,13 +154,6 @@ void Shape::SetRebounded(bool reb)
 	rebounded = reb;
 }
 
-void Shape::Rotate(float angle)
-{
-	for (int i = 0; i < points.size(); i++)
-	{
-		points[i].Rotate(angle, center);
-	}
-}
 
 
 

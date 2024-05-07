@@ -1,5 +1,6 @@
 #pragma once
 #include <cmath>
+class Vec2Dir;
 
 class Vec2
 {
@@ -10,6 +11,8 @@ public:
 	Vec2 operator+(Vec2 rhs);
 	Vec2 operator+(Vec2 rhs) const;
 	Vec2 operator+=(Vec2 rhs);
+	Vec2 operator+(Vec2Dir rhs);
+	Vec2 operator+=(Vec2Dir rhs);
 	Vec2 operator-(Vec2 rhs);
 	Vec2 operator-(Vec2 rhs) const;
 	Vec2 operator-=(Vec2 rhs);
@@ -24,18 +27,10 @@ public:
 	float GetLenght() const;
 	Vec2 Normalize();
 	Vec2 Normalize() const;
-	void SetOrientationCalcMB();
-	//void Rotate(float angle, Point cr);
 
 public:
 	float x = 0.f;
 	float y = 0.f;
-
-	bool xRunOrientation = false;
-	bool yRiseOrientation = false;
-	float m = 0.0f; // rise / run or run / rise 
-	float bd = 0.0f; // displacement y or x
-	
 };
 
 
@@ -56,7 +51,7 @@ public:
 	Vec2Dir Normalize();
 	Vec2Dir Normalize() const;
 
-private:
+public:
 	Vec2 endPoint = Vec2(0.f, 0.f);
 	Vec2 startPoint = Vec2(0.f, 0.f);
 	float xLen = 0.f;

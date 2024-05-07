@@ -28,6 +28,19 @@ Vec2 Vec2::operator+=(Vec2 rhs)
 	return (*this) + rhs;
 }
 
+Vec2 Vec2::operator+(Vec2Dir rhs)
+{
+	x += rhs.xLen;
+	y += rhs.yLen;
+	return *this;
+}
+
+Vec2 Vec2::operator+=(Vec2Dir rhs)
+{
+
+	return (*this) + rhs;
+}
+
 Vec2 Vec2::operator-(Vec2 rhs)
 {
 	x -= rhs.x;
@@ -120,24 +133,7 @@ Vec2 Vec2::Normalize() const
 	return normalize;
 }
 
-void Vec2::SetOrientationCalcMB()
-{
-	float mv; 
-	mv = y / x;
-	if (abs((int)mv) <= 1)
-	{
-		xRunOrientation = true;
-		m = mv;
-		bd = y - (x * mv);
-	}
-	else
-	{
-		yRiseOrientation = true;
-		m = x / y;
-		bd = x - (y * m);
-	}
 
-}
 
 
 

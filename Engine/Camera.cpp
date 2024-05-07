@@ -1,15 +1,16 @@
 #include "Camera.h"
 
-Camera::Camera(MouseInput& mInput)
+Camera::Camera(MouseInput& mInput, KeyboardInput& kInput)
 	:
-	mInput(mInput)
+	mInput(mInput),
+	kInput(kInput)
 {}
 void Camera::Update()
 {
-	UpdateMousePos(wnd);
-	MoveCamera(wnd);
-	ScaleCamera(wnd);
-	RotationCamera(wnd);
+	UpdateMousePos();
+	MoveCamera();
+	ScaleCamera();
+	RotationCamera();
 }
 
 
@@ -52,25 +53,23 @@ void Camera::MoveCamera()
 	offsetMoveCamera += temp;
 }
 
-void Camera::ScaleCamera(MainWindow& wnd)
+void Camera::ScaleCamera()
 {
-	const auto e = wnd.mouse.Read();
-
-	if (e.GetType() == Mouse::Event::Type::WheelUp)
+	if (mInput.GetWheelUp())
 	{
 		scaleCameraMod *= 1.05f;
 	}
-	if (e.GetType() == Mouse::Event::Type::WheelDown)
+	if (mInput.GetWheelDown())
 	{
 		scaleCameraMod /= 1.05f;
 	}
 }
 
-void Camera::UpdateMousePos(MainWindow& wnd)
+void Camera::UpdateMousePos()
 {
 	if (mouseUpdateTicks >= mouseUpdateTicksMax)
 	{
-		mouseStartPos = Vec2{ (float)wnd.mouse.GetPosX(), (float)wnd.mouse.GetPosY() };
+		mouseStartPos = mInput.GetMousePos();
 		mouseUpdateTicks = 0;
 	}
 	else
@@ -80,13 +79,13 @@ void Camera::UpdateMousePos(MainWindow& wnd)
 
 }
 
-void Camera::RotationCamera(MainWindow& wnd)
+void Camera::RotationCamera()
 {
-	if (wnd.kbd.KeyIsPressed(VK_LEFT))
+	if (kInput.EIsPresses())
 	{
 		ThetaRotation += 0.1f;
 	}
-	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
+	if (kInput.QIsPressed())
 	{
 		ThetaRotation -= 0.1;
 	}

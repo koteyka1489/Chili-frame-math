@@ -7,7 +7,7 @@
 class Camera
 {
 public:
-	Camera(MouseInput& mInput);
+	Camera(MouseInput& mInput, KeyboardInput& kInput);
 	void Update();
 	Vec2 GetOffset();
 	Vec2 GetCenterCamera();
@@ -21,6 +21,7 @@ private:
 	void RotationCamera();
 private:
 	MouseInput& mInput;
+	KeyboardInput& kInput;
 
 	Vec2 offsetCenter{ Graphics::ScreenWidth / 2, Graphics::ScreenHeight / 2 };
 	Vec2 offsetMoveCamera{ 0.f, 0.f };

@@ -31,7 +31,7 @@ public:
 	void SetSpeed(Vec2 speed_in);
 	bool GetRebounded();
 	void SetRebounded(bool reb);
-	void Rotate(float angle);
+
 
 
 private:

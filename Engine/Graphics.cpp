@@ -396,30 +396,48 @@ void Graphics::DrawSpriteChromaRect(int x, int y, Surface& s, Rect rec)
 	}
 }
 
-void Graphics::DrawLine(Vec2 v)
+void Graphics::DrawLine(Vec2Dir v)
 {
-	v.SetOrientationCalcMB();
-	if (v.xRunOrientation)
+	bool xRunOrientation = false;
+	bool yRiseOrientation = false;
+	float m = 0.0f; // rise / run or run / rise 
+	float bd = 0.0f; // displacement y or x
+	float mv;
+	mv = v.yLen / v.xLen;
+	if (abs((int)mv) <= 1)
 	{
-		if (v.a.x > v.b.x)
+		xRunOrientation = true;
+		m = mv;
+		bd = v.yLen - (v.xLen * mv);
+	}
+	else
+	{
+		yRiseOrientation = true;
+		m = v.xLen / v.yLen;
+		bd = v.xLen - (v.yLen * m);
+	}
+
+	if (xRunOrientation)
+	{
+		if (v.endPoint.x > v.startPoint.x)
 		{
-			std::swap(v.a, v.b);
+			std::swap(v.endPoint, v.startPoint);
 		}
-		for (int x = (int)v.a.x; x < v.b.x; x++)
+		for (int x = (int)v.endPoint.x; x < v.startPoint.x; x++)
 		{
-			float y = x * v.m + v.bd;
+			float y = x * m + bd;
 			PutPixel((int)x, (int)y, Colors::White);
 		}
 	}
-	if (v.yRiseOrientation)
+	if (yRiseOrientation)
 	{
-		if (v.a.y > v.b.y)
+		if (v.endPoint.y > v.startPoint.y)
 		{
-			std::swap(v.a, v.b);
+			std::swap(v.endPoint, v.startPoint);
 		}
-		for (int y = (int)v.a.y; y < v.b.y; y++)
+		for (int y = (int)v.endPoint.y; y < v.startPoint.y; y++)
 		{
-			float x = y * v.m + v.bd;
+			float x = y * m + bd;
 			PutPixel((int)x, (int)y, Colors::White);
 		}
 	}
