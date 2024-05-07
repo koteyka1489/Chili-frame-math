@@ -39,32 +39,6 @@ Shape::Shape(const Shape& rhs)
 	*this = rhs;
 }
 
-void Shape::Update(MainWindow& wnd)
-{
-
-}
-
-
-void Shape::Draw(Graphics& gfx, Vec2 cameraOfsset, float scaleCameraMod, float thetaAngleCameraRotate, Vec2 centerRotation )
-{
-
-	for (int i = 0; i < points.size() - 1; i++)
-	{
-
-		Vec2 vec{ points[i], points[i + 1]};
-		vec *= scaleCameraMod;
-		vec += cameraOfsset;
-		vec.Rotate(thetaAngleCameraRotate, centerRotation);
-		gfx.DrawLine(vec);
-	}
-
-	Vec2 vecEnd(points[points.size() - 1], points[0]);
-	vecEnd *= scaleCameraMod;
-	vecEnd += cameraOfsset;
-	vecEnd.Rotate(thetaAngleCameraRotate, centerRotation);
-	gfx.DrawLine(vecEnd);
-	
-}
 
 void Shape::SetCenter()
 {
@@ -94,20 +68,6 @@ void Shape::Move()
 	SetCenter();
 }
 
-void Shape::MoveCamera(Vec2 dir)
-{
-	for (int i = 0; i < points.size(); i++)
-	{
-		points[i] += dir;
-	}
-	SetCenter();
-}
-
-void Shape::ScaleFromCenterShape(MainWindow& wnd, bool dir)
-{
-
-	
-}
 
 void Shape::CheckCollision( Stick stick)
 {
