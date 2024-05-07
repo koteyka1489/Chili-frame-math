@@ -6,10 +6,11 @@
 #include "Stick.h"
 #include "XMath.h"
 #include "Sound.h"
+#include "Drawable.h"
 
 
 
-class Shape
+class Shape : public Drawable
 {
 public:
 	Shape();
