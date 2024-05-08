@@ -3,13 +3,10 @@
 
 
 
-UpdateScrenCoordinate::UpdateScrenCoordinate(std::vector<Drawable> shapesIN, Camera& cam)
+UpdateScrenCoordinate::UpdateScrenCoordinate(Camera& camera_in)
 	:
-	shapesUPS(shapesIN),
-	cam(cam)
-	
-{
-}
+	camera(camera_in)
+{}
 
 UpdateScrenCoordinate UpdateScrenCoordinate::operator=(UpdateScrenCoordinate& rhs)
 {
@@ -17,10 +14,23 @@ UpdateScrenCoordinate UpdateScrenCoordinate::operator=(UpdateScrenCoordinate& rh
 	return *this;
 }
 
+void UpdateScrenCoordinate::Init(std::vector<Shape> shapesIN)
+{
+	shapesUPS = shapesIN;
+}
+
 void UpdateScrenCoordinate::Update()
 {
+
+
 	for (auto& s : shapesUPS)
 	{
-		s.Update();
+		s.SetPointsScale(camera.GetScaleCameraMod());
+		s.SetPointsOfset(camera.GetOffset());
 	}
+}
+
+std::vector<Shape>* UpdateScrenCoordinate::GetShapes()
+{
+	return &shapesUPS;
 }

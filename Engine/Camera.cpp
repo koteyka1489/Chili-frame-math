@@ -5,6 +5,7 @@ Camera::Camera(MouseInput& mInput, KeyboardInput& kInput)
 	mInput(mInput),
 	kInput(kInput)
 {}
+
 void Camera::Update()
 {
 	UpdateMousePos();
@@ -47,7 +48,7 @@ void Camera::MoveCamera()
 		Vec2 mousePressPoint = mInput.GetMousePos();
 		Vec2Dir mouseVecDir(mousePressPoint, mouseStartPos);
 		mouseVecDir = mouseVecDir.Normalize();
-		temp += mouseVecDir * 1.5f;
+		temp += mouseVecDir;
 	}
 
 	offsetMoveCamera += temp;

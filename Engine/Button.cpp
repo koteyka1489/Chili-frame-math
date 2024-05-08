@@ -24,8 +24,8 @@ void Button::MoveButton(MainWindow& wnd)
 
 	if (wnd.mouse.LeftIsPressed())
 	{
-		Rect buttonRect(Point((float)xButton, (float)yButtonStart), 100.0f, 92.0f);
-		Point mousePoint((float)wnd.mouse.GetPosX(), (float)wnd.mouse.GetPosY());
+		Rect buttonRect(Vec2((float)xButton, (float)yButtonStart), 100.0f, 92.0f);
+		Vec2 mousePoint((float)wnd.mouse.GetPosX(), (float)wnd.mouse.GetPosY());
 		if (buttonRect.InRectCheck(mousePoint))
 		{
 			

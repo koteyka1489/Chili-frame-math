@@ -5,9 +5,9 @@ class Rect
 {
 public:
 	Rect(float left, float right, float top, float bott);
-	Rect(Point leftTop, float width, float height);
-	Rect(Point leftTop, Point rightBott);
-	bool InRectCheck(Point p);
+	Rect(Vec2 leftTop, float width, float height);
+	Rect(Vec2 leftTop, Vec2 rightBott);
+	bool InRectCheck(Vec2 p);
 
 public:
 	float left;

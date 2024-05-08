@@ -71,16 +71,16 @@ void Shape::Move()
 
 void Shape::CheckCollision( Stick stick)
 {
-	if (DistancePointLine(stick.GetStartPoint(), stick.GetEndPoint(), this->GetCenter()) < this->GetRadius()
-		&& !this->GetRebounded())
-	{
-		collideSound.Play();
-		Vec2 w = stick.GetStickVec().Normalize();
-		Vec2 v = this->GetSpeed();
-		this->SetSpeed(w * (v * w) * 2.f - v);
-		this->SetRebounded(true);
-	}
-	this->Move();
+	//if (DistancePointLine(stick.GetStartPoint(), stick.GetEndPoint(), this->GetCenter()) < this->GetRadius()
+	//	&& !this->GetRebounded())
+	//{
+	//	collideSound.Play();
+	//	Vec2 w = stick.GetStickVec().Normalize();
+	//	Vec2 v = this->GetSpeed();
+	//	this->SetSpeed(w * (v * w) * 2.f - v);
+	//	this->SetRebounded(true);
+	//}
+	//this->Move();
 }
 
 Vec2 Shape::GetCenter()
@@ -113,6 +113,29 @@ void Shape::SetRebounded(bool reb)
 {
 	rebounded = reb;
 }
+
+void Shape::SetPointsOfset(Vec2 ofset)
+{
+	for (auto& p : points)
+	{
+		p += ofset;
+	}
+}
+
+void Shape::SetPointsScale(float scl)
+{
+	for (auto& p : points)
+	{
+		p *= scl;
+	}
+}
+
+std::vector<Vec2> Shape::GetPoints()
+{
+	return points;
+}
+
+
 
 
 

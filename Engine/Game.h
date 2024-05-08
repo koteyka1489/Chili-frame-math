@@ -35,6 +35,8 @@
 #include <cmath>
 #include "Sound.h"
 #include "Camera.h"
+#include "Input.h"
+#include "Draw.h"
 
 
 
@@ -54,7 +56,11 @@ private:
 	Graphics gfx;
 	FrameTimer ft;
 	std::vector<Shape> shapesGame;
+	MouseInput mInput;
+	KeyboardInput kInput;
 	Camera camera;
+	UpdateScrenCoordinate updateScrCoord;
+	Draw draw;
 	int ticks = 0;
 	int ticksMax = 180;
 	int curShape = 0;

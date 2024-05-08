@@ -145,7 +145,7 @@ Vec2Dir::Vec2Dir(Vec2 endPoint, Vec2 startPoint)
 	startPoint(startPoint)
 {
 	xLen = endPoint.x - startPoint.x;
-	yLen = endPoint.x - startPoint.x;
+	yLen = endPoint.y - startPoint.y;
 }
 
 Vec2Dir Vec2Dir::operator*(float scl)

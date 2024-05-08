@@ -20,25 +20,25 @@ void Stick::Draw(Graphics& gfx)
 {
 	for (int i = 0; i < height; i++)
 	{
-		Point startPointWithHeight = startPoint + Point{ 0.f, float(i) };
-		Point endPointWithHeight = endPoint + Point{ 0.f, float(i) };
+		Vec2 startPointWithHeight = startPoint + Vec2{ 0.f, float(i) };
+		Vec2 endPointWithHeight = endPoint + Vec2{ 0.f, float(i) };
 
-		Vec2 vec(startPointWithHeight, endPointWithHeight);
+		Vec2Dir vec(startPointWithHeight, endPointWithHeight);
 		gfx.DrawLine(vec);
 	}
 }
 
-Vec2 Stick::GetStickVec() const
+Vec2Dir Stick::GetStickVec() const
 {
-	return Vec2(endPoint, startPoint);
+	return Vec2Dir(endPoint, startPoint);
 }
 
-Point Stick::GetStartPoint() const
+Vec2 Stick::GetStartPoint() const
 {
 	return startPoint;
 }
 
-Point Stick::GetEndPoint() const
+Vec2 Stick::GetEndPoint() const
 {
 	return endPoint;
 }

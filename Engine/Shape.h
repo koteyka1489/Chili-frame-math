@@ -10,7 +10,7 @@
 
 
 
-class Shape : public Drawable
+class Shape
 {
 public:
 	Shape();
@@ -30,8 +30,9 @@ public:
 	void SetSpeed(Vec2 speed_in);
 	bool GetRebounded();
 	void SetRebounded(bool reb);
-
-
+	void SetPointsOfset(Vec2 ofset);
+	void SetPointsScale(float scl);
+	std::vector<Vec2> GetPoints();
 
 private:
 	std::vector<Vec2> points;

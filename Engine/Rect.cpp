@@ -8,17 +8,17 @@ Rect::Rect(float left, float right, float top, float bott)
 	bott(bott)
 {}
 
-Rect::Rect(Point leftTop, float width, float height)
+Rect::Rect(Vec2 leftTop, float width, float height)
 	:
 	Rect(leftTop.x, leftTop.x + width, leftTop.y, leftTop.y + height)
 {}
 
-Rect::Rect(Point leftTop, Point rightBott)
+Rect::Rect(Vec2 leftTop, Vec2 rightBott)
 	:
 	Rect(leftTop.x, rightBott.x, leftTop.y, rightBott.y)
 {}
 
-bool Rect::InRectCheck(Point p)
+bool Rect::InRectCheck(Vec2 p)
 {
 	return p.x >= left && p.x <= right && p.y >= top && p.y <= bott;
 }

@@ -22,7 +22,6 @@ private:
 private:
 	MouseInput& mInput;
 	KeyboardInput& kInput;
-
 	Vec2 offsetCenter{ Graphics::ScreenWidth / 2, Graphics::ScreenHeight / 2 };
 	Vec2 offsetMoveCamera{ 0.f, 0.f };
 	Vec2 mouseStartPos{ 0.f, 0.f };

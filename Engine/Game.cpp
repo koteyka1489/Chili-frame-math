@@ -26,9 +26,21 @@
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd )
+	gfx( wnd ),
+	mInput(wnd),
+	kInput(wnd),
+	camera(mInput, kInput),
+	updateScrCoord(camera),
+	draw(gfx)
 	{
-		
+	shapesGame.emplace_back(-300.0f, -500.0f, 5, 50, Colors::White);
+	shapesGame.emplace_back(-200.0f, 500.0f, 5, 50, Colors::White);
+	shapesGame.emplace_back(-100.0f, -500.0f, 5, 50, Colors::White);
+	shapesGame.emplace_back(0.0f, 500.0f, 5, 50, Colors::White);
+	shapesGame.emplace_back(100.0f, -500.0f, 5, 50, Colors::White);
+	shapesGame.emplace_back(200.0f, 500.0f, 5, 50, Colors::White);
+	shapesGame.emplace_back(300.0f, -500.0f, 5, 50, Colors::White);
+	shapesGame.emplace_back(400.0f, 500.0f, 5, 50, Colors::White);
 	}
 
 void Game::Go()
@@ -43,37 +55,16 @@ void Game::UpdateModel()
 {
 	float dt = ft.MarkRealDt();
 	t += dt;
-	float theta =  t * 3.14159;
-	std::vector<Shape> triang;
-	triang.emplace_back(0.f, 0.f, 3, 150, Colors::Cyan);
-	triang.emplace_back(800.f, 200.f, 6, 150, Colors::Cyan);
-	triang.emplace_back(1500.f, 0.f, 4, 150, Colors::Cyan);
-	triang.emplace_back(0.f, 1000.0f, 5, 150, Colors::Cyan);
-	triang.emplace_back(1000.f, 1500.0f, 3, 150, Colors::Cyan);
-	triang.emplace_back(1800.f, 300.0f, 8, 150, Colors::Cyan);
-	triang.emplace_back(0.f, 800.0f, 4, 150, Colors::Cyan);
-	triang.emplace_back(500.f, 200.0f, 10, 150, Colors::Cyan);
-	triang.emplace_back(1400.f, 1500.0f, 6, 150, Colors::Cyan);
-
-
-	for (int i = 0; i < triang.size(); i++)
-	{
-		triang[i].Rotate(theta + i / 0.1f);
-	}
+	mInput.Execute();
+	kInput.Execute();
+	camera.Update();
+	updateScrCoord.Init(shapesGame);
+	updateScrCoord.Update();
+	draw.Init(updateScrCoord.GetShapes());
 	
-	camera.Update(wnd);
-
-	for (int i = 0; i < triang.size(); i++)
-	{
-		triang[i].Draw(gfx, camera.GetOffset(), camera.GetScaleCameraMod(), camera.GetThetaRotation(), Point{0.0f, 0.0f});
-	}
-
-	
-
 }
 
 void Game::ComposeFrame()
 {
-	
-
+	draw.ExecuteDraw();
 }

@@ -8,6 +8,8 @@ MouseInput::MouseInput(MainWindow& wnd)
 {
 }
 
+
+
 void MouseInput::Execute()
 {
 	// считываем нажатие кнопок мыши

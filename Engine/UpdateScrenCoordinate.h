@@ -11,14 +11,17 @@ class UpdateScrenCoordinate
 {
 public:
 	UpdateScrenCoordinate() = default;
-	UpdateScrenCoordinate(std::vector<Drawable> shapesIN, Camera& cam);
+	UpdateScrenCoordinate(Camera& camera_in);
 	UpdateScrenCoordinate operator= (UpdateScrenCoordinate& rhs);
+	void Init(std::vector<Shape> shapesIN);
 	void Update();
+	std::vector<Shape>* GetShapes();
 private:
 
 	
 private:
-	std::vector<Drawable> shapesUPS;
-	Camera& cam;
+	Camera& camera;
+	std::vector<Shape> shapesUPS;
+	std::vector<Stick> stick;
 };
 
