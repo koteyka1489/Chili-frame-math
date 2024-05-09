@@ -32,6 +32,7 @@ public:
 	void SetRebounded(bool reb);
 	void SetPointsOfset(Vec2 ofset);
 	void SetPointsScale(float scl);
+	void SetRotation(float theta, Vec2 centerRot);
 	std::vector<Vec2> GetPoints();
 	Color GetColor();
 

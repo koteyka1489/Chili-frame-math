@@ -25,8 +25,11 @@ void UpdateScrenCoordinate::Update()
 
 	for (auto& s : shapesUPS)
 	{
+		s.SetRotation(camera.GetThetaRotation(), Vec2{ 0.f, 0.f });
 		s.SetPointsScale(camera.GetScaleCameraMod());
 		s.SetPointsOfset(camera.GetOffset());
+		
+		
 	}
 }
 

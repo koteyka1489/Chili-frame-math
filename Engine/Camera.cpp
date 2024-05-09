@@ -8,7 +8,7 @@ Camera::Camera(MouseInput& mInput, KeyboardInput& kInput)
 
 void Camera::Update()
 {
-	//UpdateMousePos();
+	
 	MoveCamera();
 	ScaleCamera();
 	RotationCamera();
@@ -18,7 +18,7 @@ void Camera::Update()
 
 Vec2 Camera::GetOffset()
 {
-	return offsetCenter  + offsetMoveCamera;
+	return (offsetCenter  + offsetMoveCamera);
 }
 
 Vec2 Camera::GetCenterCamera()
@@ -66,19 +66,7 @@ void Camera::ScaleCamera()
 	}
 }
 
-void Camera::UpdateMousePos()
-{
-	if (mouseUpdateTicks >= mouseUpdateTicksMax)
-	{
-		mouseStartPos = mInput.GetMousePos();
-		mouseUpdateTicks = 0;
-	}
-	else
-	{
-		mouseUpdateTicks++;
-	}
 
-}
 
 void Camera::RotationCamera()
 {
@@ -88,6 +76,6 @@ void Camera::RotationCamera()
 	}
 	if (kInput.QIsPressed())
 	{
-		ThetaRotation -= 0.1;
+		ThetaRotation -= 0.1f;
 	}
 }

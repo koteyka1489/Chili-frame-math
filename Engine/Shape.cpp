@@ -130,6 +130,18 @@ void Shape::SetPointsScale(float scl)
 	}
 }
 
+void Shape::SetRotation(float theta, Vec2 centerRot)
+{
+	float dx = centerRot.x;
+	float dy = centerRot.y;
+	for (auto& p : points)
+	{
+		float nx = ((p.x - dx) * cos(theta)) - ((dy - p.y) * sin(theta)) + dx;
+		p.y = dy - ((dy - p.y) * cos(theta)) + ((p.x - dx) * sin(theta));
+		p.x = nx;
+	}
+}
+
 std::vector<Vec2> Shape::GetPoints()
 {
 	return points;

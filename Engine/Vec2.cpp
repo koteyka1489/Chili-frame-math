@@ -152,6 +152,10 @@ Vec2Dir Vec2Dir::operator*(float scl)
 {
 	endPoint.x *= scl;
 	endPoint.y *= scl;
+	startPoint.x *= scl;
+	startPoint.y *= scl;
+	xLen = endPoint.x - startPoint.x;
+	yLen = endPoint.y - startPoint.y;
 	return *this;
 }
 
@@ -172,7 +176,6 @@ Vec2Dir Vec2Dir::operator/(float scl)
 	endPoint.y /= scl;
 	startPoint.x /= scl;
 	startPoint.y /= scl;
-
 	xLen = endPoint.x - startPoint.x;
 	yLen = endPoint.y - startPoint.y;
 	return *this;

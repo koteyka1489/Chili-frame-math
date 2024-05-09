@@ -17,7 +17,6 @@ public:
 private:
 	void MoveCamera();
 	void ScaleCamera();
-	void UpdateMousePos();
 	void RotationCamera();
 private:
 	MouseInput& mInput;
