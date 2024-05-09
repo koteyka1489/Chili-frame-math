@@ -31,6 +31,7 @@ public:
 public:
 	float x = 0.f;
 	float y = 0.f;
+	float w = 1.0f;
 };
 
 

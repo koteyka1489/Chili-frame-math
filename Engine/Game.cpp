@@ -62,6 +62,7 @@ void Game::UpdateModel()
 	updateScrCoord.Update();
 	draw.Init(updateScrCoord.GetShapes());
 	
+	
 }
 
 void Game::ComposeFrame()

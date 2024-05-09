@@ -7,6 +7,7 @@
 #include "XMath.h"
 #include "Sound.h"
 #include "Drawable.h"
+#include "Matrix3.h"
 
 
 
@@ -33,6 +34,7 @@ public:
 	void SetPointsOfset(Vec2 ofset);
 	void SetPointsScale(float scl);
 	void SetRotation(float theta, Vec2 centerRot);
+	void SetModelMatrix(Matrix3 modelMatrix);
 	std::vector<Vec2> GetPoints();
 	Color GetColor();
 

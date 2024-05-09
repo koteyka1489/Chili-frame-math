@@ -37,6 +37,7 @@
 #include "Camera.h"
 #include "Input.h"
 #include "Draw.h"
+#include "Matrix3.h"
 
 
 
@@ -66,5 +67,6 @@ private:
 	int curShape = 0;
 	Stick stick;
 	float t = 0.f;
+	
 	
 };

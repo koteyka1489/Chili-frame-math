@@ -147,6 +147,14 @@ void Shape::SetRotation(float theta, Vec2 centerRot)
 	}
 }
 
+void Shape::SetModelMatrix(Matrix3 modelMatrix)
+{
+	for (auto& p : points)
+	{
+		p = modelMatrix *  p;
+	}
+}
+
 std::vector<Vec2> Shape::GetPoints()
 {
 	return points;

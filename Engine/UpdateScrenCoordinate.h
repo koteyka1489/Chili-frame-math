@@ -5,6 +5,7 @@
 #include "Vec2.h"
 #include "Stick.h"
 #include "Camera.h"
+#include "Matrix3.h"
 
 
 class UpdateScrenCoordinate
