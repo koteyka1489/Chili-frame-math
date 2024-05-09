@@ -72,10 +72,10 @@ void Camera::RotationCamera()
 {
 	if (kInput.EIsPresses())
 	{
-		ThetaRotation += 0.1f;
+		ThetaRotation +=  0.01 * PI;
 	}
 	if (kInput.QIsPressed())
 	{
-		ThetaRotation -= 0.1f;
+		ThetaRotation -= 0.01 * PI;
 	}
 }

@@ -132,13 +132,18 @@ void Shape::SetPointsScale(float scl)
 
 void Shape::SetRotation(float theta, Vec2 centerRot)
 {
-	float dx = centerRot.x;
-	float dy = centerRot.y;
-	for (auto& p : points)
-	{
-		float nx = ((p.x - dx) * cos(theta)) - ((dy - p.y) * sin(theta)) + dx;
-		p.y = dy - ((dy - p.y) * cos(theta)) + ((p.x - dx) * sin(theta));
-		p.x = nx;
+	float cosTheta = cos(theta);
+	float sinTheta = sin(theta);
+
+	for (auto& p : points) {
+		float dx = p.x - centerRot.x;
+		float dy = p.y - centerRot.y;
+
+		float newX = cosTheta * dx - sinTheta * dy + centerRot.x;
+		float newY = sinTheta * dx + cosTheta * dy + centerRot.y;
+
+		p.x = newX;
+		p.y = newY;
 	}
 }
 

@@ -3,6 +3,7 @@
 #include "Graphics.h"
 #include "MainWindow.h"
 #include "Input.h"
+#include "XMath.h"
 
 class Camera
 {

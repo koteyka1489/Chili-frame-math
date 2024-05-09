@@ -2,6 +2,7 @@
 #include <cmath>
 #include "Vec2.h"
 
+constexpr double PI = 3.14159265358;
 
 //static float DistancePointLine(Point p0, Point p1, Point q)
 //{
