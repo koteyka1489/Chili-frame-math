@@ -8,7 +8,7 @@ Camera::Camera(MouseInput& mInput, KeyboardInput& kInput)
 
 void Camera::Update()
 {
-	UpdateMousePos();
+	//UpdateMousePos();
 	MoveCamera();
 	ScaleCamera();
 	RotationCamera();
@@ -46,7 +46,7 @@ void Camera::MoveCamera()
 	if (mInput.GetLeftIsPressed())
 	{
 		Vec2 mousePressPoint = mInput.GetMousePos();
-		Vec2Dir mouseVecDir(mousePressPoint, mouseStartPos);
+		Vec2Dir mouseVecDir(mouseStartPos, mousePressPoint);
 		mouseVecDir = mouseVecDir.Normalize();
 		temp += mouseVecDir;
 	}

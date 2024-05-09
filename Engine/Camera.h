@@ -24,11 +24,11 @@ private:
 	KeyboardInput& kInput;
 	Vec2 offsetCenter{ Graphics::ScreenWidth / 2, Graphics::ScreenHeight / 2 };
 	Vec2 offsetMoveCamera{ 0.f, 0.f };
-	Vec2 mouseStartPos{ 0.f, 0.f };
+	Vec2 mouseStartPos{ Graphics::ScreenWidth / 2, Graphics::ScreenHeight / 2 };
 	float stepMoveCamera = 5.0f;
 	float scaleCameraMod = 1.0f;
 	int mouseUpdateTicks = 0;
-	int mouseUpdateTicksMax = 5;
+	int mouseUpdateTicksMax = 10;
 	float ThetaRotation = 0.0f;
 
 };

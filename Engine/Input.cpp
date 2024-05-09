@@ -12,6 +12,13 @@ MouseInput::MouseInput(MainWindow& wnd)
 
 void MouseInput::Execute()
 {
+	// Обновляем все переменные
+	leftIsPressed = false;
+	rightIsPressed = false;
+	wheelUp = false;
+	wheelDown = false;
+
+
 	// считываем нажатие кнопок мыши
 	if (wnd.mouse.LeftIsPressed()) { leftIsPressed = true; }
 	if (wnd.mouse.RightIsPressed()) { rightIsPressed = true; }
@@ -77,6 +84,13 @@ KeyboardInput::KeyboardInput(MainWindow& wnd)
 // обработка ввода с клавиатуры
 void KeyboardInput::Execute()
 {
+	leftIsPressed = false;
+	rightIsPressed = false;
+	upIsPressed = false;
+	downIsPressed = false;
+	qIsPressed = false;
+	eIsPressed = false;
+
 	if (wnd.kbd.KeyIsPressed(VK_LEFT)) { leftIsPressed = true; }
 	if (wnd.kbd.KeyIsPressed(VK_RIGHT)) { rightIsPressed = true; }
 	if (wnd.kbd.KeyIsPressed(VK_UP)) { upIsPressed = true; }
