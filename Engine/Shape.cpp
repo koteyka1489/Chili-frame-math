@@ -139,11 +139,11 @@ void Shape::SetRotation(float theta, Vec2 centerRot)
 		float dx = p.x - centerRot.x;
 		float dy = p.y - centerRot.y;
 
-		float newX = cosTheta * dx - sinTheta * dy + centerRot.x;
-		float newY = sinTheta * dx + cosTheta * dy + centerRot.y;
+		float newX = cosTheta * dx - sinTheta * dy ;
+		float newY = sinTheta * dx + cosTheta * dy ;
 
-		p.x = newX;
-		p.y = newY;
+		p.x = newX + centerRot.x;
+		p.y = newY + centerRot.y;
 	}
 }
 
