@@ -63,7 +63,7 @@ public:
 	void DrawSpriteChroma(int x, int y, Surface& s);
 	void DrawSpriteChromaRGBWhite(int x, int y, Surface& s);
 	void DrawSpriteChromaRect(int x, int y, Surface& s, Rect rec);
-	void DrawLine(Vec2Dir v);
+	void DrawLine(Vec2Dir v, Color col);
 
 	~Graphics();
 private:

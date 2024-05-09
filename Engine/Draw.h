@@ -13,6 +13,5 @@ public:
 private:
 	Graphics& gfx;
 	std::vector<Shape>* pShapes = nullptr;
-	std::vector<Vec2> points;
 };
 

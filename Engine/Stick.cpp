@@ -24,7 +24,7 @@ void Stick::Draw(Graphics& gfx)
 		Vec2 endPointWithHeight = endPoint + Vec2{ 0.f, float(i) };
 
 		Vec2Dir vec(startPointWithHeight, endPointWithHeight);
-		gfx.DrawLine(vec);
+		gfx.DrawLine(vec, Colors::White);
 	}
 }
 

@@ -33,14 +33,14 @@ Game::Game( MainWindow& wnd )
 	updateScrCoord(camera),
 	draw(gfx)
 	{
-	shapesGame.emplace_back(-300.0f, -500.0f, 5, 50, Colors::White);
-	shapesGame.emplace_back(-200.0f, 500.0f, 5, 50, Colors::White);
-	shapesGame.emplace_back(-100.0f, -500.0f, 5, 50, Colors::White);
-	shapesGame.emplace_back(0.0f, 500.0f, 5, 50, Colors::White);
-	shapesGame.emplace_back(100.0f, -500.0f, 5, 50, Colors::White);
-	shapesGame.emplace_back(200.0f, 500.0f, 5, 50, Colors::White);
-	shapesGame.emplace_back(300.0f, -500.0f, 5, 50, Colors::White);
-	shapesGame.emplace_back(400.0f, 500.0f, 5, 50, Colors::White);
+	shapesGame.emplace_back(-300.0f, -500.0f, 3, 50, Colors::White);
+	shapesGame.emplace_back(-200.0f, 300.0f, 4, 50, Colors::Cyan);
+	shapesGame.emplace_back(-100.0f, -400.0f, 5, 50, Colors::Blue);
+	shapesGame.emplace_back(0.0f, 0.0f, 6, 50, Colors::Red);
+	shapesGame.emplace_back(100.0f, -500.0f, 5, 50, Colors::Gray);
+	shapesGame.emplace_back(200.0f, 200.0f, 3, 50, Colors::Green);
+	shapesGame.emplace_back(300.0f, -500.0f, 5, 50, Colors::LightGray);
+	shapesGame.emplace_back(400.0f, 100.0f, 10, 50, Colors::Yellow);
 	}
 
 void Game::Go()

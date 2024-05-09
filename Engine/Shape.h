@@ -33,6 +33,7 @@ public:
 	void SetPointsOfset(Vec2 ofset);
 	void SetPointsScale(float scl);
 	std::vector<Vec2> GetPoints();
+	Color GetColor();
 
 private:
 	std::vector<Vec2> points;

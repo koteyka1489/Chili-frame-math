@@ -135,6 +135,11 @@ std::vector<Vec2> Shape::GetPoints()
 	return points;
 }
 
+Color Shape::GetColor()
+{
+	return clr;
+}
+
 
 
 

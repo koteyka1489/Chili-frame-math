@@ -8,18 +8,23 @@ Draw::Draw(Graphics& gfx)
 void Draw::Init(std::vector<Shape>* shapesUPS)
 {
 	pShapes = shapesUPS;
-	for (int i = 0; i < pShapes->size(); i++)
-	{
-		points = pShapes->at(i).GetPoints();
-	}
+
 }
 
 void Draw::ExecuteDraw()
 {
-
-	for (int i = 0; i < points.size() - 1; i++)
+	for (int i = 0; i < pShapes->size(); i++)
 	{
-		gfx.DrawLine(Vec2Dir{ points[i], points[i + 1] });
+		std::vector<Vec2> points;
+		points = pShapes->operator[](i).GetPoints();
+		Color color = pShapes->operator[](i).GetColor();
+
+		for (int i = 0; i < points.size() - 1; i++)
+		{
+			gfx.DrawLine(Vec2Dir{ points[i], points[i + 1] }, color);
+		}
+		gfx.DrawLine(Vec2Dir{ points.back(), points[0] }, color);
+
 	}
-	gfx.DrawLine(Vec2Dir{ points.back(), points[0] });
+
 }
