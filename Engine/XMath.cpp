@@ -1,4 +1,4 @@
-#include "Matrix3.h"
+#include "XMath.h"
 
 
 
@@ -53,10 +53,10 @@ Matrix3 Matrix3::operator*(Matrix3 rhs) const
 
 Matrix3 Matrix3::ScaleMatrix3(float scale)
 {
-    return 
+    return
     { scale,   0.f,     0.f,
       0.f,     scale,   0.f,
-      0.f,     0.f,     1.f};
+      0.f,     0.f,     1.f };
 }
 
 Matrix3 Matrix3::RotateMatrix3(float theta)
@@ -64,10 +64,10 @@ Matrix3 Matrix3::RotateMatrix3(float theta)
     float cosTheta = cos(theta);
     float sinTheta = sin(theta);
 
-    return 
+    return
     { cosTheta, -sinTheta,  0.f,
       sinTheta, cosTheta,   0.f,
-      0.f,      0.f,        1.f};
+      0.f,      0.f,        1.f };
 }
 
 Matrix3 Matrix3::TranslateMatrix3(Vec2 offset)
@@ -78,7 +78,7 @@ Matrix3 Matrix3::TranslateMatrix3(Vec2 offset)
       0.f,     0.f,     1.f };
 }
 
-Matrix3 Matrix3::GetModelMarixTRS(Matrix3 Rotate, Matrix3 Scale,  Matrix3 Translate)
+Matrix3 Matrix3::GetModelMarixTRS(Matrix3 Rotate, Matrix3 Scale, Matrix3 Translate)
 {
     Matrix3 modelMatrix = Translate * Scale * Rotate;
     return modelMatrix;

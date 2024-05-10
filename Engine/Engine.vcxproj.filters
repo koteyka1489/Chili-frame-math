@@ -99,7 +99,7 @@
     <ClInclude Include="Draw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Matrix3.h">
+    <ClInclude Include="Vec3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -170,7 +170,10 @@
     <ClCompile Include="Draw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Matrix3.cpp">
+    <ClCompile Include="XMath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Vec3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
