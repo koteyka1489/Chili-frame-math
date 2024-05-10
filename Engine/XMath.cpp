@@ -37,6 +37,15 @@ Vec2 Matrix3::operator*(Vec2 rhs)
     return outV;
 }
 
+Vec3 Matrix3::operator*(Vec3 rhs)
+{
+    Vec3 outV;
+    outV.x = cells[0][0] * rhs.x + cells[0][1] * rhs.y + cells[0][2] * rhs.z;
+    outV.y = cells[1][0] * rhs.x + cells[1][1] * rhs.y + cells[1][2] * rhs.z;
+    outV.w = cells[2][0] * rhs.x + cells[2][1] * rhs.y + cells[2][2] * rhs.z;
+    return outV;
+}
+
 Matrix3 Matrix3::operator*(Matrix3 rhs) const
 {
     Matrix3 outM;

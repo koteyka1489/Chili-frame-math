@@ -58,4 +58,5 @@ public:
 	float xLen = 0.f;
 	float yLen = 0.f;
 	float zLen = 0.f;
+	float w = 1.0f;
 };
