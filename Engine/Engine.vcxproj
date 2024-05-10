@@ -142,6 +142,7 @@
     <ClInclude Include="ChiliWin.h" />
     <ClInclude Include="Colors.h" />
     <ClInclude Include="COMInitializer.h" />
+    <ClInclude Include="Cube.h" />
     <ClInclude Include="Digits.h" />
     <ClInclude Include="Draw.h" />
     <ClInclude Include="Drawable.h" />
@@ -149,9 +150,11 @@
     <ClInclude Include="FrameTimer.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="IndexedLineList.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="MainWindow.h" />
+    <ClInclude Include="ScreenCoordinateTransformer_3D.h" />
     <ClInclude Include="Vec3.h" />
     <ClInclude Include="XMath.h" />
     <ClInclude Include="Mouse.h" />
@@ -169,6 +172,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="COMInitializer.cpp" />
+    <ClCompile Include="Cube.cpp" />
     <ClCompile Include="Digits.cpp" />
     <ClCompile Include="Draw.cpp" />
     <ClCompile Include="Drawable.cpp" />
@@ -182,6 +186,7 @@
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Rect.cpp" />
+    <ClCompile Include="ScreenCoordinateTransformer_3D.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Stick.cpp" />

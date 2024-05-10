@@ -53,19 +53,36 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	float dt = ft.MarkRealDt();
-	t += dt;
-	mInput.Execute();
-	kInput.Execute();
-	camera.Update();
-	scrCoordTransformer_2d.Init(shapesGame);
-	scrCoordTransformer_2d.Update();
-	draw.Init(scrCoordTransformer_2d.GetShapes());
+	//float dt = ft.MarkRealDt();
+	//t += dt;
+	//mInput.Execute();
+	//kInput.Execute();
+	//camera.Update();
+	//scrCoordTransformer_2d.Init(shapesGame);
+	//scrCoordTransformer_2d.Update();
+	//draw.Init(scrCoordTransformer_2d.GetShapes());
 	
-	
+	Cube cube{ 0.5f };
+	ScreenCoordinateTransformer_3D sct_3d;
+	auto lines = cube.GetLines();
+
+	for (auto& v : lines.vertices)
+	{
+		sct_3d.Transform(v);
+	}
+	for (auto i = lines.indexes.cbegin(), end = lines.indexes.cend();
+		 i != end; std::advance(i, 2) )
+	{
+		Vec2 endPoint{lines.vertices[*(i + 1)].x, lines.vertices[*(i + 1)].y};
+		Vec2 startPoint{ lines.vertices[*i].x, lines.vertices[*i].y };
+		Vec2Dir vec(endPoint, startPoint);
+		gfx.DrawLine(vec, Colors::White);
+	}
+
+
 }
 
 void Game::ComposeFrame()
 {
-	draw.ExecuteDraw();
+	//draw.ExecuteDraw();
 }

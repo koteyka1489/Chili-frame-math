@@ -38,6 +38,8 @@
 #include "Input.h"
 #include "Draw.h"
 #include "XMath.h"
+#include "ScreenCoordinateTransformer_3D.h"
+#include "Cube.h"
 
 
 
