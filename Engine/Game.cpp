@@ -68,14 +68,16 @@ void Game::UpdateModel()
 	Matrix3 matRotZ = matRotZ.RotateMatrix3_Z(camera.GetThetaRotation_Z());
 	Matrix3 matAllRot = matRotX * matRotY * matRotZ;
 
-	Cube cube{ 0.5f };
-	ScreenCoordinateTransformer_3D sct_3d;
+	
+	
 	auto lines = cube.GetLines();
 
 	for (auto& v : lines.vertices)
 	{
+		
 		v = matAllRot * v;
 		v += {0.f, 0.f, 1.f};
+		
 		sct_3d.Transform(v);
 	}
 	for (size_t i = 0; i < lines.indexes.size(); i += 2)

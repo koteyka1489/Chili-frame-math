@@ -33,8 +33,8 @@ private:
 	int mouseUpdateTicks = 0;
 	int mouseUpdateTicksMax = 10;
 	float ThetaRotation = 0.0f;
-	float thetaRotationX = 0.f;
-	float thetaRotationY = 0.f;
-	float thetaRotationZ = 0.f;
+	float thetaRotationX = 0.0f;
+	float thetaRotationY = 0.0f;
+	float thetaRotationZ = 0.0f;
 };
 
