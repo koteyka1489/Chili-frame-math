@@ -10,6 +10,7 @@ Vec3& ScreenCoordinateTransformer_3D::Transform(Vec3 & v)
 {
 	v.x = (v.x + 1.f) * xFactor;
 	v.y = (-v.y + 1.f) * yFactor;
+	
 
 	return v;
 }

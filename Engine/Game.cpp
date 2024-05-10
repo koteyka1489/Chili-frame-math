@@ -55,30 +55,40 @@ void Game::UpdateModel()
 {
 	//float dt = ft.MarkRealDt();
 	//t += dt;
-	//mInput.Execute();
-	//kInput.Execute();
-	//camera.Update();
+	
 	//scrCoordTransformer_2d.Init(shapesGame);
 	//scrCoordTransformer_2d.Update();
 	//draw.Init(scrCoordTransformer_2d.GetShapes());
 	
+	mInput.Execute();
+	kInput.Execute();
+	camera.Update();
+	Matrix3 matRotX = matRotX.RotateMatrix3_X(camera.GetThetaRotation_X());
+	Matrix3 matRotY = matRotY.RotateMatrix3_Y(camera.GetThetaRotation_Y());
+	Matrix3 matRotZ = matRotZ.RotateMatrix3_Z(camera.GetThetaRotation_Z());
+	Matrix3 matAllRot = matRotX * matRotY * matRotZ;
+
 	Cube cube{ 0.5f };
 	ScreenCoordinateTransformer_3D sct_3d;
 	auto lines = cube.GetLines();
 
 	for (auto& v : lines.vertices)
 	{
+		v = matAllRot * v;
+		v += {0.f, 0.f, 1.f};
 		sct_3d.Transform(v);
 	}
-	for (auto i = lines.indexes.cbegin(), end = lines.indexes.cend();
-		 i != end; std::advance(i, 2) )
+	for (size_t i = 0; i < lines.indexes.size(); i += 2)
 	{
-		Vec2 endPoint{lines.vertices[*(i + 1)].x, lines.vertices[*(i + 1)].y};
-		Vec2 startPoint{ lines.vertices[*i].x, lines.vertices[*i].y };
-		Vec2Dir vec(endPoint, startPoint);
+		Vec3 endPoint = lines.vertices[lines.indexes[i + 1]];
+		Vec3 startPoint = lines.vertices[lines.indexes[i]];
+
+		Vec2 endPoint2D = { endPoint.x, endPoint.y };
+		Vec2 startPoint2D = { startPoint.x, startPoint.y };
+
+		Vec2Dir vec(endPoint2D, startPoint2D);
 		gfx.DrawLine(vec, Colors::White);
 	}
-
 
 }
 

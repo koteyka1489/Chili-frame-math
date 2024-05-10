@@ -11,6 +11,6 @@ public:
 private:
 	float xFactor;
 	float yFactor;
-
+	
 };
 

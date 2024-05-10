@@ -11,7 +11,8 @@ void Camera::Update()
 	
 	MoveCamera();
 	ScaleCamera();
-	RotationCamera();
+	//RotationCamera();
+	RotationCameraXYZ();
 }
 
 
@@ -36,6 +37,21 @@ float Camera::GetScaleCameraMod()
 float Camera::GetThetaRotation()
 {
 	return ThetaRotation;
+}
+
+float Camera::GetThetaRotation_X()
+{
+	return thetaRotationX;
+}
+
+float Camera::GetThetaRotation_Y()
+{
+	return thetaRotationY;
+}
+
+float Camera::GetThetaRotation_Z()
+{
+	return thetaRotationZ;
 }
 
 void Camera::MoveCamera()
@@ -78,4 +94,33 @@ void Camera::RotationCamera()
 	{
 		ThetaRotation -= 0.01 * PI;
 	}
+}
+
+void Camera::RotationCameraXYZ()
+{
+	if (kInput.QIsPressed())
+	{
+		thetaRotationZ += 0.01 * PI;
+	}
+	if (kInput.EIsPresses())
+	{
+		thetaRotationZ -= 0.01 * PI;
+	}
+	if (kInput.UpIsPressed())
+	{
+		thetaRotationX += 0.01 * PI;
+	}
+	if (kInput.DownIsPressed())
+	{
+		thetaRotationX -= 0.01 * PI;
+	}
+	if (kInput.LefttIsPressed())
+	{
+		thetaRotationY += 0.01 * PI;
+	}
+	if (kInput.RightIsPressed())
+	{
+		thetaRotationY -= 0.01 * PI;
+	}
+
 }

@@ -21,14 +21,14 @@ void ScreenCoordinateTransformer_2D::Init(std::vector<Shape> shapesIN)
 
 void ScreenCoordinateTransformer_2D::Update()
 {
-	Matrix3 rotationMatrix = rotationMatrix.RotateMatrix3(camera.GetThetaRotation());
+	/*Matrix3 rotationMatrix = rotationMatrix.RotateMatrix3(camera.GetThetaRotation());
 	Matrix3 scaleMatrix = scaleMatrix.ScaleMatrix3(camera.GetScaleCameraMod());
 	Matrix3 translationMatrix = translationMatrix.TranslateMatrix3(camera.GetOffset());
 	Matrix3 modelMatrix = modelMatrix.GetModelMarixTRS(rotationMatrix, scaleMatrix,  translationMatrix);
 	for (auto& s : shapesUPS)
 	{
 		s.SetModelMatrix(modelMatrix);
-	}
+	}*/
 
 	//for (auto& s : shapesUPS)
 	//{

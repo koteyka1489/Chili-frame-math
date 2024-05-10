@@ -42,7 +42,7 @@ Vec3 Matrix3::operator*(Vec3 rhs)
     Vec3 outV;
     outV.x = cells[0][0] * rhs.x + cells[0][1] * rhs.y + cells[0][2] * rhs.z;
     outV.y = cells[1][0] * rhs.x + cells[1][1] * rhs.y + cells[1][2] * rhs.z;
-    outV.w = cells[2][0] * rhs.x + cells[2][1] * rhs.y + cells[2][2] * rhs.z;
+    outV.z = cells[2][0] * rhs.x + cells[2][1] * rhs.y + cells[2][2] * rhs.z;
     return outV;
 }
 
@@ -54,9 +54,14 @@ Matrix3 Matrix3::operator*(Matrix3 rhs) const
     {
         for (int j = 0; j < 3; j++)
         {
-            outM.cells[i][j] = cells[i][0] * rhs.cells[0][j] + cells[i][1] * rhs.cells[1][j] + cells[i][2] * rhs.cells[2][j];
+            outM.cells[i][j] = 0.f;
+            for (int k = 0; k < 3; k++)
+            {
+                outM.cells[i][j] += cells[i][k] * rhs.cells[k][j];
+            }
         }
     }
+
     return outM;
 }
 
