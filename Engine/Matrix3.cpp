@@ -78,5 +78,11 @@ Matrix3 Matrix3::TranslateMatrix3(Vec2 offset)
       0.f,     0.f,     1.f };
 }
 
+Matrix3 Matrix3::GetModelMarixTRS(Matrix3 Rotate, Matrix3 Scale,  Matrix3 Translate)
+{
+    Matrix3 modelMatrix = Translate * Scale * Rotate;
+    return modelMatrix;
+}
+
 
 

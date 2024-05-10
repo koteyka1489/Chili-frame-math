@@ -12,6 +12,7 @@ public:
 	Matrix3 ScaleMatrix3(float scale);
 	Matrix3 RotateMatrix3(float theta);
 	Matrix3 TranslateMatrix3(Vec2 offset);
+	Matrix3 GetModelMarixTRS(Matrix3 Scale, Matrix3 Rotate, Matrix3 Translate);
 
 public:
 	//      [rows][col]
