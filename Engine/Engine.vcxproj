@@ -162,7 +162,7 @@
     <ClInclude Include="SoundEffect.h" />
     <ClInclude Include="Stick.h" />
     <ClInclude Include="Surface.h" />
-    <ClInclude Include="UpdateScrenCoordinate.h" />
+    <ClInclude Include="ScreenCoordinateTransformer_2D.h" />
     <ClInclude Include="Vec2.h" />
   </ItemGroup>
   <ItemGroup>
@@ -186,7 +186,7 @@
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Stick.cpp" />
     <ClCompile Include="Surface.cpp" />
-    <ClCompile Include="UpdateScrenCoordinate.cpp" />
+    <ClCompile Include="ScreenCoordinateTransformer_2D.cpp" />
     <ClCompile Include="Vec2.cpp" />
     <ClCompile Include="Vec3.cpp" />
     <ClCompile Include="XMath.cpp" />

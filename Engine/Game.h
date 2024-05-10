@@ -30,7 +30,7 @@
 #include "Button.h"
 #include "FrameTimer.h"
 #include "Shape.h"
-#include "UpdateScrenCoordinate.h"
+#include "ScreenCoordinateTransformer_2D.h"
 #include "Stick.h"
 #include <cmath>
 #include "Sound.h"
@@ -60,7 +60,7 @@ private:
 	MouseInput mInput;
 	KeyboardInput kInput;
 	Camera camera;
-	UpdateScrenCoordinate updateScrCoord;
+	ScreenCoordinateTransformer_2D scrCoordTransformer_2d;
 	Draw draw;
 	int ticks = 0;
 	int ticksMax = 180;

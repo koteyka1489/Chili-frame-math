@@ -30,7 +30,7 @@ Game::Game( MainWindow& wnd )
 	mInput(wnd),
 	kInput(wnd),
 	camera(mInput, kInput),
-	updateScrCoord(camera),
+	scrCoordTransformer_2d(camera),
 	draw(gfx)
 	{
 	shapesGame.emplace_back(-300.0f, -500.0f, 3, 50, Colors::White);
@@ -58,9 +58,9 @@ void Game::UpdateModel()
 	mInput.Execute();
 	kInput.Execute();
 	camera.Update();
-	updateScrCoord.Init(shapesGame);
-	updateScrCoord.Update();
-	draw.Init(updateScrCoord.GetShapes());
+	scrCoordTransformer_2d.Init(shapesGame);
+	scrCoordTransformer_2d.Update();
+	draw.Init(scrCoordTransformer_2d.GetShapes());
 	
 	
 }

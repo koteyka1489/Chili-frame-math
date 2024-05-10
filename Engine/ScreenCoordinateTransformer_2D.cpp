@@ -1,25 +1,25 @@
-#include "UpdateScrenCoordinate.h"
+#include "ScreenCoordinateTransformer_2D.h"
 
 
 
 
-UpdateScrenCoordinate::UpdateScrenCoordinate(Camera& camera_in)
+ScreenCoordinateTransformer_2D::ScreenCoordinateTransformer_2D(Camera& camera_in)
 	:
 	camera(camera_in)
 {}
 
-UpdateScrenCoordinate UpdateScrenCoordinate::operator=(UpdateScrenCoordinate& rhs)
+ScreenCoordinateTransformer_2D ScreenCoordinateTransformer_2D::operator=(ScreenCoordinateTransformer_2D& rhs)
 {
 	shapesUPS = rhs.shapesUPS;
 	return *this;
 }
 
-void UpdateScrenCoordinate::Init(std::vector<Shape> shapesIN)
+void ScreenCoordinateTransformer_2D::Init(std::vector<Shape> shapesIN)
 {
 	shapesUPS = shapesIN;
 }
 
-void UpdateScrenCoordinate::Update()
+void ScreenCoordinateTransformer_2D::Update()
 {
 	Matrix3 rotationMatrix = rotationMatrix.RotateMatrix3(camera.GetThetaRotation());
 	Matrix3 scaleMatrix = scaleMatrix.ScaleMatrix3(camera.GetScaleCameraMod());
@@ -38,7 +38,7 @@ void UpdateScrenCoordinate::Update()
 	//}
 }
 
-std::vector<Shape>* UpdateScrenCoordinate::GetShapes()
+std::vector<Shape>* ScreenCoordinateTransformer_2D::GetShapes()
 {
 	return &shapesUPS;
 }

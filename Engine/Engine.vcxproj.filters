@@ -78,7 +78,7 @@
     <ClInclude Include="Shape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UpdateScrenCoordinate.h">
+    <ClInclude Include="ScreenCoordinateTransformer_2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Stick.h">
@@ -152,7 +152,7 @@
     <ClCompile Include="Shape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UpdateScrenCoordinate.cpp">
+    <ClCompile Include="ScreenCoordinateTransformer_2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Stick.cpp">
