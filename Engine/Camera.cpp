@@ -51,7 +51,7 @@ void Camera::MoveCamera()
 		temp += mouseVecDir;
 	}
 
-	offsetMoveCamera += temp;
+	offsetMoveCamera += temp * 5.0f;
 }
 
 void Camera::ScaleCamera()
