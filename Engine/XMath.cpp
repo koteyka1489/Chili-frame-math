@@ -68,7 +68,7 @@ Matrix3 Matrix3::ScaleMatrix3(float scale)
       0.f,     0.f,     1.f };
 }
 
-Matrix3 Matrix3::RotateMatrix3(float theta)
+Matrix3 Matrix3::RotateMatrix3_Z(float theta)
 {
     float cosTheta = cos(theta);
     float sinTheta = sin(theta);
@@ -77,6 +77,28 @@ Matrix3 Matrix3::RotateMatrix3(float theta)
     { cosTheta, -sinTheta,  0.f,
       sinTheta, cosTheta,   0.f,
       0.f,      0.f,        1.f };
+}
+
+Matrix3 Matrix3::RotateMatrix3_Y(float theta)
+{
+    float cosTheta = cos(theta);
+    float sinTheta = sin(theta);
+
+    return
+    { cosTheta,  0.f,   sinTheta,
+      0.f,       1.f,   0.f,
+      -sinTheta, 0.f,   cosTheta };
+}
+
+Matrix3 Matrix3::RotateMatrix3_X(float theta)
+{
+    float cosTheta = cos(theta);
+    float sinTheta = sin(theta);
+
+    return
+    { 1.f,     0.f,        0.f,
+      0.f,     cosTheta,   -sinTheta,
+      0.f,     sinTheta,   cosTheta };
 }
 
 Matrix3 Matrix3::TranslateMatrix3(Vec2 offset)

@@ -25,7 +25,9 @@ public:
 	Vec3 operator* (Vec3 rhs);
 	Matrix3 operator* (Matrix3 rhs) const;
 	Matrix3 ScaleMatrix3(float scale);
-	Matrix3 RotateMatrix3(float theta);
+	Matrix3 RotateMatrix3_Z(float theta);
+	Matrix3 RotateMatrix3_Y(float theta);
+	Matrix3 RotateMatrix3_X(float theta);
 	Matrix3 TranslateMatrix3(Vec2 offset);
 	Matrix3 GetModelMarixTRS(Matrix3 Scale, Matrix3 Rotate, Matrix3 Translate);
 
