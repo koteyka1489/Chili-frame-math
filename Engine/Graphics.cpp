@@ -428,6 +428,59 @@ void Graphics::DrawLine(Vec2Dir v, Color col)
 	}
 }
 
+void Graphics::DrawTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Color clr)
+{
+	// создаем указатели на вершины треугольника
+	const Vec2* pv0 = &v0;
+	const Vec2* pv1 = &v1;
+	const Vec2* pv2 = &v2;
+
+	// сортируем вершины по оси Y
+	if (pv1->y < pv0->y) std::swap(v1, v0);
+	if (pv2->y < pv1->y) std::swap(v2, v1);
+	if (pv1->y < pv0->y) std::swap(v1, v0);
+
+	// проверка плоский верх или плоский низ у треугольника
+	if (pv0->y == pv1->y) // плоский верх
+	{
+		if (pv0->x < pv1->x) std::swap(v1, v0); // проверка по двум вершинам плоского верха, V0 должен быть слева
+		DrawFlatTopTriangle(*pv0, *pv1, *pv2, clr);
+	}
+	else if (pv2->y == pv1->y) // плоский низ
+	{
+		if (pv1->x < pv2->x) std::swap(v1, v2);
+		DrawFlatBottomTriangle(*pv0, *pv1, *pv2, clr);
+	}
+	else // обычный треугольник
+	{
+		const float alpha = (pv1->y - pv0->y) / (pv2->y - pv0->y); // вычисляем соотношение сторон V1-V0 и V2-V0 
+		Vec2 vi = *pv0 + (*pv2 - *pv0) * alpha; // вычисляем вектор разделитель который будет с V1 образовывать разделительную прямую
+		// разбили обычный треугольник на два с помощью разделительной прямой
+		// V0 V1 Vi - с плоским низом, где v1 и vi образуют нижнюю прямую
+		// V1 Vi V2 - плоский верх, где v1 и vi образуют верхнюю прямую
+
+		// проверяем с какой стороны относильно друг друга находятся вершины разделительной прямой и в зависимости от этого меняем порядок передачи аргументов в функцию
+		if (pv1->x < vi.x)
+		{
+			DrawFlatBottomTriangle(*pv0, *pv1, vi, clr);
+			DrawFlatTopTriangle(*pv1, vi, *pv2, clr);
+		}
+		else
+		{
+			DrawFlatBottomTriangle(*pv0, vi, *pv1, clr);
+			DrawFlatTopTriangle(vi, *pv1, *pv2, clr);
+		}
+	}
+}
+
+void Graphics::DrawFlatBottomTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Color clr)
+{
+}
+
+void Graphics::DrawFlatTopTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Color clr)
+{
+}
+
 
 //////////////////////////////////////////////////
 //           Graphics Exception
