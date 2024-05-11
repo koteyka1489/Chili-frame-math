@@ -71,6 +71,7 @@ private:
 	float t = 0.f;
 	Cube cube{ 0.5f };
 	ScreenCoordinateTransformer_3D sct_3d;
+	Vec3 zOffset{ 0.f, 0.f, 0.f };
 
 	
 	

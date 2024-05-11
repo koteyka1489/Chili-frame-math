@@ -1,5 +1,5 @@
 #include "XMath.h"
-
+#include <cmath>
 
 
 Matrix3::Matrix3()
@@ -75,8 +75,8 @@ Matrix3 Matrix3::ScaleMatrix3(float scale)
 
 Matrix3 Matrix3::RotateMatrix3_Z(float theta)
 {
-    float cosTheta = cos(theta);
-    float sinTheta = sin(theta);
+    float cosTheta = std::cos(theta);
+    float sinTheta = std::sin(theta);
 
     return
     {  cosTheta, sinTheta,   0.f,
@@ -86,8 +86,8 @@ Matrix3 Matrix3::RotateMatrix3_Z(float theta)
 
 Matrix3 Matrix3::RotateMatrix3_Y(float theta)
 {
-    float cosTheta = cos(theta);
-    float sinTheta = sin(theta);
+    float cosTheta = std::cos(theta);
+    float sinTheta = std::sin(theta);
 
     return
     { cosTheta,  0.f,   -sinTheta,
@@ -97,8 +97,8 @@ Matrix3 Matrix3::RotateMatrix3_Y(float theta)
 
 Matrix3 Matrix3::RotateMatrix3_X(float theta)
 {
-    float cosTheta = cos(theta);
-    float sinTheta = sin(theta);
+    float cosTheta = std::cos(theta);
+    float sinTheta = std::sin(theta);
 
     return
     { 1.f,     0.f,        0.f,

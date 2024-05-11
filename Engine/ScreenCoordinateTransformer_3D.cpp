@@ -8,8 +8,9 @@ ScreenCoordinateTransformer_3D::ScreenCoordinateTransformer_3D()
 
 Vec3& ScreenCoordinateTransformer_3D::Transform(Vec3 & v)
 {
-	v.x = (v.x + 1.f) * xFactor;
-	v.y = (-v.y + 1.f) * yFactor;
+	float zFactor = 1 / v.z;
+	v.x = (v.x * zFactor + 1.f) * xFactor;
+	v.y = (-v.y * zFactor + 1.f) * yFactor;
 	
 
 	return v;
