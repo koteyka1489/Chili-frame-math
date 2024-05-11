@@ -31,18 +31,18 @@ Matrix3::Matrix3(float c00, float c01, float c02, float c10, float c11, float c1
 Vec2 Matrix3::operator*(Vec2 rhs)
 {
     Vec2 outV;
-    outV.x = cells[0][0] * rhs.x + cells[0][1] * rhs.y + cells[0][2] * rhs.w;
-    outV.y = cells[1][0] * rhs.x + cells[1][1] * rhs.y + cells[1][2] * rhs.w;
-    outV.w = cells[2][0] * rhs.x + cells[2][1] * rhs.y + cells[2][2] * rhs.w;
+    outV.x = cells[0][0] * rhs.x + cells[1][0] * rhs.y + cells[2][0] * rhs.w;
+    outV.y = cells[0][1] * rhs.x + cells[1][1] * rhs.y + cells[2][1] * rhs.w;
+    outV.w = cells[0][2] * rhs.x + cells[1][2] * rhs.y + cells[2][2] * rhs.w;
     return outV;
 }
 
 Vec3 Matrix3::operator*(Vec3 rhs)
 {
     Vec3 outV;
-    outV.x = cells[0][0] * rhs.x + cells[0][1] * rhs.y + cells[0][2] * rhs.z;
-    outV.y = cells[1][0] * rhs.x + cells[1][1] * rhs.y + cells[1][2] * rhs.z;
-    outV.z = cells[2][0] * rhs.x + cells[2][1] * rhs.y + cells[2][2] * rhs.z;
+    outV.x = cells[0][0] * rhs.x + cells[1][0] * rhs.y + cells[2][0] * rhs.z;
+    outV.y = cells[0][1] * rhs.x + cells[1][1] * rhs.y + cells[2][1] * rhs.z;
+    outV.z = cells[0][2] * rhs.x + cells[1][2] * rhs.y + cells[2][2] * rhs.z;
     return outV;
 }
 
@@ -79,9 +79,9 @@ Matrix3 Matrix3::RotateMatrix3_Z(float theta)
     float sinTheta = sin(theta);
 
     return
-    { cosTheta, -sinTheta,  0.f,
-      sinTheta, cosTheta,   0.f,
-      0.f,      0.f,        1.f };
+    {  cosTheta, sinTheta,   0.f,
+      -sinTheta, cosTheta,   0.f,
+       0.f,      0.f,        1.f };
 }
 
 Matrix3 Matrix3::RotateMatrix3_Y(float theta)
@@ -90,9 +90,9 @@ Matrix3 Matrix3::RotateMatrix3_Y(float theta)
     float sinTheta = sin(theta);
 
     return
-    { cosTheta,  0.f,   sinTheta,
+    { cosTheta,  0.f,   -sinTheta,
       0.f,       1.f,   0.f,
-      -sinTheta, 0.f,   cosTheta };
+      sinTheta,  0.f,   cosTheta };
 }
 
 Matrix3 Matrix3::RotateMatrix3_X(float theta)
@@ -102,8 +102,8 @@ Matrix3 Matrix3::RotateMatrix3_X(float theta)
 
     return
     { 1.f,     0.f,        0.f,
-      0.f,     cosTheta,   -sinTheta,
-      0.f,     sinTheta,   cosTheta };
+      0.f,     cosTheta,   sinTheta,
+      0.f,     -sinTheta,  cosTheta };
 }
 
 Matrix3 Matrix3::TranslateMatrix3(Vec2 offset)

@@ -92,6 +92,7 @@ void Game::UpdateModel()
 		gfx.DrawLine(vec, Colors::White);
 	}
 
+
 }
 
 void Game::ComposeFrame()

@@ -3,14 +3,14 @@
 Cube::Cube(float size)
 {
 	float side = size / 2.f;
-	vertices.emplace_back(-side,  side,  side);
-	vertices.emplace_back( side,  side,  side);
-	vertices.emplace_back( side,  side,  -side);
-	vertices.emplace_back( -side, side, -side);
-	vertices.emplace_back(-side, -side,   side);
-	vertices.emplace_back( side, -side,   side);
-	vertices.emplace_back( side, -side, -side);
-	vertices.emplace_back( -side,-side, -side);
+	vertices.emplace_back( -side,  side,   side);
+	vertices.emplace_back(  side,  side,   side);
+	vertices.emplace_back(  side,  side,  -side);
+	vertices.emplace_back( -side,  side,  -side);
+	vertices.emplace_back( -side, -side,   side);
+	vertices.emplace_back(  side, -side,   side);
+	vertices.emplace_back(  side, -side,  -side);
+	vertices.emplace_back( -side, -side,  -side);
 
 
 }
