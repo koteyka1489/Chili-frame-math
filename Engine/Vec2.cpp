@@ -18,8 +18,7 @@ Vec2 Vec2::operator+(Vec2 rhs)
 
 Vec2 Vec2::operator+(Vec2 rhs) const
 {
-	Vec2 nVec;
-	nVec = (*this) + rhs;
+	Vec2 nVec{ this->x + rhs.x, this->y +  rhs.y };
 	return nVec;
 }
 
@@ -50,7 +49,8 @@ Vec2 Vec2::operator-(Vec2 rhs)
 
 Vec2 Vec2::operator-(Vec2 rhs) const
 {
-	Vec2 nVec = (*this) - rhs;
+
+	Vec2 nVec{ this->x - rhs.x, this->y - rhs.y };
 	return nVec;
 }
 

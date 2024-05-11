@@ -65,8 +65,6 @@ public:
 	void DrawSpriteChromaRect(int x, int y, Surface& s, Rect rec);
 	void DrawLine(Vec2Dir v, Color col);
 	void DrawTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Color clr);
-
-private:
 	void DrawFlatBottomTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Color clr);
 	void DrawFlatTopTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Color clr);
 

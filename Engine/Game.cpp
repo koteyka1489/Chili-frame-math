@@ -33,14 +33,6 @@ Game::Game( MainWindow& wnd )
 	scrCoordTransformer_2d(camera),
 	draw(gfx)
 	{
-	shapesGame.emplace_back(-300.0f, -500.0f, 3, 50, Colors::White);
-	shapesGame.emplace_back(-200.0f, 300.0f, 4, 50, Colors::Cyan);
-	shapesGame.emplace_back(-100.0f, -400.0f, 5, 50, Colors::Blue);
-	shapesGame.emplace_back(0.0f, 0.0f, 6, 50, Colors::Red);
-	shapesGame.emplace_back(100.0f, -500.0f, 5, 50, Colors::Gray);
-	shapesGame.emplace_back(200.0f, 200.0f, 3, 50, Colors::Green);
-	shapesGame.emplace_back(300.0f, -500.0f, 5, 50, Colors::LightGray);
-	shapesGame.emplace_back(400.0f, 100.0f, 10, 50, Colors::Yellow);
 	}
 
 void Game::Go()
@@ -55,10 +47,7 @@ void Game::UpdateModel()
 {
 	//float dt = ft.MarkRealDt();
 	//t += dt;
-	
-	//scrCoordTransformer_2d.Init(shapesGame);
-	//scrCoordTransformer_2d.Update();
-	//draw.Init(scrCoordTransformer_2d.GetShapes());
+
 	
 	mInput.Execute();
 	kInput.Execute();
@@ -77,33 +66,29 @@ void Game::UpdateModel()
 		zOffset += { 0.f,0.f, -0.1f };
 	}
 	
-	auto lines = cube.GetLines();
+	auto triangles = cube.GetTriangles();
 
-	for (auto& v : lines.vertices)
+	for (auto& v : triangles.vertices)
 	{
-		
 		v = matAllRot * v;
-		v += {0.f, 0.f, 1.f};
+		v += {0.f, 0.f, 1.0f};
 		v += zOffset;
 		sct_3d.Transform(v);
 		
 	}
-	for (size_t i = 0; i < lines.indexes.size(); i += 2)
+	for (size_t i = 0; i < triangles.indexes.size(); i += 3)
 	{
-		Vec3 endPoint = lines.vertices[lines.indexes[i + 1]];
-		Vec3 startPoint = lines.vertices[lines.indexes[i]];
-
-		Vec2 endPoint2D = { endPoint.x, endPoint.y };
-		Vec2 startPoint2D = { startPoint.x, startPoint.y };
-
-		Vec2Dir vec(endPoint2D, startPoint2D);
-		gfx.DrawLine(vec, Colors::White);
+		Vec3 v0 = triangles.vertices[triangles.indexes[i]];
+		Vec3 v1 = triangles.vertices[triangles.indexes[i + 1]];
+		Vec3 v2 = triangles.vertices[triangles.indexes[i + 2]];
+		Vec2 v0_2d =  { v0.x, v0.y };
+		Vec2 v1_2d =  { v1.x, v1.y };
+		Vec2 v2_2d =  { v2.x, v2.y };
+		gfx.DrawTriangle(v0_2d, v1_2d, v2_2d, Colors::White);
 	}
-
-
 }
 
 void Game::ComposeFrame()
 {
-	//draw.ExecuteDraw();
+	
 }

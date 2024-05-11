@@ -473,7 +473,7 @@ void Graphics::DrawTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Colo
 	}
 }
 
-void Graphics::DrawFlatTopTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Color clr) // v0 и v1 это вершины верхней грани, v2 - это одинокая
+void Graphics::DrawFlatTopTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Color clr) 
 {
 	const float m0 = (v2.x - v0.x) / (v2.y - v0.y); // вычисление наклона левой грани треугольника
 	const float m1 = (v2.x - v1.x) / (v2.y - v1.y); // вычисление наклона правой грани треугольника
@@ -487,7 +487,7 @@ void Graphics::DrawFlatTopTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v
 		// вычисление начала px0 и конца координат px1 согласно наклону левой грани m0 и наклону правой грани m1
 		// 
 		const float px0 = m0 * (float(y) + 0.5f - v0.y) + v0.x;
-		const float px1 = m1 * (float(y) + 0.5f - v1.y) + v1.x;
+		const float px1 = m1 * (float(y) + 0.5f - v2.y) + v2.x;
 
 		const int xStart = (int)std::ceil(px0 - 0.5f);// -0.5 учитывая правило растризации треугольников с оркуглением в большую сторону
 		const int xEnd = (int)std::ceil(px1 - 0.5f);// -0.5 учитывая правило растризации треугольников с оркуглением в большую сторону
@@ -499,7 +499,7 @@ void Graphics::DrawFlatTopTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v
 		}
 	}
 }
-void Graphics::DrawFlatBottomTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Color clr) //v0 это одинокая вершина, v1 и v2 формируют плоский низ;
+void Graphics::DrawFlatBottomTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Color clr) 
 {
 	const float m0 = (v1.x - v0.x) / (v1.y - v0.y); // вычисление наклона левой грани треугольника
 	const float m1 = (v2.x - v0.x) / (v2.y - v0.y); // вычисление наклона правой грани треугольника
