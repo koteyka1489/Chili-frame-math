@@ -68,7 +68,7 @@ Vec2 Vec2::operator*(float scl)
 
 Vec2 Vec2::operator*(float scl) const
 {
-	Vec2 nVec = (*this) * scl;
+	Vec2 nVec{ this->x * scl, this->y * scl };
 	return nVec;
 }
 
@@ -94,7 +94,7 @@ Vec2 Vec2::operator/(float scl)
 
 Vec2 Vec2::operator/(float scl) const
 {
-	Vec2 nVec = (*this) * scl;
+	Vec2 nVec{ this->x / scl, this->y / scl };
 	return nVec;
 }
 
@@ -161,7 +161,13 @@ Vec2Dir Vec2Dir::operator*(float scl)
 
 Vec2Dir Vec2Dir::operator*(float scl) const
 {
-	Vec2Dir nVecDir = (*this) * scl;
+	Vec2Dir nVecDir = *this;
+	nVecDir.endPoint.x *= scl;
+	nVecDir.endPoint.y *= scl;
+	nVecDir.startPoint.x *= scl;
+	nVecDir.startPoint.y *= scl;
+	nVecDir.xLen = nVecDir.endPoint.x - nVecDir.startPoint.x;
+	nVecDir.yLen = nVecDir.endPoint.y - nVecDir.startPoint.y;
 	return nVecDir;
 }
 
@@ -183,7 +189,13 @@ Vec2Dir Vec2Dir::operator/(float scl)
 
 Vec2Dir Vec2Dir::operator/(float scl) const
 {
-	Vec2Dir nVecDir = (*this) / scl;
+	Vec2Dir nVecDir = *this;
+	nVecDir.endPoint.x /= scl;
+	nVecDir.endPoint.y /= scl;
+	nVecDir.startPoint.x /= scl;
+	nVecDir.startPoint.y /= scl;
+	nVecDir.xLen = nVecDir.endPoint.x - nVecDir.startPoint.x;
+	nVecDir.yLen = nVecDir.endPoint.y - nVecDir.startPoint.y;
 	return nVecDir;
 }
 
