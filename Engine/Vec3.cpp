@@ -135,6 +135,15 @@ Vec3 Vec3::Normalize() const
 	return normalize;
 }
 
+Vec3 Vec3::CrossProduct(Vec3 lhs, Vec3 rhs)
+{
+	return Vec3(
+		lhs.y * rhs.z - lhs.z * rhs.y,
+		lhs.z * rhs.x - lhs.x * rhs.z,
+		lhs.x * rhs.y - lhs.y * rhs.x
+	);
+}
+
 
 
 
@@ -248,4 +257,23 @@ Vec3Dir Vec3Dir::Normalize() const
 	}
 	return nVecNormalize;
 }
+
+Vec3Dir Vec3Dir::CrossProduct(Vec3Dir lhs, Vec3Dir rhs)
+{
+	Vec3Dir vcp{ Vec3{0.f, 0.f, 0.f}, lhs.startPoint };
+	vcp.endPoint.x = lhs.endPoint.y * rhs.endPoint.z - lhs.endPoint.z * rhs.endPoint.y;
+	vcp.endPoint.y = lhs.endPoint.z * rhs.endPoint.x - lhs.endPoint.x * rhs.endPoint.z;
+	vcp.endPoint.z = lhs.endPoint.x * rhs.endPoint.y - lhs.endPoint.y * rhs.endPoint.x;
+	vcp.xLen = vcp.endPoint.x - vcp.startPoint.x;
+	vcp.yLen = vcp.endPoint.y - vcp.startPoint.y;
+	vcp.zLen = vcp.endPoint.z - vcp.startPoint.z;
+
+	return vcp;
+}
+
+float Vec3Dir::DotProduct(Vec3Dir rhs)
+{
+	return xLen * rhs.xLen + yLen * rhs.yLen + zLen * rhs.zLen;
+}
+
 

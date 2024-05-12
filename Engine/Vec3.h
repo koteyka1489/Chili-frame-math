@@ -27,6 +27,7 @@ public:
 	float GetLenght() const;
 	Vec3 Normalize();
 	Vec3 Normalize() const;
+	Vec3 CrossProduct(Vec3 lhs, Vec3 rhs);
 
 public:
 	float x = 0.f;
@@ -51,6 +52,8 @@ public:
 	float GetLenght() const;
 	Vec3Dir Normalize();
 	Vec3Dir Normalize() const;
+	Vec3Dir CrossProduct(Vec3Dir lhs, Vec3Dir rhs);
+	float DotProduct(Vec3Dir rhs);
 
 public:
 	Vec3 endPoint = Vec3(0.f, 0.f, 0.f);
