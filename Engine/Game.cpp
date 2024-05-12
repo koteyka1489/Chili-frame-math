@@ -23,16 +23,28 @@
 
 
 
-Game::Game( MainWindow& wnd )
+Game::Game(MainWindow& wnd)
 	:
-	wnd( wnd ),
-	gfx( wnd ),
+	wnd(wnd),
+	gfx(wnd),
 	mInput(wnd),
 	kInput(wnd),
 	camera(mInput, kInput),
 	scrCoordTransformer_2d(camera),
 	draw(gfx)
 	{
+		colorsm.push_back(Colors::Blue);
+		colorsm.push_back(Colors::Red);
+		colorsm.push_back(Colors::Green);
+		colorsm.push_back(Colors::Yellow);
+		colorsm.push_back(Colors::Blue);
+		colorsm.push_back(Colors::Red);
+		colorsm.push_back(Colors::Green);
+		colorsm.push_back(Colors::Yellow);
+		colorsm.push_back(Colors::Blue);
+		colorsm.push_back(Colors::Red);
+		colorsm.push_back(Colors::Green);
+		colorsm.push_back(Colors::Yellow);
 	}
 
 void Game::Go()
@@ -84,7 +96,7 @@ void Game::UpdateModel()
 		Vec2 v0_2d =  { v0.x, v0.y };
 		Vec2 v1_2d =  { v1.x, v1.y };
 		Vec2 v2_2d =  { v2.x, v2.y };
-		gfx.DrawTriangle(v0_2d, v1_2d, v2_2d, Colors::White);
+		gfx.DrawTriangle(v0_2d, v1_2d, v2_2d, colorsm[i / 3]);
 	}
 }
 
