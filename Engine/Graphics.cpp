@@ -443,12 +443,12 @@ void Graphics::DrawTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Colo
 	// проверка плоский верх или плоский низ у треугольника
 	if (pv0->y == pv1->y) // плоский верх
 	{
-		if (pv0->x < pv1->x) std::swap(pv1, pv0); // проверка по двум вершинам плоского верха, V0 должен быть слева по оси X
+		if (pv0->x > pv1->x) std::swap(pv1, pv0); // проверка по двум вершинам плоского верха, V0 должен быть слева по оси X
 		DrawFlatTopTriangle(*pv0, *pv1, *pv2, clr);
 	}
 	else if (pv2->y == pv1->y) // плоский низ
 	{
-		if (pv1->x < pv2->x) std::swap(pv1, pv2); // проверка по двум вершинам плоского низа, V1 должен быть слева по оси X
+		if (pv1->x > pv2->x) std::swap(pv1, pv2); // проверка по двум вершинам плоского низа, V1 должен быть слева по оси X
 		DrawFlatBottomTriangle(*pv0, *pv1, *pv2, clr);
 	}
 	else // обычный треугольник, который нужно будет разделить на два
