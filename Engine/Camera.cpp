@@ -100,27 +100,75 @@ void Camera::RotationCameraXYZ()
 {
 	if (kInput.QIsPressed())
 	{
-		thetaRotationZ += 0.01 * PI;
+		if (thetaRotationZ >= 2.f * PI)
+		{
+			thetaRotationZ = 0.f;
+			thetaRotationZ += 0.01 * PI;
+		}
+		else
+		{
+			thetaRotationZ += 0.01 * PI;
+		}
 	}
 	if (kInput.EIsPresses())
 	{
-		thetaRotationZ -= 0.01 * PI;
+		if (thetaRotationZ <= -2.f * PI)
+		{
+			thetaRotationZ = 0.f;
+			thetaRotationZ -= 0.01 * PI;
+		}
+		else
+		{
+			thetaRotationZ -= 0.01 * PI;
+		}
 	}
 	if (kInput.UpIsPressed())
 	{
-		thetaRotationX += 0.01 * PI;
+		if (thetaRotationX >= 2.f * PI)
+		{
+			thetaRotationX = 0.f;
+			thetaRotationX += 0.01 * PI;
+		}
+		else
+		{
+			thetaRotationX += 0.01 * PI;
+		}
 	}
 	if (kInput.DownIsPressed())
 	{
-		thetaRotationX -= 0.01 * PI;
+		if (thetaRotationX <= -2.f * PI)
+		{
+			thetaRotationX = 0.f;
+			thetaRotationX -= 0.01 * PI;
+		}
+		else
+		{
+			thetaRotationX -= 0.01 * PI;
+		}
 	}
 	if (kInput.LefttIsPressed())
 	{
-		thetaRotationY += 0.01 * PI;
+		if (thetaRotationY >= 2.f * PI)
+		{
+			thetaRotationY = 0.f;
+			thetaRotationY += 0.01 * PI;
+		}
+		else
+		{
+			thetaRotationY += 0.01 * PI;
+		}
 	}
 	if (kInput.RightIsPressed())
 	{
-		thetaRotationY -= 0.01 * PI;
+		if (thetaRotationY <= -2.f * PI)
+		{
+			thetaRotationY = 0.f;
+			thetaRotationY -= 0.01 * PI;
+		}
+		else
+		{
+			thetaRotationY -= 0.01 * PI;
+		}
 	}
 
 }
