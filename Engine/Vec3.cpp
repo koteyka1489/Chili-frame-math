@@ -18,8 +18,7 @@ Vec3 Vec3::operator+(Vec3 rhs)
 
 Vec3 Vec3::operator+(Vec3 rhs) const
 {
-	Vec3 nVec;
-	nVec = (*this) + rhs;
+	Vec3 nVec{ this->x + rhs.x, this->y + rhs.y, this->z + rhs.z };
 	return nVec;
 }
 
@@ -30,15 +29,14 @@ Vec3 Vec3::operator+=(Vec3 rhs)
 
 Vec3 Vec3::operator+(Vec3Dir rhs)
 {
-	x += rhs.xLen;
-	y += rhs.yLen;
-	z += rhs.zLen;
+	this->x += rhs.xLen;
+	this->y += rhs.yLen;
+	this->z += rhs.zLen;
 	return *this;
 }
 
 Vec3 Vec3::operator+=(Vec3Dir rhs)
 {
-
 	return (*this) + rhs;
 }
 
@@ -52,7 +50,7 @@ Vec3 Vec3::operator-(Vec3 rhs)
 
 Vec3 Vec3::operator-(Vec3 rhs) const
 {
-	Vec3 nVec = (*this) - rhs;
+	Vec3 nVec{ this->x - rhs.x, this->y - rhs.y, this->z - rhs.z };
 	return nVec;
 }
 
@@ -71,7 +69,7 @@ Vec3 Vec3::operator*(float scl)
 
 Vec3 Vec3::operator*(float scl) const
 {
-	Vec3 nVec = (*this) * scl;
+	Vec3 nVec{ this->x * scl, this->y * scl, this->z * scl };
 	return nVec;
 }
 
@@ -98,7 +96,7 @@ Vec3 Vec3::operator/(float scl)
 
 Vec3 Vec3::operator/(float scl) const
 {
-	Vec3 nVec = (*this) * scl;
+	Vec3 nVec{ this->x / scl, this->y / scl, this->z / scl };
 	return nVec;
 }
 
@@ -169,7 +167,16 @@ Vec3Dir Vec3Dir::operator*(float scl)
 
 Vec3Dir Vec3Dir::operator*(float scl) const
 {
-	Vec3Dir nVecDir = (*this) * scl;
+	Vec3Dir nVecDir = *this;
+	nVecDir.endPoint.x *= scl;
+	nVecDir.endPoint.y *= scl;
+	nVecDir.endPoint.z *= scl;
+	nVecDir.startPoint.x *= scl;
+	nVecDir.startPoint.y *= scl;
+	nVecDir.startPoint.z *= scl;
+	nVecDir.xLen = nVecDir.endPoint.x - nVecDir.startPoint.x;
+	nVecDir.yLen = nVecDir.endPoint.y - nVecDir.startPoint.y;
+	nVecDir.zLen = nVecDir.endPoint.z - nVecDir.startPoint.z;
 	return nVecDir;
 }
 
@@ -194,7 +201,16 @@ Vec3Dir Vec3Dir::operator/(float scl)
 
 Vec3Dir Vec3Dir::operator/(float scl) const
 {
-	Vec3Dir nVecDir = (*this) / scl;
+	Vec3Dir nVecDir = (*this);
+	nVecDir.endPoint.x /= scl;
+	nVecDir.endPoint.y /= scl;
+	nVecDir.endPoint.z /= scl;
+	nVecDir.startPoint.x /= scl;
+	nVecDir.startPoint.y /= scl;
+	nVecDir.startPoint.z /= scl;
+	nVecDir.xLen = nVecDir.endPoint.x - nVecDir.startPoint.x;
+	nVecDir.yLen = nVecDir.endPoint.y - nVecDir.startPoint.y;
+	nVecDir.zLen = nVecDir.endPoint.z - nVecDir.startPoint.z;
 	return nVecDir;
 }
 
