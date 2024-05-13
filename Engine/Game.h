@@ -30,14 +30,16 @@
 #include "Button.h"
 #include "FrameTimer.h"
 #include "Shape.h"
-#include "UpdateScrenCoordinate.h"
+#include "ScreenCoordinateTransformer_2D.h"
 #include "Stick.h"
 #include <cmath>
 #include "Sound.h"
 #include "Camera.h"
 #include "Input.h"
 #include "Draw.h"
-#include "Matrix3.h"
+#include "XMath.h"
+#include "ScreenCoordinateTransformer_3D.h"
+#include "Cube.h"
 
 
 
@@ -60,13 +62,17 @@ private:
 	MouseInput mInput;
 	KeyboardInput kInput;
 	Camera camera;
-	UpdateScrenCoordinate updateScrCoord;
+	ScreenCoordinateTransformer_2D scrCoordTransformer_2d;
 	Draw draw;
 	int ticks = 0;
 	int ticksMax = 180;
 	int curShape = 0;
 	Stick stick;
 	float t = 0.f;
+	Cube cube{ 0.5f };
+	ScreenCoordinateTransformer_3D sct_3d;
+	Vec3 zOffset{ 0.f, 0.f, 0.f };
+	std::vector<Color> colorsm;
 	
 	
 };

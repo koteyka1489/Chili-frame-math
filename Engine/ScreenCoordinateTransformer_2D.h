@@ -5,15 +5,15 @@
 #include "Vec2.h"
 #include "Stick.h"
 #include "Camera.h"
-#include "Matrix3.h"
+#include "XMath.h"
 
 
-class UpdateScrenCoordinate
+class ScreenCoordinateTransformer_2D
 {
 public:
-	UpdateScrenCoordinate() = default;
-	UpdateScrenCoordinate(Camera& camera_in);
-	UpdateScrenCoordinate operator= (UpdateScrenCoordinate& rhs);
+	ScreenCoordinateTransformer_2D() = default;
+	ScreenCoordinateTransformer_2D(Camera& camera_in);
+	ScreenCoordinateTransformer_2D operator= (ScreenCoordinateTransformer_2D& rhs);
 	void Init(std::vector<Shape> shapesIN);
 	void Update();
 	std::vector<Shape>* GetShapes();

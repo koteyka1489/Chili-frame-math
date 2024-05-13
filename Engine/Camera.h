@@ -14,11 +14,14 @@ public:
 	Vec2 GetCenterCamera();
 	float GetScaleCameraMod();
 	float GetThetaRotation();
-
+	float GetThetaRotation_X();
+	float GetThetaRotation_Y();
+	float GetThetaRotation_Z();
 private:
 	void MoveCamera();
 	void ScaleCamera();
 	void RotationCamera();
+	void RotationCameraXYZ();
 private:
 	MouseInput& mInput;
 	KeyboardInput& kInput;
@@ -30,6 +33,8 @@ private:
 	int mouseUpdateTicks = 0;
 	int mouseUpdateTicksMax = 10;
 	float ThetaRotation = 0.0f;
-
+	float thetaRotationX = 0.0f;
+	float thetaRotationY = 0.5f;
+	float thetaRotationZ = 0.0f;
 };
 
