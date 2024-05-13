@@ -261,13 +261,12 @@ Vec3Dir Vec3Dir::Normalize() const
 Vec3Dir Vec3Dir::CrossProduct(Vec3Dir lhs, Vec3Dir rhs)
 {
 	Vec3Dir vcp{ Vec3{0.f, 0.f, 0.f}, lhs.startPoint };
-	vcp.endPoint.x = lhs.endPoint.y * rhs.endPoint.z - lhs.endPoint.z * rhs.endPoint.y;
-	vcp.endPoint.y = lhs.endPoint.z * rhs.endPoint.x - lhs.endPoint.x * rhs.endPoint.z;
-	vcp.endPoint.z = lhs.endPoint.x * rhs.endPoint.y - lhs.endPoint.y * rhs.endPoint.x;
-	vcp.xLen = vcp.endPoint.x - vcp.startPoint.x;
-	vcp.yLen = vcp.endPoint.y - vcp.startPoint.y;
-	vcp.zLen = vcp.endPoint.z - vcp.startPoint.z;
-
+	vcp.xLen = lhs.yLen * rhs.zLen - lhs.zLen * rhs.yLen;
+	vcp.yLen = lhs.zLen * rhs.xLen - lhs.xLen * rhs.zLen;
+	vcp.zLen = lhs.xLen * rhs.yLen - lhs.yLen * rhs.xLen;
+	vcp.endPoint.x = vcp.startPoint.x + vcp.xLen;
+	vcp.endPoint.y = vcp.startPoint.y + vcp.yLen;
+	vcp.endPoint.z = vcp.startPoint.z + vcp.zLen;
 	return vcp;
 }
 

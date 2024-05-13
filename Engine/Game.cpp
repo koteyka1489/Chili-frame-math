@@ -86,26 +86,23 @@ void Game::UpdateModel()
 		v += {0.f, 0.f, 1.0f};
 		v += zOffset;
 	}
+	for (size_t i = 0; i < triangles.indexes.size(); i += 3)
+	{
+		Vec3 v0 = triangles.vertices[triangles.indexes[i]];
+		Vec3 v1 = triangles.vertices[triangles.indexes[i + 1]];
+		Vec3 v2 = triangles.vertices[triangles.indexes[i + 2]];
+		Vec3Dir v0Dir{ v1, v0 };
+		Vec3Dir v1Dir{ v2, v0 };
+		Vec3Dir vCp = vCp.CrossProduct(v0Dir, v1Dir);
+		Vec3Dir vecCamera{ v0 , Vec3{0.f, 0.f, 0.f } };
+		if (vCp.DotProduct(vecCamera) >= 0.f)
+		{
+			triangles.flags[i / 3] = true;
+		}
+	}
 	for (auto& v : triangles.vertices)
 	{
-		for (size_t i = 0; i < triangles.indexes.size(); i += 3)
-		{
-			Vec3 v0 = triangles.vertices[triangles.indexes[i]];
-			Vec3 v1 = triangles.vertices[triangles.indexes[i + 1]];
-			Vec3 v2 = triangles.vertices[triangles.indexes[i + 2]];
-			Vec3Dir v0Dir{ v1, v0 };
-			Vec3Dir v1Dir{ v2, v0 };
-			Vec3Dir vCp = vCp.CrossProduct(v0Dir, v1Dir);
-			Vec3Dir vecCamera{ v0 , Vec3{0.f, 0.f, 0.f } };
-			if (vCp.DotProduct(vecCamera) >= 0.f)
-			{
-				triangles.flags[i / 3] = true;
-			}
-		}
-
-
 		sct_3d.Transform(v);
-
 	}
 	for (size_t i = 0; i < triangles.indexes.size(); i += 3)
 	{
