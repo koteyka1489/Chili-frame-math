@@ -64,6 +64,9 @@ public:
 	void DrawSpriteChromaRGBWhite(int x, int y, Surface& s);
 	void DrawSpriteChromaRect(int x, int y, Surface& s, Rect rec);
 	void DrawLine(Vec2Dir v, Color col);
+	void DrawTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Color clr);
+	void DrawFlatBottomTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Color clr);
+	void DrawFlatTopTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Color clr);
 
 	~Graphics();
 private:
@@ -81,6 +84,6 @@ private:
 	D3D11_MAPPED_SUBRESOURCE							mappedSysBufferTexture;
 	Color*                                              pSysBuffer = nullptr;
 public:
-	static constexpr int ScreenWidth = 1500;
-	static constexpr int ScreenHeight = 1000;
+	static constexpr int ScreenWidth = 1200;
+	static constexpr int ScreenHeight = 1200;
 };
