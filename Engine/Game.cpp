@@ -148,9 +148,6 @@ void Game::UpdateModel()
 	}
 
 
-
-
-
 	for (auto& v : triangles0.vertices)
 	{
 		sct_3d.Transform(v);
