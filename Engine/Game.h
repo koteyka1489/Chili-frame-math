@@ -69,7 +69,9 @@ private:
 	int curShape = 0;
 	Stick stick;
 	float t = 0.f;
-	Cube cube{ 0.5f };
+	Cube cube0{ 0.5f };
+	Cube cube1{ 0.3f };
+	Cube cube2{ 0.6f };
 	ScreenCoordinateTransformer_3D sct_3d;
 	Vec3 zOffset{ 0.f, 0.f, 0.f };
 	std::vector<Color> colorsm;

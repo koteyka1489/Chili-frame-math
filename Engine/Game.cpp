@@ -78,39 +78,127 @@ void Game::UpdateModel()
 		zOffset += { 0.f,0.f, -0.1f };
 	}
 	
-	auto triangles = cube.GetTriangles();
+	auto triangles0 = cube0.GetTriangles();
+	auto triangles1 = cube1.GetTriangles();
+	auto triangles2 = cube2.GetTriangles();
 
-	for (auto& v : triangles.vertices)
+
+	for (auto& v0 : triangles0.vertices)
 	{
-		v = matAllRot * v;
-		v += {0.f, 0.f, 1.0f};
-		v += zOffset;
+		v0 = matAllRot * v0;
+		v0 += {1.f, 1.f, 5.0f};
+		v0 += zOffset;
 	}
-	for (size_t i = 0; i < triangles.indexes.size(); i += 3)
+	for (auto& v1 : triangles1.vertices)
 	{
-		Vec3 v0 = triangles.vertices[triangles.indexes[i]];
-		Vec3 v1 = triangles.vertices[triangles.indexes[i + 1]];
-		Vec3 v2 = triangles.vertices[triangles.indexes[i + 2]];
+		v1 = matAllRot * v1;
+		v1 += {-1.f, -1.f, 3.0f};
+		v1 += zOffset;
+	}
+	for (auto& v2 : triangles2.vertices)
+	{
+		v2 = matAllRot * v2;
+		v2 += {1.f, -1.f, 6.0f};
+		v2 += zOffset;
+	}
+
+
+
+	for (size_t i = 0; i < triangles0.indexes.size(); i += 3)
+	{
+		Vec3 v0 = triangles0.vertices[triangles0.indexes[i]];
+		Vec3 v1 = triangles0.vertices[triangles0.indexes[i + 1]];
+		Vec3 v2 = triangles0.vertices[triangles0.indexes[i + 2]];
 		Vec3Dir v0Dir{ v1, v0 };
 		Vec3Dir v1Dir{ v2, v0 };
 		Vec3Dir vCp = vCp.CrossProduct(v0Dir, v1Dir);
 		Vec3Dir vecCamera{ v0 , Vec3{0.f, 0.f, 0.f } };
 		if (vCp.DotProduct(vecCamera) >= 0.f)
 		{
-			triangles.flags[i / 3] = true;
+			triangles0.flags[i / 3] = true;
 		}
 	}
-	for (auto& v : triangles.vertices)
+	for (size_t i = 0; i < triangles1.indexes.size(); i += 3)
+	{
+		Vec3 v0 = triangles1.vertices[triangles1.indexes[i]];
+		Vec3 v1 = triangles1.vertices[triangles1.indexes[i + 1]];
+		Vec3 v2 = triangles1.vertices[triangles1.indexes[i + 2]];
+		Vec3Dir v0Dir{ v1, v0 };
+		Vec3Dir v1Dir{ v2, v0 };
+		Vec3Dir vCp = vCp.CrossProduct(v0Dir, v1Dir);
+		Vec3Dir vecCamera{ v0 , Vec3{0.f, 0.f, 0.f } };
+		if (vCp.DotProduct(vecCamera) >= 0.f)
+		{
+			triangles1.flags[i / 3] = true;
+		}
+	}
+	for (size_t i = 0; i < triangles2.indexes.size(); i += 3)
+	{
+		Vec3 v0 = triangles2.vertices[triangles2.indexes[i]];
+		Vec3 v1 = triangles2.vertices[triangles2.indexes[i + 1]];
+		Vec3 v2 = triangles2.vertices[triangles2.indexes[i + 2]];
+		Vec3Dir v0Dir{ v1, v0 };
+		Vec3Dir v1Dir{ v2, v0 };
+		Vec3Dir vCp = vCp.CrossProduct(v0Dir, v1Dir);
+		Vec3Dir vecCamera{ v0 , Vec3{0.f, 0.f, 0.f } };
+		if (vCp.DotProduct(vecCamera) >= 0.f)
+		{
+			triangles2.flags[i / 3] = true;
+		}
+	}
+
+
+
+
+
+	for (auto& v : triangles0.vertices)
 	{
 		sct_3d.Transform(v);
 	}
-	for (size_t i = 0; i < triangles.indexes.size(); i += 3)
+	for (size_t i = 0; i < triangles0.indexes.size(); i += 3)
 	{
-		if (!triangles.flags[i / 3])
+		if (!triangles0.flags[i / 3])
 		{
-			Vec3 v0 = triangles.vertices[triangles.indexes[i]];
-			Vec3 v1 = triangles.vertices[triangles.indexes[i + 1]];
-			Vec3 v2 = triangles.vertices[triangles.indexes[i + 2]];
+			Vec3 v0 = triangles0.vertices[triangles0.indexes[i]];
+			Vec3 v1 = triangles0.vertices[triangles0.indexes[i + 1]];
+			Vec3 v2 = triangles0.vertices[triangles0.indexes[i + 2]];
+			Vec2 v0_2d = { v0.x, v0.y };
+			Vec2 v1_2d = { v1.x, v1.y };
+			Vec2 v2_2d = { v2.x, v2.y };
+			gfx.DrawTriangle(v0_2d, v1_2d, v2_2d, colorsm[i / 3]);
+		}
+	}
+
+
+	for (auto& v : triangles1.vertices)
+	{
+		sct_3d.Transform(v);
+	}
+	for (size_t i = 0; i < triangles1.indexes.size(); i += 3)
+	{
+		if (!triangles1.flags[i / 3])
+		{
+			Vec3 v0 = triangles1.vertices[triangles1.indexes[i]];
+			Vec3 v1 = triangles1.vertices[triangles1.indexes[i + 1]];
+			Vec3 v2 = triangles1.vertices[triangles1.indexes[i + 2]];
+			Vec2 v0_2d = { v0.x, v0.y };
+			Vec2 v1_2d = { v1.x, v1.y };
+			Vec2 v2_2d = { v2.x, v2.y };
+			gfx.DrawTriangle(v0_2d, v1_2d, v2_2d, colorsm[i / 3]);
+		}
+	}
+
+	for (auto& v : triangles2.vertices)
+	{
+		sct_3d.Transform(v);
+	}
+	for (size_t i = 0; i < triangles2.indexes.size(); i += 3)
+	{
+		if (!triangles2.flags[i / 3])
+		{
+			Vec3 v0 = triangles2.vertices[triangles2.indexes[i]];
+			Vec3 v1 = triangles2.vertices[triangles2.indexes[i + 1]];
+			Vec3 v2 = triangles2.vertices[triangles2.indexes[i + 2]];
 			Vec2 v0_2d = { v0.x, v0.y };
 			Vec2 v1_2d = { v1.x, v1.y };
 			Vec2 v2_2d = { v2.x, v2.y };
