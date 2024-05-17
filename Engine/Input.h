@@ -49,6 +49,10 @@ public:
 	bool DownIsPressed();
 	bool EIsPresses();
 	bool QIsPressed();
+	bool WIsPressed();
+	bool AIsPressed();
+	bool SIsPressed();
+	bool DIsPressed();
 
 private:
 	MainWindow& wnd;
@@ -58,5 +62,9 @@ private:
 	bool downIsPressed = false;
 	bool eIsPressed = false;
 	bool qIsPressed = false;
+	bool W_IsPressed = false;
+	bool A_IsPressed = false;
+	bool S_IsPressed = false;
+	bool D_IsPressed = false;
 };
 

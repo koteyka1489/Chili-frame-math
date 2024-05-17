@@ -54,20 +54,30 @@ float Camera::GetThetaRotation_Z()
 	return thetaRotationZ;
 }
 
+Vec3 Camera::GetCameraVec()
+{
+	return cameraVec;
+}
+
 void Camera::MoveCamera()
 {
-	offsetMoveCamera = Vec2{ 0.f, 0.f };
-	Vec2 temp = { 0.f, 0.f };
-
-	if (mInput.GetLeftIsPressed())
+	if (kInput.WIsPressed())
 	{
-		Vec2 mousePressPoint = mInput.GetMousePos();
-		Vec2Dir mouseVecDir(mouseStartPos, mousePressPoint);
-		mouseVecDir = mouseVecDir.Normalize();
-		temp += mouseVecDir;
+		cameraVec.z += cameraSpeed;
+	}
+	if (kInput.AIsPressed())
+	{
+		cameraVec.x -= cameraSpeed;
+	}
+	if (kInput.SIsPressed())
+	{
+		cameraVec.z -= cameraSpeed;
+	}
+	if (kInput.DIsPressed())
+	{
+		cameraVec.x += cameraSpeed;
 	}
 
-	offsetMoveCamera += temp * 5.0f;
 }
 
 void Camera::ScaleCamera()

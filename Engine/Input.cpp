@@ -90,6 +90,10 @@ void KeyboardInput::Execute()
 	downIsPressed = false;
 	qIsPressed = false;
 	eIsPressed = false;
+	W_IsPressed = false;
+	A_IsPressed = false;
+	S_IsPressed = false;
+	D_IsPressed = false;
 
 	if (wnd.kbd.KeyIsPressed(VK_LEFT)) { leftIsPressed = true; }
 	if (wnd.kbd.KeyIsPressed(VK_RIGHT)) { rightIsPressed = true; }
@@ -97,6 +101,10 @@ void KeyboardInput::Execute()
 	if (wnd.kbd.KeyIsPressed(VK_DOWN)) { downIsPressed = true; }
 	if (wnd.kbd.KeyIsPressed('Q')) { qIsPressed = true; }
 	if (wnd.kbd.KeyIsPressed('E')) { eIsPressed = true; }
+	if (wnd.kbd.KeyIsPressed('W')) { W_IsPressed = true; }
+	if (wnd.kbd.KeyIsPressed('A')) { A_IsPressed = true; }
+	if (wnd.kbd.KeyIsPressed('S')) { S_IsPressed = true; }
+	if (wnd.kbd.KeyIsPressed('D')) { D_IsPressed = true; }
 }
 
 bool KeyboardInput::LefttIsPressed()
@@ -127,4 +135,24 @@ bool KeyboardInput::EIsPresses()
 bool KeyboardInput::QIsPressed()
 {
 	return qIsPressed;
+}
+
+bool KeyboardInput::WIsPressed()
+{
+	return W_IsPressed;
+}
+
+bool KeyboardInput::AIsPressed()
+{
+	return A_IsPressed;
+}
+
+bool KeyboardInput::SIsPressed()
+{
+	return S_IsPressed;
+}
+
+bool KeyboardInput::DIsPressed()
+{
+	return D_IsPressed;
 }

@@ -37,14 +37,14 @@ Game::Game(MainWindow& wnd)
 		colorsm.push_back(Colors::Red);
 		colorsm.push_back(Colors::Green);
 		colorsm.push_back(Colors::Yellow);
-		colorsm.push_back(Colors::Blue);
-		colorsm.push_back(Colors::Red);
+		colorsm.push_back(Colors::White);
+		colorsm.push_back(Colors::Cyan);
+		colorsm.push_back(Colors::LightGray);
 		colorsm.push_back(Colors::Green);
 		colorsm.push_back(Colors::Yellow);
-		colorsm.push_back(Colors::Blue);
 		colorsm.push_back(Colors::Red);
 		colorsm.push_back(Colors::Green);
-		colorsm.push_back(Colors::Yellow);
+		colorsm.push_back(Colors::White);
 	}
 
 void Game::Go()
@@ -69,40 +69,29 @@ void Game::UpdateModel()
 	Matrix3 matRotZ = matRotZ.RotateMatrix3_Z(camera.GetThetaRotation_Z());
 	Matrix3 matAllRot = matRotX * matRotY * matRotZ;
 	
-	if (mInput.GetWheelUp())
-	{
-		zOffset += { 0.f,0.f, 0.1f };
-	}
-	if (mInput.GetWheelDown())
-	{
-		zOffset += { 0.f,0.f, -0.1f };
-	}
+
 	
 	auto triangles0 = cube0.GetTriangles();
-	auto triangles1 = cube1.GetTriangles();
-	auto triangles2 = cube2.GetTriangles();
-
-
+	auto triangles1 = cube0.GetTriangles();
+	
 	for (auto& v0 : triangles0.vertices)
 	{
+		
+		
+		v0 -= Vec3{ 1.f, 0.f, -1.5f }; // позиция фигуры
+		v0 -= camera.GetCameraVec();
 		v0 = matAllRot * v0;
-		v0 += {1.f, 1.f, 5.0f};
-		v0 += zOffset;
+		
 	}
 	for (auto& v1 : triangles1.vertices)
 	{
+		
+		
+		v1 -= Vec3{ -1.f, 0, -1.f }; // позиция фигуры
+		v1 -= camera.GetCameraVec();
 		v1 = matAllRot * v1;
-		v1 += {-1.f, -1.f, 3.0f};
-		v1 += zOffset;
+		
 	}
-	for (auto& v2 : triangles2.vertices)
-	{
-		v2 = matAllRot * v2;
-		v2 += {1.f, -1.f, 6.0f};
-		v2 += zOffset;
-	}
-
-
 
 	for (size_t i = 0; i < triangles0.indexes.size(); i += 3)
 	{
@@ -112,12 +101,13 @@ void Game::UpdateModel()
 		Vec3Dir v0Dir{ v1, v0 };
 		Vec3Dir v1Dir{ v2, v0 };
 		Vec3Dir vCp = vCp.CrossProduct(v0Dir, v1Dir);
-		Vec3Dir vecCamera{ v0 , Vec3{0.f, 0.f, 0.f } };
+		Vec3Dir vecCamera{ v0 , Vec3 {0.f, 0.f, 0.f } };
 		if (vCp.DotProduct(vecCamera) >= 0.f)
 		{
 			triangles0.flags[i / 3] = true;
 		}
 	}
+
 	for (size_t i = 0; i < triangles1.indexes.size(); i += 3)
 	{
 		Vec3 v0 = triangles1.vertices[triangles1.indexes[i]];
@@ -126,32 +116,23 @@ void Game::UpdateModel()
 		Vec3Dir v0Dir{ v1, v0 };
 		Vec3Dir v1Dir{ v2, v0 };
 		Vec3Dir vCp = vCp.CrossProduct(v0Dir, v1Dir);
-		Vec3Dir vecCamera{ v0 , Vec3{0.f, 0.f, 0.f } };
+		Vec3Dir vecCamera{ v0 , Vec3 {0.f, 0.f, 0.f } };
 		if (vCp.DotProduct(vecCamera) >= 0.f)
 		{
 			triangles1.flags[i / 3] = true;
 		}
 	}
-	for (size_t i = 0; i < triangles2.indexes.size(); i += 3)
-	{
-		Vec3 v0 = triangles2.vertices[triangles2.indexes[i]];
-		Vec3 v1 = triangles2.vertices[triangles2.indexes[i + 1]];
-		Vec3 v2 = triangles2.vertices[triangles2.indexes[i + 2]];
-		Vec3Dir v0Dir{ v1, v0 };
-		Vec3Dir v1Dir{ v2, v0 };
-		Vec3Dir vCp = vCp.CrossProduct(v0Dir, v1Dir);
-		Vec3Dir vecCamera{ v0 , Vec3{0.f, 0.f, 0.f } };
-		if (vCp.DotProduct(vecCamera) >= 0.f)
-		{
-			triangles2.flags[i / 3] = true;
-		}
-	}
-
 
 	for (auto& v : triangles0.vertices)
 	{
 		sct_3d.Transform(v);
 	}
+
+	for (auto& v : triangles1.vertices)
+	{
+		sct_3d.Transform(v);
+	}
+
 	for (size_t i = 0; i < triangles0.indexes.size(); i += 3)
 	{
 		if (!triangles0.flags[i / 3])
@@ -164,12 +145,6 @@ void Game::UpdateModel()
 			Vec2 v2_2d = { v2.x, v2.y };
 			gfx.DrawTriangle(v0_2d, v1_2d, v2_2d, colorsm[i / 3]);
 		}
-	}
-
-
-	for (auto& v : triangles1.vertices)
-	{
-		sct_3d.Transform(v);
 	}
 	for (size_t i = 0; i < triangles1.indexes.size(); i += 3)
 	{
@@ -185,23 +160,6 @@ void Game::UpdateModel()
 		}
 	}
 
-	for (auto& v : triangles2.vertices)
-	{
-		sct_3d.Transform(v);
-	}
-	for (size_t i = 0; i < triangles2.indexes.size(); i += 3)
-	{
-		if (!triangles2.flags[i / 3])
-		{
-			Vec3 v0 = triangles2.vertices[triangles2.indexes[i]];
-			Vec3 v1 = triangles2.vertices[triangles2.indexes[i + 1]];
-			Vec3 v2 = triangles2.vertices[triangles2.indexes[i + 2]];
-			Vec2 v0_2d = { v0.x, v0.y };
-			Vec2 v1_2d = { v1.x, v1.y };
-			Vec2 v2_2d = { v2.x, v2.y };
-			gfx.DrawTriangle(v0_2d, v1_2d, v2_2d, colorsm[i / 3]);
-		}
-	}
 }
 
 void Game::ComposeFrame()
