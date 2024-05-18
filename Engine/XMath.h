@@ -24,12 +24,13 @@ public:
 	Vec2 operator* (Vec2 rhs);
 	Vec3 operator* (Vec3 rhs);
 	Matrix3 operator* (Matrix3 rhs) const;
-	Matrix3 ScaleMatrix3(float scale);
-	Matrix3 RotateMatrix3_Z(float theta);
-	Matrix3 RotateMatrix3_Y(float theta);
-	Matrix3 RotateMatrix3_X(float theta);
-	Matrix3 TranslateMatrix3(Vec2 offset);
-	Matrix3 GetModelMarixTRS(Matrix3 Scale, Matrix3 Rotate, Matrix3 Translate);
+	static Matrix3 ScaleMatrix3(float scale);
+	static Matrix3 RotateMatrix3_Z(float theta);
+	static Matrix3 RotateMatrix3_Y(float theta);
+	static Matrix3 RotateMatrix3_Y_Inverse(float theta);
+	static Matrix3 RotateMatrix3_X(float theta);
+	static Matrix3 TranslateMatrix3(Vec2 offset);
+	static Matrix3 GetModelMarixTRS(Matrix3 Scale, Matrix3 Rotate, Matrix3 Translate);
 
 public:
 	//      [rows][col]

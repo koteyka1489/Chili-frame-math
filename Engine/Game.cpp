@@ -67,7 +67,7 @@ void Game::UpdateModel()
 	Matrix3 matRotX = matRotX.RotateMatrix3_X(camera.GetThetaRotation_X());
 	Matrix3 matRotY = matRotY.RotateMatrix3_Y(camera.GetThetaRotation_Y());
 	Matrix3 matRotZ = matRotZ.RotateMatrix3_Z(camera.GetThetaRotation_Z());
-	Matrix3 matAllRot = matRotX * matRotY * matRotZ;
+	Matrix3 matXZRot = matRotX *  matRotZ;
 	
 
 	
@@ -77,19 +77,19 @@ void Game::UpdateModel()
 	for (auto& v0 : triangles0.vertices)
 	{
 		
-		
+		v0 = matXZRot * v0; // вращение фигур фокруг своей оси
 		v0 -= Vec3{ 1.f, 0.f, -1.5f }; // позиция фигуры
 		v0 -= camera.GetCameraVec();
-		v0 = matAllRot * v0;
+		v0 = matRotY * v0; // вращение камеры вокруг оси Y
 		
 	}
 	for (auto& v1 : triangles1.vertices)
 	{
 		
-		
+		v1 = matXZRot * v1;
 		v1 -= Vec3{ -1.f, 0, -1.f }; // позиция фигуры
 		v1 -= camera.GetCameraVec();
-		v1 = matAllRot * v1;
+		v1 = matRotY * v1; 
 		
 	}
 

@@ -60,23 +60,30 @@ Vec3 Camera::GetCameraVec()
 }
 
 void Camera::MoveCamera()
+
 {
+	Vec3 offset{ 0.f, 0.f, 0.f };
+	Matrix3 matRotYINVERSE = Matrix3::RotateMatrix3_Y_Inverse(GetThetaRotation_Y());
+
 	if (kInput.WIsPressed())
 	{
-		cameraVec.z += cameraSpeed;
+		offset += Vec3{ 0, 0, cameraSpeed };
 	}
 	if (kInput.AIsPressed())
 	{
-		cameraVec.x -= cameraSpeed;
+		offset += Vec3{ -cameraSpeed, 0, 0 };
 	}
 	if (kInput.SIsPressed())
 	{
-		cameraVec.z -= cameraSpeed;
+		offset += Vec3{ 0, 0, -cameraSpeed };
 	}
 	if (kInput.DIsPressed())
 	{
-		cameraVec.x += cameraSpeed;
+		offset += Vec3{ cameraSpeed, 0, 0 };
 	}
+	offset = matRotYINVERSE * offset;
+	
+	cameraVec += offset;
 
 }
 

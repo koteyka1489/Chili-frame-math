@@ -95,6 +95,17 @@ Matrix3 Matrix3::RotateMatrix3_Y(float theta)
       sinTheta,  0.f,   cosTheta };
 }
 
+Matrix3 Matrix3::RotateMatrix3_Y_Inverse(float theta)
+{
+    float cosTheta = std::cos(theta);
+    float sinTheta = std::sin(theta);
+
+    return
+    { cosTheta,  0.f,   sinTheta,
+      0.f,       1.f,   0.f,
+      -sinTheta,  0.f,   cosTheta };
+}
+
 Matrix3 Matrix3::RotateMatrix3_X(float theta)
 {
     float cosTheta = std::cos(theta);
